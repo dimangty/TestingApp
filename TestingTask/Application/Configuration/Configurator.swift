@@ -15,13 +15,17 @@ class Configurator {
     }
     
    private func registerServices() {
+       serviceLocator.addService(service: ApplicationCoordinator())
        serviceLocator.addService(service: Obfuscator())
        serviceLocator.addService(service: CurrateService())
        serviceLocator.addService(service: ErrorService())
        serviceLocator.addService(service: ProgressService())
        serviceLocator.addService(service: ValidationService())
-       serviceLocator.addService(service: CacheService(lifeTime: 500))
        serviceLocator.addService(service: AuthService())
        
+       let casheService = CacheService.shared
+       serviceLocator.addService(service: casheService)
+       serviceLocator.addService(service: NewsService.shared)
+       serviceLocator.addService(service: StorageService.shared)
     }
 }

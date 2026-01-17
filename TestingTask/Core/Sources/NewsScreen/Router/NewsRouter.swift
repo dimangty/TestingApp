@@ -1,28 +1,21 @@
-//
-//  MainScreenRouter.swift
-//  TestingTask
-//
-//  Created by DBykov on 19/07/2022.
-//
-
 import UIKit
 
-class MainScreenRouter {
+final class NewsRouter {
     weak var viewController: UIViewController?
     weak var transitionHandler: ViperModuleTransitionHandler?
 
     func createModule() -> UIViewController? {
-        let vc = MainScreenViewController.loadFromXib()
+        let vc = NewsViewController.loadFromXib()
 
         transitionHandler = vc
 
-        let presenter = MainScreenPresenter(view: vc, router: self)
-
+        let presenter = NewsPresenter(view: vc,
+                                      router: self)
         vc.presenter = presenter
 
-        self.viewController = vc
+        viewController = vc
 
-        return self.viewController
+        return viewController
     }
 
     func openModule(with transitionHandler: ViperModuleTransitionHandler, transitionStyle: TransitionStyle) {
@@ -30,13 +23,12 @@ class MainScreenRouter {
             transitionHandler.openModule(vc: vc, style: transitionStyle)
         }
     }
-    
 }
 
-extension MainScreenRouter: MainScreenRouterInput {
-    func openNextScreen() {
+extension NewsRouter: NewsRouterInput {
+    func openArticle(article: ArticleViewModel) {
         if let transition = transitionHandler {
-            MainScreenRouter().openModule(with: transition, transitionStyle: .push)
+            ArticleRouter(article: article).openModule(with: transition, transitionStyle: .push)
         }
     }
 }

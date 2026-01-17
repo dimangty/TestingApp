@@ -42,23 +42,13 @@ extension SignUpScreenPresenter: SignUpScreenViewOutput {
     }
 
     func createAccountTapped() {
-        let isValid = SignUpField.allCases.allSatisfy { field in
-            let value = fields[field] ?? ""
-            return validationService?.isValid(field: field, value: value) ?? false
-        }
-
-        guard isValid else {
-            updateCreateState()
-            return
-        }
-
         progressService?.show()
         let payload = SignUpData(fields: fields)
         authService?.signUp(data: payload, completion: { [weak self] result in
             self?.progressService?.hide()
             switch result {
             case .success:
-                self?.router.close()
+                self?.router.openMainScreen()
             case .failure:
                 self?.errorService?.show(errorText: "Sign up failed")
             }

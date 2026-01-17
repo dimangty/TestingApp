@@ -11,6 +11,8 @@ class LoginScreenRouter {
     weak var viewController: UIViewController?
     weak var transitionHandler: ViperModuleTransitionHandler?
     
+    @Injected private var coordinator: ApplicationCoordinator?
+    
     func createModule() -> UIViewController? {
         let vc = LoginScreenViewController.loadFromXib()
         transitionHandler = vc
@@ -31,9 +33,7 @@ class LoginScreenRouter {
 
 extension LoginScreenRouter: LoginScreenRouterInput {
     func openMainScreen() {
-        if let transition = transitionHandler {
-            MainScreenRouter().openModule(with: transition, transitionStyle: .modalOverFullscreen)
-        }
+        coordinator?.showMain()
     }
 
     func openSignUpScreen() {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpScreenViewController: UIViewController {
+class SignUpScreenViewController: UIViewController, ViperModuleTransitionHandler {
     var presenter: SignUpScreenViewOutput?
 
     @IBOutlet private weak var firstNameField: UITextField!

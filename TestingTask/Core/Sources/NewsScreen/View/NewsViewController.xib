@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" customClass="NewsViewController" customModule="TestingTask" customModuleProvider="target">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Новости"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="activityIndicator" destination="gOt-Cm-2ZI" id="bOt-2y-dl0"/>
+                <outlet property="tableView" destination="r2x-f5-kxy" id="2Du-B1-Zz1"/>
+                <outlet property="view" destination="iN0-l3-epB" id="aCZ-oa-1pM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-f5-kxy">
+                    <rect key="frame" x="16" y="96" width="382" height="732"/>
+                    <color key="backgroundColor" red="0.93605184555053711" green="0.93541955947875977" blue="0.95558220148086548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gOt-Cm-2ZI">
+                    <rect key="frame" x="188.5" y="443.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3Ea"/>
+            <color key="backgroundColor" red="0.93605184555053711" green="0.93541955947875977" blue="0.95558220148086548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="r2x-f5-kxy" firstAttribute="leading" secondItem="vUN-kp-3Ea" secondAttribute="leading" constant="16" id="Acf-tR-Udr"/>
+                <constraint firstItem="gOt-Cm-2ZI" firstAttribute="centerX" secondItem="vUN-kp-3Ea" secondAttribute="centerX" id="C8s-J4-DT8"/>
+                <constraint firstItem="vUN-kp-3Ea" firstAttribute="trailing" secondItem="r2x-f5-kxy" secondAttribute="trailing" constant="16" id="f2p-BS-jKX"/>
+                <constraint firstItem="r2x-f5-kxy" firstAttribute="top" secondItem="vUN-kp-3Ea" secondAttribute="top" id="i6r-PF-jgO"/>
+                <constraint firstItem="gOt-Cm-2ZI" firstAttribute="centerY" secondItem="vUN-kp-3Ea" secondAttribute="centerY" id="m4L-Wv-fqS"/>
+                <constraint firstItem="r2x-f5-kxy" firstAttribute="bottom" secondItem="vUN-kp-3Ea" secondAttribute="bottom" id="u5s-Aa-q19"/>
+            </constraints>
+            <point key="canvasLocation" x="-97.101449275362327" y="19.419642857142858"/>
+        </view>
+    </objects>
+</document>

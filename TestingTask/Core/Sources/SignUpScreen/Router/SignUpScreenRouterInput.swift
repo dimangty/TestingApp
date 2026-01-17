@@ -7,4 +7,5 @@
 
 protocol SignUpScreenRouterInput {
     func close()
+    func openMainScreen()
 }
