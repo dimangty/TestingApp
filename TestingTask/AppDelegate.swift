@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //INIT DI
         Configurator.shared.setup()
+
+
         
         //INIT UI
         self.window = UIWindow(frame: UIScreen.main.bounds)
