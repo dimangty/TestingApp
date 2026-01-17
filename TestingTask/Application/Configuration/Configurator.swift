@@ -19,7 +19,9 @@ class Configurator {
        serviceLocator.addService(service: CurrateService())
        serviceLocator.addService(service: ErrorService())
        serviceLocator.addService(service: ProgressService())
+       serviceLocator.addService(service: ValidationService())
        serviceLocator.addService(service: CacheService(lifeTime: 500))
+       serviceLocator.addService(service: AuthService())
        
     }
 }

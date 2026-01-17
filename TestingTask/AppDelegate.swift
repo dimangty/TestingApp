@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //INIT UI
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainScreenRouter().createModule()
+        window?.rootViewController = UINavigationController(rootViewController: LoginScreenRouter().createModule() ?? UIViewController())
         window?.makeKeyAndVisible()
         return true
     }
@@ -28,4 +28,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

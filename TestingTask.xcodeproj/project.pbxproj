@@ -52,6 +52,24 @@
 		8CCD42A12886D59400A36142 /* CacheItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD42A02886D59400A36142 /* CacheItemModel.swift */; };
 		8CCD42A42886ED0E00A36142 /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD42A32886ED0E00A36142 /* Obfuscator.swift */; };
 		8CCD42A62886ED5900A36142 /* PrettyPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD42A52886ED5900A36142 /* PrettyPrint.swift */; };
+		8CCD43BC2886F10000A36142 /* LoginScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43B52886F10000A36142 /* LoginScreenPresenter.swift */; };
+		8CCD43BD2886F10000A36142 /* LoginScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCD43B62886F10000A36142 /* LoginScreenViewController.xib */; };
+		8CCD43BE2886F10000A36142 /* LoginScreenViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43B72886F10000A36142 /* LoginScreenViewOutput.swift */; };
+		8CCD43BF2886F10000A36142 /* LoginScreenViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43B82886F10000A36142 /* LoginScreenViewInput.swift */; };
+		8CCD43C02886F10000A36142 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43B92886F10000A36142 /* LoginScreenViewController.swift */; };
+		8CCD43C12886F10000A36142 /* LoginScreenRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43BA2886F10000A36142 /* LoginScreenRouterInput.swift */; };
+		8CCD43C22886F10000A36142 /* LoginScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43BB2886F10000A36142 /* LoginScreenRouter.swift */; };
+		8CCD43C32886F10000A36142 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD43A12886F00100A36142 /* AuthService.swift */; };
+		8CCD44C12886F40000A36142 /* SignUpScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44B12886F40000A36142 /* SignUpScreenPresenter.swift */; };
+		8CCD44C22886F40000A36142 /* SignUpScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCD44B22886F40000A36142 /* SignUpScreenViewController.xib */; };
+		8CCD44C32886F40000A36142 /* SignUpScreenViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44B32886F40000A36142 /* SignUpScreenViewOutput.swift */; };
+		8CCD44C42886F40000A36142 /* SignUpScreenViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44B42886F40000A36142 /* SignUpScreenViewInput.swift */; };
+		8CCD44C52886F40000A36142 /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44B52886F40000A36142 /* SignUpScreenViewController.swift */; };
+		8CCD44C62886F40000A36142 /* SignUpScreenRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44B62886F40000A36142 /* SignUpScreenRouterInput.swift */; };
+		8CCD44C72886F40000A36142 /* SignUpScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44B72886F40000A36142 /* SignUpScreenRouter.swift */; };
+		8CCD44C82886F30000A36142 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44A32886F30000A36142 /* ValidationService.swift */; };
+		8CCD44C92886F30000A36142 /* SignUpField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44A12886F30000A36142 /* SignUpField.swift */; };
+		8CCD44CA2886F30000A36142 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44A22886F30000A36142 /* SignUpData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +120,24 @@
 		8CCD42A02886D59400A36142 /* CacheItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheItemModel.swift; sourceTree = "<group>"; };
 		8CCD42A32886ED0E00A36142 /* Obfuscator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obfuscator.swift; sourceTree = "<group>"; };
 		8CCD42A52886ED5900A36142 /* PrettyPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyPrint.swift; sourceTree = "<group>"; };
+		8CCD43A12886F00100A36142 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		8CCD43B52886F10000A36142 /* LoginScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenPresenter.swift; sourceTree = "<group>"; };
+		8CCD43B62886F10000A36142 /* LoginScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginScreenViewController.xib; sourceTree = "<group>"; };
+		8CCD43B72886F10000A36142 /* LoginScreenViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewOutput.swift; sourceTree = "<group>"; };
+		8CCD43B82886F10000A36142 /* LoginScreenViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewInput.swift; sourceTree = "<group>"; };
+		8CCD43B92886F10000A36142 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
+		8CCD43BA2886F10000A36142 /* LoginScreenRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenRouterInput.swift; sourceTree = "<group>"; };
+		8CCD43BB2886F10000A36142 /* LoginScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenRouter.swift; sourceTree = "<group>"; };
+		8CCD44A12886F30000A36142 /* SignUpField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpField.swift; sourceTree = "<group>"; };
+		8CCD44A22886F30000A36142 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
+		8CCD44A32886F30000A36142 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
+		8CCD44B12886F40000A36142 /* SignUpScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenPresenter.swift; sourceTree = "<group>"; };
+		8CCD44B22886F40000A36142 /* SignUpScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpScreenViewController.xib; sourceTree = "<group>"; };
+		8CCD44B32886F40000A36142 /* SignUpScreenViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewOutput.swift; sourceTree = "<group>"; };
+		8CCD44B42886F40000A36142 /* SignUpScreenViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewInput.swift; sourceTree = "<group>"; };
+		8CCD44B52886F40000A36142 /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
+		8CCD44B62886F40000A36142 /* SignUpScreenRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenRouterInput.swift; sourceTree = "<group>"; };
+		8CCD44B72886F40000A36142 /* SignUpScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +263,14 @@
 			path = CurrateService;
 			sourceTree = "<group>";
 		};
+		8CCD43A32886F00100A36142 /* AuthService */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD43A12886F00100A36142 /* AuthService.swift */,
+			);
+			path = AuthService;
+			sourceTree = "<group>";
+		};
 		8CCD42272886965100A36142 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +292,7 @@
 		8CCD423D2886AFE700A36142 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8CCD43A32886F00100A36142 /* AuthService */,
 				8CCD429D2886D4CF00A36142 /* CacheService */,
 				8CCD42242886924E00A36142 /* CurrateService */,
 				8CCD420A28867F7300A36142 /* NetworkService */,
@@ -261,8 +306,17 @@
 				8CCD42472886B06400A36142 /* CommonAlertView */,
 				8CCD42432886B06400A36142 /* ErrorService */,
 				8CCD423F2886B06400A36142 /* ProgressService */,
+				8CCD44A42886F30000A36142 /* ValidationService */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8CCD44A42886F30000A36142 /* ValidationService */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD44A32886F30000A36142 /* ValidationService.swift */,
+			);
+			path = ValidationService;
 			sourceTree = "<group>";
 		};
 		8CCD423F2886B06400A36142 /* ProgressService */ = {
@@ -307,6 +361,8 @@
 			children = (
 				8CCD42652886BE3700A36142 /* CurrencyItemModel.swift */,
 				8CCD42A02886D59400A36142 /* CacheItemModel.swift */,
+				8CCD44A12886F30000A36142 /* SignUpField.swift */,
+				8CCD44A22886F30000A36142 /* SignUpData.swift */,
 			);
 			path = POSO;
 			sourceTree = "<group>";
@@ -314,9 +370,87 @@
 		8CCD42812886CB3D00A36142 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8CCD43B12886F10000A36142 /* LoginScreen */,
 				8CCD42822886CB3D00A36142 /* MainScreen */,
+				8CCD44B82886F40000A36142 /* SignUpScreen */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		8CCD44B82886F40000A36142 /* SignUpScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD44B92886F40000A36142 /* Presenter */,
+				8CCD44BA2886F40000A36142 /* View */,
+				8CCD44BB2886F40000A36142 /* Router */,
+			);
+			path = SignUpScreen;
+			sourceTree = "<group>";
+		};
+		8CCD44B92886F40000A36142 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD44B12886F40000A36142 /* SignUpScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8CCD44BA2886F40000A36142 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD44B22886F40000A36142 /* SignUpScreenViewController.xib */,
+				8CCD44B32886F40000A36142 /* SignUpScreenViewOutput.swift */,
+				8CCD44B42886F40000A36142 /* SignUpScreenViewInput.swift */,
+				8CCD44B52886F40000A36142 /* SignUpScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CCD44BB2886F40000A36142 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD44B62886F40000A36142 /* SignUpScreenRouterInput.swift */,
+				8CCD44B72886F40000A36142 /* SignUpScreenRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		8CCD43B12886F10000A36142 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD43B22886F10000A36142 /* Presenter */,
+				8CCD43B32886F10000A36142 /* View */,
+				8CCD43B42886F10000A36142 /* Router */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		8CCD43B22886F10000A36142 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD43B52886F10000A36142 /* LoginScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8CCD43B32886F10000A36142 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD43B62886F10000A36142 /* LoginScreenViewController.xib */,
+				8CCD43B72886F10000A36142 /* LoginScreenViewOutput.swift */,
+				8CCD43B82886F10000A36142 /* LoginScreenViewInput.swift */,
+				8CCD43B92886F10000A36142 /* LoginScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CCD43B42886F10000A36142 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				8CCD43BA2886F10000A36142 /* LoginScreenRouterInput.swift */,
+				8CCD43BB2886F10000A36142 /* LoginScreenRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		8CCD42822886CB3D00A36142 /* MainScreen */ = {
@@ -443,7 +577,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCD420328867E7F00A36142 /* LaunchScreen.storyboard in Resources */,
+				8CCD43BD2886F10000A36142 /* LoginScreenViewController.xib in Resources */,
 				8CCD42942886CB3D00A36142 /* MainScreenViewController.xib in Resources */,
+				8CCD44C22886F40000A36142 /* SignUpScreenViewController.xib in Resources */,
 				8CCD420028867E7F00A36142 /* Assets.xcassets in Resources */,
 				8CCD41FE28867E7E00A36142 /* Main.storyboard in Resources */,
 				8CCD42502886B06400A36142 /* CommonAlertView.xib in Resources */,
@@ -460,35 +596,47 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCD41FB28867E7E00A36142 /* ViewController.swift in Sources */,
+				8CCD43C02886F10000A36142 /* LoginScreenViewController.swift in Sources */,
 				8CCD422A2886969A00A36142 /* CurrencyListDTO.swift in Sources */,
 				8CCD42932886CB3D00A36142 /* MainScreenPresenter.swift in Sources */,
 				8CCD42532886B10400A36142 /* UIAlertController+Styles.swift in Sources */,
 				8CCD425A2886B32000A36142 /* ViperModuleTransitionHandler.swift in Sources */,
 				8CCD421F2886911C00A36142 /* Configurator.swift in Sources */,
+				8CCD43BE2886F10000A36142 /* LoginScreenViewOutput.swift in Sources */,
 				8CCD42992886CB3D00A36142 /* MainScreenRouterInput.swift in Sources */,
 				8CCD42262886932500A36142 /* CurrateService.swift in Sources */,
 				8CCD420E2886806500A36142 /* NetworkConfiguration.swift in Sources */,
 				8CCD42232886919A00A36142 /* Injected.swift in Sources */,
+				8CCD43C12886F10000A36142 /* LoginScreenRouterInput.swift in Sources */,
 				8CCD42552886B15200A36142 /* UIView+Constraints.swift in Sources */,
 				8CCD424F2886B06400A36142 /* IErrorService.swift in Sources */,
 				8CCD429A2886CB3D00A36142 /* MainScreenRouter.swift in Sources */,
 				8CCD425C2886B37900A36142 /* UIViewController+Style.swift in Sources */,
 				8CCD42962886CB3D00A36142 /* MainScreenViewOutput.swift in Sources */,
+				8CCD43BC2886F10000A36142 /* LoginScreenPresenter.swift in Sources */,
+				8CCD44C12886F40000A36142 /* SignUpScreenPresenter.swift in Sources */,
 				8CCD42662886BE3700A36142 /* CurrencyItemModel.swift in Sources */,
 				8CCD41F728867E7E00A36142 /* AppDelegate.swift in Sources */,
 				8CCD42122886823C00A36142 /* JsonHelper.swift in Sources */,
 				8CCD42102886820700A36142 /* ErrorResponse.swift in Sources */,
 				8CCD42A12886D59400A36142 /* CacheItemModel.swift in Sources */,
+				8CCD43BF2886F10000A36142 /* LoginScreenViewInput.swift in Sources */,
 				8CCD429F2886D4FC00A36142 /* CacheService.swift in Sources */,
 				8CCD42212886915400A36142 /* ServiceLocator.swift in Sources */,
+				8CCD43C22886F10000A36142 /* LoginScreenRouter.swift in Sources */,
 				8CCD421B28868E5C00A36142 /* Requests.swift in Sources */,
 				8CCD424C2886B06400A36142 /* ProgressService.swift in Sources */,
 				8CCD429C2886CC9A00A36142 /* CurrencyRatesDTO.swift in Sources */,
 				8CCD42972886CB3D00A36142 /* MainScreenViewInput.swift in Sources */,
+				8CCD43C32886F10000A36142 /* AuthService.swift in Sources */,
+				8CCD44C52886F40000A36142 /* SignUpScreenViewController.swift in Sources */,
+				8CCD44C32886F40000A36142 /* SignUpScreenViewOutput.swift in Sources */,
+				8CCD44C42886F40000A36142 /* SignUpScreenViewInput.swift in Sources */,
 				8CCD42152886896F00A36142 /* UIView+Xib.swift in Sources */,
 				8CCD420C28867FB600A36142 /* NetworkService.swift in Sources */,
 				8CCD42572886B1F100A36142 /* UIViewController+init.swift in Sources */,
 				8CCD424E2886B06400A36142 /* ErrorService.swift in Sources */,
+				8CCD44C82886F30000A36142 /* ValidationService.swift in Sources */,
 				8CCD42922886CB3D00A36142 /* CurrencyCell.swift in Sources */,
 				8CCD424D2886B06400A36142 /* ErrorServiceDelegate.swift in Sources */,
 				8CCD42512886B06400A36142 /* CommonAlertView.swift in Sources */,
@@ -497,6 +645,10 @@
 				8CCD42A62886ED5900A36142 /* PrettyPrint.swift in Sources */,
 				8CCD42982886CB3D00A36142 /* MainScreenViewController.swift in Sources */,
 				8CCD42A42886ED0E00A36142 /* Obfuscator.swift in Sources */,
+				8CCD44C62886F40000A36142 /* SignUpScreenRouterInput.swift in Sources */,
+				8CCD44C72886F40000A36142 /* SignUpScreenRouter.swift in Sources */,
+				8CCD44C92886F30000A36142 /* SignUpField.swift in Sources */,
+				8CCD44CA2886F30000A36142 /* SignUpData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
