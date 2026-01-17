@@ -11,6 +11,8 @@ final class NewsPresenter {
     @Injected private var errorService: ErrorService?
     
     private var articles: [ArticleViewModel] = []
+    private var allArticles: [ArticleViewModel] = []
+    private var searchText: String = ""
 
     init(view: NewsViewInput, router: NewsRouterInput) {
         self.view = view
@@ -21,6 +23,7 @@ final class NewsPresenter {
 
     private func loadArticles() {
         articles.removeAll(keepingCapacity: true)
+        allArticles.removeAll(keepingCapacity: true)
         view?.showLoading(true)
 
         newsService?.performNewsRequest { [weak self] result in
@@ -32,15 +35,24 @@ final class NewsPresenter {
                 case .failure(let error):
                     self.errorService?.show(errorText: error.localizedDescription)
                 case .success(let newsSource):
-                    self.articles = newsSource.articles.map { article in
+                    self.allArticles = newsSource.articles.map { article in
                         ArticleViewModel(article: article, storage: storage)
                     }
-                    self.view?.reloadData()
+                    self.applyFilter()
                 }
             }
         }
     }
 
+    private func applyFilter() {
+        if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            articles = allArticles
+        } else {
+            let query = searchText.lowercased()
+            articles = allArticles.filter { ($0.title ?? "").lowercased().contains(query) }
+        }
+        view?.reloadData()
+    }
 }
 
 extension NewsPresenter: NewsViewOutput {
@@ -70,6 +82,11 @@ extension NewsPresenter: NewsViewOutput {
         let article = articles[indexPath.row]
         article.addOrRemoveFromFavorites()
         view?.updateFavorite(at: indexPath)
+    }
+
+    func didUpdateSearch(text: String) {
+        searchText = text
+        applyFilter()
     }
 }
 

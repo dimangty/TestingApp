@@ -6,6 +6,8 @@ final class NewsViewController: UIViewController, ViperModuleTransitionHandler {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
+    private let searchController = UISearchController(searchResultsController: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +29,12 @@ extension NewsViewController: NewsViewInput {
         tableView.dataSource = self
         tableView.register(UINib(nibName: ArticleTableViewCell.identifier, bundle: nil),
                            forCellReuseIdentifier: ArticleTableViewCell.identifier)
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search by title"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     func showLoading(_ isLoading: Bool) {
@@ -79,5 +87,11 @@ extension NewsViewController: UITableViewDataSource {
             }
         }
         return cell
+    }
+}
+
+extension NewsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        presenter?.didUpdateSearch(text: searchController.searchBar.text ?? "")
     }
 }

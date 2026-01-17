@@ -7,4 +7,5 @@ protocol NewsViewOutput: AnyObject {
     func article(at indexPath: IndexPath) -> ArticleViewModel
     func didSelectRow(at indexPath: IndexPath)
     func didTapFavorite(at indexPath: IndexPath)
+    func didUpdateSearch(text: String)
 }
