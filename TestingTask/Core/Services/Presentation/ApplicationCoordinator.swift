@@ -20,7 +20,24 @@ class ApplicationCoordinator {
     }
     
     func showMain() {
-        setRootViewController(UINavigationController(rootViewController: NewsRouter().createModule() ?? UIViewController()))
+        let tabBarController = UITabBarController()
+
+        let newsViewController = NewsRouter().createModule() ?? UIViewController()
+        newsViewController.title = "News"
+        let newsNavigationController = UINavigationController(rootViewController: newsViewController)
+        newsNavigationController.tabBarItem = UITabBarItem(title: "News",
+                                                           image: UIImage(systemName: "newspaper"),
+                                                           selectedImage: UIImage(systemName: "newspaper.fill"))
+
+        let favoritesViewController = FavoriteRouter().createModule() ?? UIViewController()
+        favoritesViewController.title = "Favorites"
+        let favoritesNavigationController = UINavigationController(rootViewController: favoritesViewController)
+        favoritesNavigationController.tabBarItem = UITabBarItem(title: "Favorites",
+                                                                image: UIImage(systemName: "heart"),
+                                                                selectedImage: UIImage(systemName: "heart.fill"))
+
+        tabBarController.viewControllers = [newsNavigationController, favoritesNavigationController]
+        setRootViewController(tabBarController)
     }
 }
 
