@@ -9,7 +9,7 @@ class LoginScreenPresenter {
     private weak var view: LoginScreenViewInput?
     private let router: LoginScreenRouterInput
 
-    @Injected var authService: AuthService?
+    @Injected var authService: AuthServiceProtocol?
     @Injected var progressService: ProgressService?
     @Injected var errorService: ErrorService?
 

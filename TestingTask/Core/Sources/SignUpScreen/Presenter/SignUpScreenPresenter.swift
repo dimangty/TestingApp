@@ -9,7 +9,7 @@ class SignUpScreenPresenter {
     private weak var view: SignUpScreenViewInput?
     private let router: SignUpScreenRouterInput
 
-    @Injected var authService: AuthService?
+    @Injected var authService: AuthServiceProtocol?
     @Injected var validationService: ValidationService?
     @Injected var progressService: ProgressService?
     @Injected var errorService: ErrorService?

@@ -21,7 +21,7 @@ class Configurator {
        serviceLocator.addService(service: ErrorService())
        serviceLocator.addService(service: ProgressService())
        serviceLocator.addService(service: ValidationService())
-       serviceLocator.addService(service: AuthService())
+       serviceLocator.addService(service: AuthService() as AuthServiceProtocol)
        
        let casheService = CacheService.shared
        serviceLocator.addService(service: casheService)

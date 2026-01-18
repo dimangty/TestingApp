@@ -7,7 +7,7 @@
 
 import Foundation
 @propertyWrapper
-struct Injected<Service:AnyObject> {
+struct Injected<Service> {
     private var service: Service?
     private weak var serviceLocator = Configurator.shared.serviceLocator
     
