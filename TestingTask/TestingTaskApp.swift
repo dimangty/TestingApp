@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 @main
 struct TestingTaskApp: App {
     @StateObject private var navigationService: NavigationService
