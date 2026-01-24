@@ -15,12 +15,12 @@ class Configurator {
     }
     
    private func registerServices() {
-       serviceLocator.addService(service: ApplicationCoordinator())
+       // serviceLocator.addService(service: ApplicationCoordinator()) // Removed - UIKit only
        serviceLocator.addService(service: Obfuscator())
        serviceLocator.addService(service: CurrateService())
-       serviceLocator.addService(service: ErrorService())
-       serviceLocator.addService(service: ProgressService())
-       serviceLocator.addService(service: ValidationService())
+       // serviceLocator.addService(service: ErrorService()) // Removed - UIKit only
+       // serviceLocator.addService(service: ProgressService()) // Removed - UIKit only
+       serviceLocator.addService(service: ValidationService() as ValidationServiceProtocol)
        serviceLocator.addService(service: AuthService() as AuthServiceProtocol)
        
        let casheService = CacheService.shared

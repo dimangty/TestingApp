@@ -65,3 +65,13 @@ final class ArticleViewModel {
         }
     }
 }
+
+extension ArticleViewModel: Hashable {
+    static func == (lhs: ArticleViewModel, rhs: ArticleViewModel) -> Bool {
+        ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+    }
+}
