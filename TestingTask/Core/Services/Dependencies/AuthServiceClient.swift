@@ -17,16 +17,22 @@ extension AuthServiceClient: DependencyKey {
     static let liveValue = AuthServiceClient(
         login: { phone in
             await withCheckedContinuation { continuation in
-                let service = Configurator.shared.serviceLocator.getService(type: AuthServiceProtocol.self)
-                service?.login(phone: phone) { result in
+                guard let service = Configurator.shared.serviceLocator.getService(type: AuthServiceProtocol.self) else {
+                    continuation.resume(returning: .failure(NSError(domain: "AuthServiceClient", code: -1, userInfo: [NSLocalizedDescriptionKey: "Auth service not available"])))
+                    return
+                }
+                service.login(phone: phone) { result in
                     continuation.resume(returning: result)
                 }
             }
         },
         signUp: { data in
             await withCheckedContinuation { continuation in
-                let service = Configurator.shared.serviceLocator.getService(type: AuthServiceProtocol.self)
-                service?.signUp(data: data) { result in
+                guard let service = Configurator.shared.serviceLocator.getService(type: AuthServiceProtocol.self) else {
+                    continuation.resume(returning: .failure(NSError(domain: "AuthServiceClient", code: -1, userInfo: [NSLocalizedDescriptionKey: "Auth service not available"])))
+                    return
+                }
+                service.signUp(data: data) { result in
                     continuation.resume(returning: result)
                 }
             }

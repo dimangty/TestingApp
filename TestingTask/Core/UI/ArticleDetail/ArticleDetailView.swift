@@ -13,48 +13,50 @@ struct ArticleDetailView: View {
     @State private var image: UIImage?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                if let image = image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 250)
-                        .clipped()
-                }
+        GeometryReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    if let image = image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: max(0, proxy.size.width - 32))
+                            .frame(height: 250)
+                            .clipped()
+                            .cornerRadius(12)
+                    }
 
-                HStack {
-                    Text(store.article.publishedAt.toString(format: "d MMMM"))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Text(store.article.publishedAt.toString(format: "d MMMM"))
+                                .font(.caption)
+                                .foregroundColor(.secondary)
 
-                    Spacer()
+                            Spacer()
 
-                    Button(action: {
-                        store.send(.toggleFavorite)
-                    }) {
-                        Image(systemName: store.isFavorite ? "heart.fill" : "heart")
-                            .foregroundColor(.red)
-                            .font(.title2)
+                            Button(action: {
+                                store.send(.toggleFavorite)
+                            }) {
+                                Image(systemName: store.isFavorite ? "heart.fill" : "heart")
+                                    .foregroundColor(.red)
+                                    .font(.title2)
+                            }
+                        }
+
+                        if let title = store.article.title {
+                            Text(title)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
+
+                        if let description = store.article.description {
+                            Text(description)
+                                .font(.body)
+                        }
                     }
                 }
-                .padding(.horizontal)
-
-                if let title = store.article.title {
-                    Text(title)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.horizontal)
-                }
-
-                if let description = store.article.description {
-                    Text(description)
-                        .font(.body)
-                        .padding(.horizontal)
-                }
-
-                Spacer()
+                .frame(width: max(0, proxy.size.width - 32), alignment: .leading)
+                .padding(.horizontal, 16)
             }
         }
         .navigationBarTitleDisplayMode(.inline)

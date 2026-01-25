@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct FavoriteView: View {
-    let store: StoreOf<FavoriteFeature>
+    @Perception.Bindable var store: StoreOf<FavoriteFeature>
 
     var body: some View {
         Group {
@@ -23,11 +23,17 @@ struct FavoriteView: View {
             } else {
                 List {
                     ForEach(store.articles, id: \.title) { article in
-                        ArticleRowView(
-                            article: article,
-                            isFavorite: true
+                        NavigationLink(
+                            state: AppFeature.Path.State.articleDetail(
+                                ArticleDetailFeature.State(article: article)
+                            )
                         ) {
-                            store.send(.toggleFavorite(article))
+                            ArticleRowView(
+                                article: article,
+                                isFavorite: true
+                            ) {
+                                store.send(.toggleFavorite(article))
+                            }
                         }
                     }
                 }

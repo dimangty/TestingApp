@@ -25,7 +25,7 @@ class Configurator {
        
        let casheService = CacheService.shared
        serviceLocator.addService(service: casheService)
-       serviceLocator.addService(service: NewsService.shared)
-       serviceLocator.addService(service: StorageService.shared)
+       serviceLocator.addService(service: NewsService.shared as INewsService)
+       serviceLocator.addService(service: StorageService.shared as IStorageService)
     }
 }

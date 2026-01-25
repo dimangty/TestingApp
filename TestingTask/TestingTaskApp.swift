@@ -17,13 +17,11 @@ struct TestingTaskApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                LoginView(
-                    store: Store(initialState: LoginFeature.State()) {
-                        LoginFeature()
-                    }
-                )
-            }
+            AppView(
+                store: Store(initialState: AppFeature.State()) {
+                    AppFeature()
+                }
+            )
         }
     }
 }

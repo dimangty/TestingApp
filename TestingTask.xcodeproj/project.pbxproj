@@ -58,6 +58,7 @@
 		831BE112592DB549DBCDAA9E /* ValidationServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94250B96D4C11703CC9721B7 /* ValidationServiceClient.swift */; };
 		FCC40B4E1DC85A761B2394DE /* NewsServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F6561FA879678925161308 /* NewsServiceClient.swift */; };
 		0DD9C071D60245FCE0BEE790 /* StorageServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0152D4E226B88C7DB95522 /* StorageServiceClient.swift */; };
+		A1B2C3D4E5F6789012345678 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E2D3C4B5A6978065432109 /* AppView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		94250B96D4C11703CC9721B7 /* ValidationServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServiceClient.swift; sourceTree = "<group>"; };
 		C5F6561FA879678925161308 /* NewsServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceClient.swift; sourceTree = "<group>"; };
 		CD0152D4E226B88C7DB95522 /* StorageServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceClient.swift; sourceTree = "<group>"; };
+		F1E2D3C4B5A6978065432109 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,8 +332,8 @@
 				8CCD42A22886ECF300A36142 /* Obfuscator */,
 				8CCD421D288690E300A36142 /* Configuration */,
 				8CCD42A52886ED5900A36142 /* PrettyPrint.swift */,
-				AF1A22B9418BF3E9FE31C93B /* TestingTaskApp.swift */,
 				19310BD78D6D4A9AFD8454BA /* AppFeature.swift */,
+				F1E2D3C4B5A6978065432109 /* AppView.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -546,6 +548,7 @@
 				A79B7D416A53D5D716562980 /* FavoriteFeature.swift in Sources */,
 				A4AD420BF7CDEF44347FFFB8 /* ArticleDetailFeature.swift in Sources */,
 				EEB815C7066C889272049767 /* AppFeature.swift in Sources */,
+				A1B2C3D4E5F6789012345678 /* AppView.swift in Sources */,
 				15F7B8B3536E874ABB6ADF18 /* AuthServiceClient.swift in Sources */,
 				831BE112592DB549DBCDAA9E /* ValidationServiceClient.swift in Sources */,
 				FCC40B4E1DC85A761B2394DE /* NewsServiceClient.swift in Sources */,
@@ -629,6 +632,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -683,6 +687,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -713,6 +718,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -741,6 +747,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

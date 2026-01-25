@@ -28,11 +28,17 @@ struct NewsView: View {
             } else {
                 List {
                     ForEach(store.filteredArticles, id: \.title) { article in
-                        ArticleRowView(
-                            article: article,
-                            isFavorite: false // Will be updated dynamically
+                        NavigationLink(
+                            state: AppFeature.Path.State.articleDetail(
+                                ArticleDetailFeature.State(article: article)
+                            )
                         ) {
-                            store.send(.toggleFavorite(article))
+                            ArticleRowView(
+                                article: article,
+                                isFavorite: store.favoriteTitles.contains(article.title ?? "")
+                            ) {
+                                store.send(.toggleFavorite(article))
+                            }
                         }
                     }
                 }

@@ -17,6 +17,7 @@ struct NewsFeature {
         var isLoading: Bool = false
         var errorMessage: String?
         var allArticles: [Article] = []
+        var favoriteTitles: Set<String> = []
 
         var filteredArticles: [Article] {
             if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -35,6 +36,8 @@ struct NewsFeature {
         case articlesResponse(Result<NewsSource, Error>)
         case toggleFavorite(Article)
         case retryTapped
+        case loadFavorites
+        case favoritesLoaded([ArticleEntity])
     }
 
     @Dependency(\.newsService) var newsService
@@ -50,9 +53,19 @@ struct NewsFeature {
                 return .none
 
             case .onAppear:
-                if state.articles.isEmpty {
-                    return .send(.loadArticles)
+                return .merge(
+                    state.articles.isEmpty ? .send(.loadArticles) : .none,
+                    .send(.loadFavorites)
+                )
+
+            case .loadFavorites:
+                return .run { send in
+                    let favorites = await storageService.getFavorites()
+                    await send(.favoritesLoaded(favorites))
                 }
+
+            case .favoritesLoaded(let favorites):
+                state.favoriteTitles = Set(favorites.compactMap { $0.title })
                 return .none
 
             case .loadArticles:
@@ -80,8 +93,15 @@ struct NewsFeature {
             case .toggleFavorite(let article):
                 guard let title = article.title else { return .none }
 
+                let isFavorite = state.favoriteTitles.contains(title)
+
+                if isFavorite {
+                    state.favoriteTitles.remove(title)
+                } else {
+                    state.favoriteTitles.insert(title)
+                }
+
                 return .run { _ in
-                    let isFavorite = await storageService.isArticleInFavorites(title)
                     if isFavorite {
                         await storageService.removeFromFavorites(title)
                     } else {
