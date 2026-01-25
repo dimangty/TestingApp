@@ -2,13 +2,14 @@
 //  ArticleRowView.swift
 //  TestingTask
 //
-//  Migrated to SwiftUI
+//  Migrated to SwiftUI with TCA
 //
 
 import SwiftUI
 
 struct ArticleRowView: View {
-    let article: ArticleViewModel
+    let article: Article
+    let isFavorite: Bool
     let onFavoriteTapped: () -> Void
 
     @State private var image: UIImage?
@@ -37,7 +38,7 @@ struct ArticleRowView: View {
                             .lineLimit(2)
                     }
 
-                    Text(article.publishedAt)
+                    Text(article.publishedAt.toString(format: "d MMMM"))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -47,7 +48,7 @@ struct ArticleRowView: View {
                 Button(action: {
                     onFavoriteTapped()
                 }) {
-                    Image(systemName: article.isFavorite ? "heart.fill" : "heart")
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
                         .foregroundColor(.red)
                 }
                 .buttonStyle(.plain)
@@ -60,8 +61,15 @@ struct ArticleRowView: View {
     }
 
     private func loadImage() {
-        article.loadImage { loadedImage in
-            self.image = loadedImage
+        guard let urlToImage = article.urlToImage else { return }
+
+        DispatchQueue.global().async {
+            guard let dataFromUrl = try? Data(contentsOf: urlToImage),
+                  let imageFromWeb = UIImage(data: dataFromUrl) else { return }
+
+            DispatchQueue.main.async {
+                self.image = imageFromWeb
+            }
         }
     }
 }

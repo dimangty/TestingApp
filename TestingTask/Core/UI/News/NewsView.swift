@@ -2,35 +2,37 @@
 //  NewsView.swift
 //  TestingTask
 //
-//  Migrated to SwiftUI
+//  Migrated to SwiftUI with TCA
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct NewsView: View {
-    @StateObject private var viewModel = NewsViewModel()
+    @Perception.Bindable var store: StoreOf<NewsFeature>
 
     var body: some View {
         Group {
-            if viewModel.isLoading {
+            if store.isLoading {
                 ProgressView()
                     .scaleEffect(1.5)
-            } else if let errorMessage = viewModel.errorMessage {
+            } else if let errorMessage = store.errorMessage {
                 VStack {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .padding()
                     Button("Retry") {
-                        viewModel.loadArticles()
+                        store.send(.retryTapped)
                     }
                 }
             } else {
                 List {
-                    ForEach(viewModel.articles, id: \.title) { article in
-                        NavigationLink(value: NavigationRoute.article(article)) {
-                            ArticleRowView(article: article) {
-                                viewModel.toggleFavorite(article: article)
-                            }
+                    ForEach(store.filteredArticles, id: \.title) { article in
+                        ArticleRowView(
+                            article: article,
+                            isFavorite: false // Will be updated dynamically
+                        ) {
+                            store.send(.toggleFavorite(article))
                         }
                     }
                 }
@@ -38,13 +40,9 @@ struct NewsView: View {
             }
         }
         .navigationTitle("News")
-        .searchable(text: $viewModel.searchText, prompt: "Search by title")
+        .searchable(text: $store.searchText, prompt: "Search by title")
         .onAppear {
-            if viewModel.articles.isEmpty {
-                viewModel.loadArticles()
-            } else {
-                viewModel.refreshIfNeeded()
-            }
+            store.send(.onAppear)
         }
     }
 }

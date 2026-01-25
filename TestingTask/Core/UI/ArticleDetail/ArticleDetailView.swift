@@ -2,22 +2,20 @@
 //  ArticleDetailView.swift
 //  TestingTask
 //
-//  Migrated to SwiftUI
+//  Migrated to SwiftUI with TCA
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ArticleDetailView: View {
-    @StateObject private var viewModel: ArticleDetailViewModel
-
-    init(article: ArticleViewModel) {
-        _viewModel = StateObject(wrappedValue: ArticleDetailViewModel(article: article))
-    }
+    let store: StoreOf<ArticleDetailFeature>
+    @State private var image: UIImage?
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                if let image = viewModel.image {
+                if let image = image {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -27,31 +25,31 @@ struct ArticleDetailView: View {
                 }
 
                 HStack {
-                    Text(viewModel.article.publishedAt)
+                    Text(store.article.publishedAt.toString(format: "d MMMM"))
                         .font(.caption)
                         .foregroundColor(.secondary)
 
                     Spacer()
 
                     Button(action: {
-                        viewModel.toggleFavorite()
+                        store.send(.toggleFavorite)
                     }) {
-                        Image(systemName: viewModel.article.isFavorite ? "heart.fill" : "heart")
+                        Image(systemName: store.isFavorite ? "heart.fill" : "heart")
                             .foregroundColor(.red)
                             .font(.title2)
                     }
                 }
                 .padding(.horizontal)
 
-                if let title = viewModel.article.title {
+                if let title = store.article.title {
                     Text(title)
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.horizontal)
                 }
 
-                if let contents = viewModel.article.contents {
-                    Text(contents)
+                if let description = store.article.description {
+                    Text(description)
                         .font(.body)
                         .padding(.horizontal)
                 }
@@ -60,5 +58,22 @@ struct ArticleDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            store.send(.onAppear)
+            loadImage()
+        }
+    }
+
+    private func loadImage() {
+        guard let urlToImage = store.article.urlToImage else { return }
+
+        DispatchQueue.global().async {
+            guard let dataFromUrl = try? Data(contentsOf: urlToImage),
+                  let imageFromWeb = UIImage(data: dataFromUrl) else { return }
+
+            DispatchQueue.main.async {
+                self.image = imageFromWeb
+            }
+        }
     }
 }

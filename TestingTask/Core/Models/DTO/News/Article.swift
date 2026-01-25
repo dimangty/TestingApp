@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Article: Codable {
+struct Article: Codable, Equatable, Hashable {
     let author: String?
     let title: String?
     let description: String?

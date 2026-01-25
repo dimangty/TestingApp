@@ -2,17 +2,18 @@
 //  FavoriteView.swift
 //  TestingTask
 //
-//  Migrated to SwiftUI
+//  Migrated to SwiftUI with TCA
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct FavoriteView: View {
-    @StateObject private var viewModel = FavoriteViewModel()
+    let store: StoreOf<FavoriteFeature>
 
     var body: some View {
         Group {
-            if viewModel.articles.isEmpty {
+            if store.articles.isEmpty {
                 VStack {
                     Text("No favorites yet")
                         .foregroundColor(.secondary)
@@ -21,11 +22,12 @@ struct FavoriteView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 List {
-                    ForEach(viewModel.articles, id: \.title) { article in
-                        NavigationLink(value: NavigationRoute.article(article)) {
-                            ArticleRowView(article: article) {
-                                viewModel.toggleFavorite(article: article)
-                            }
+                    ForEach(store.articles, id: \.title) { article in
+                        ArticleRowView(
+                            article: article,
+                            isFavorite: true
+                        ) {
+                            store.send(.toggleFavorite(article))
                         }
                     }
                 }
@@ -34,7 +36,7 @@ struct FavoriteView: View {
         }
         .navigationTitle("Favorites")
         .onAppear {
-            viewModel.loadFavorites()
+            store.send(.onAppear)
         }
     }
 }

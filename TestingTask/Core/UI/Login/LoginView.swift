@@ -2,55 +2,56 @@
 //  LoginView.swift
 //  TestingTask
 //
-//  Migrated to SwiftUI
+//  Migrated to SwiftUI with TCA
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct LoginView: View {
-    @StateObject private var viewModel = LoginViewModel()
+    @Perception.Bindable var store: StoreOf<LoginFeature>
 
     var body: some View {
         VStack(spacing: 20) {
-            TextField("Phone Number", text: $viewModel.phone)
+            TextField("Phone Number", text: $store.phone)
                 .keyboardType(.numberPad)
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal)
-                .onChange(of: viewModel.phone) { newValue in
+                .onChange(of: store.phone, perform: { newValue in
                     let filtered = newValue.filter { $0.isNumber }
                     if filtered.count > 15 {
-                        viewModel.phone = String(filtered.prefix(15))
+                        store.phone = String(filtered.prefix(15))
                     } else if filtered != newValue {
-                        viewModel.phone = filtered
+                        store.phone = filtered
                     }
-                }
+                })
 
             Button(action: {
-                viewModel.login()
+                store.send(.loginButtonTapped)
             }) {
                 Text("Confirm")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(viewModel.isPhoneValid ? Color.blue : Color.gray)
+                    .background(store.isPhoneValid ? Color.blue : Color.gray)
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }
-            .disabled(!viewModel.isPhoneValid || viewModel.isLoading)
+            .disabled(!store.isPhoneValid || store.isLoading)
             .padding(.horizontal)
 
             Button("Sign Up") {
-                viewModel.navigateToSignUp()
+                store.send(.signUpButtonTapped)
             }
             .padding()
 
-            if let errorMessage = viewModel.errorMessage {
+            if let errorMessage = store.errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .padding()
             }
         }
         .overlay {
-            if viewModel.isLoading {
+            if store.isLoading {
                 ProgressView()
                     .scaleEffect(1.5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

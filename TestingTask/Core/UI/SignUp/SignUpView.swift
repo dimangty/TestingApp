@@ -2,74 +2,75 @@
 //  SignUpView.swift
 //  TestingTask
 //
-//  Migrated to SwiftUI
+//  Migrated to SwiftUI with TCA
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct SignUpView: View {
-    @StateObject private var viewModel = SignUpViewModel()
+    @Perception.Bindable var store: StoreOf<SignUpFeature>
 
     var body: some View {
         Form {
             Section("Personal Information") {
-                TextField("First Name", text: $viewModel.firstName)
-                TextField("Last Name", text: $viewModel.lastName)
+                TextField("First Name", text: $store.firstName)
+                TextField("Last Name", text: $store.lastName)
 
-                Picker("Gender", selection: $viewModel.gender) {
+                Picker("Gender", selection: $store.gender) {
                     Text("Select").tag("")
-                    ForEach(viewModel.genderOptions, id: \.self) { option in
+                    ForEach(store.genderOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
                 }
 
-                DatePicker("Birth Date", selection: $viewModel.birthDate, displayedComponents: .date)
+                DatePicker("Birth Date", selection: $store.birthDate, displayedComponents: .date)
             }
 
             Section("Location") {
-                Picker("Country", selection: $viewModel.country) {
+                Picker("Country", selection: $store.country) {
                     Text("Select").tag("")
-                    ForEach(viewModel.countryOptions, id: \.self) { option in
+                    ForEach(store.countryOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
                 }
 
-                Picker("City", selection: $viewModel.city) {
+                Picker("City", selection: $store.city) {
                     Text("Select").tag("")
-                    ForEach(viewModel.cityOptions, id: \.self) { option in
+                    ForEach(store.cityOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
                 }
             }
 
             Section("Contact") {
-                TextField("Email", text: $viewModel.email)
+                TextField("Email", text: $store.email)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
 
-                TextField("Phone", text: $viewModel.phone)
+                TextField("Phone", text: $store.phone)
                     .keyboardType(.numberPad)
-                    .onChange(of: viewModel.phone) { newValue in
+                    .onChange(of: store.phone, perform: { newValue in
                         let filtered = newValue.filter { $0.isNumber }
                         if filtered.count > 15 {
-                            viewModel.phone = String(filtered.prefix(15))
+                            store.phone = String(filtered.prefix(15))
                         } else if filtered != newValue {
-                            viewModel.phone = filtered
+                            store.phone = filtered
                         }
-                    }
+                    })
             }
 
             Section {
                 Button(action: {
-                    viewModel.createAccount()
+                    store.send(.createAccountTapped)
                 }) {
                     Text("Create Account")
                         .frame(maxWidth: .infinity)
                         .padding()
                 }
-                .disabled(!viewModel.isFormValid || viewModel.isLoading)
+                .disabled(!store.isFormValid || store.isLoading)
 
-                if let errorMessage = viewModel.errorMessage {
+                if let errorMessage = store.errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
                 }
@@ -80,12 +81,12 @@ struct SignUpView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Back") {
-                    viewModel.goBack()
+                    store.send(.backButtonTapped)
                 }
             }
         }
         .overlay {
-            if viewModel.isLoading {
+            if store.isLoading {
                 ProgressView()
                     .scaleEffect(1.5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
