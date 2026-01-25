@@ -2,39 +2,28 @@
 //  TestingTaskApp.swift
 //  TestingTask
 //
-//  SwiftUI App Entry Point
+//  SwiftUI App Entry Point with TCA
 //
 
 import SwiftUI
-
+import ComposableArchitecture
 
 @main
 struct TestingTaskApp: App {
-    @StateObject private var navigationService: NavigationService
-
     init() {
+        // Initialize services
         Configurator.shared.setup()
-        let service = NavigationService()
-        _navigationService = StateObject(wrappedValue: service)
-        Configurator.shared.serviceLocator.addService(service: service)
     }
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $navigationService.path) {
-                LoginView()
-                    .navigationDestination(for: NavigationRoute.self) { route in
-                        switch route {
-                        case .signUp:
-                            SignUpView()
-                        case .main:
-                            MainTabView()
-                        case .article(let article):
-                            ArticleDetailView(article: article)
-                        }
+            NavigationStack {
+                LoginView(
+                    store: Store(initialState: LoginFeature.State()) {
+                        LoginFeature()
                     }
+                )
             }
-            .environmentObject(navigationService)
         }
     }
 }
