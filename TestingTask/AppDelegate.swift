@@ -5,6 +5,7 @@
 //  Created by DBykov on 19.07.2022.
 //
 
+
 import UIKit
 
 @main
@@ -18,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //INIT DI
         Configurator.shared.setup()
+#if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("UITESTS") {
+            UIView.setAnimationsEnabled(false)
+        }
+#endif
 
         
         //INIT UI

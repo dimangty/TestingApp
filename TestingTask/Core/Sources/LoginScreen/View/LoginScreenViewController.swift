@@ -12,6 +12,7 @@ class LoginScreenViewController: UIViewController, ViperModuleTransitionHandler 
 
     @IBOutlet private weak var phoneTextField: UITextField!
     @IBOutlet private weak var confirmButton: UIButton!
+    @IBOutlet private weak var signUpButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,10 @@ extension LoginScreenViewController: LoginScreenViewInput {
 
         confirmButton.isEnabled = false
         confirmButton.alpha = 0.5
+
+        phoneTextField.accessibilityIdentifier = "login.phone"
+        confirmButton.accessibilityIdentifier = "login.confirm"
+        signUpButton.accessibilityIdentifier = "login.signup"
     }
 
     func updateConfirmButton(enabled: Bool) {

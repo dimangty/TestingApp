@@ -7,9 +7,14 @@ final class CacheService: ICacheService {
 
     private var cachedNewsSource: NewsSource?
     private var cacheTimestamp: Date?
-    private let cacheExpirationInterval: TimeInterval = 5 * 60 // 5 minutes
+    private let cacheExpirationInterval: TimeInterval
+    private let nowProvider: () -> Date
 
-    private init() {}
+    init(nowProvider: @escaping () -> Date = Date.init,
+         cacheExpirationInterval: TimeInterval = 5 * 60) { // 5 minutes
+        self.nowProvider = nowProvider
+        self.cacheExpirationInterval = cacheExpirationInterval
+    }
 
     func getCachedNews() -> NewsSource? {
         guard let cachedNewsSource = cachedNewsSource,
@@ -17,7 +22,7 @@ final class CacheService: ICacheService {
             return nil
         }
 
-        let now = Date()
+        let now = nowProvider()
         let timeElapsed = now.timeIntervalSince(cacheTimestamp)
 
         if timeElapsed < cacheExpirationInterval {
@@ -30,7 +35,7 @@ final class CacheService: ICacheService {
 
     func cacheNews(_ newsSource: NewsSource) {
         cachedNewsSource = newsSource
-        cacheTimestamp = Date()
+        cacheTimestamp = nowProvider()
     }
 
     func clearCache() {

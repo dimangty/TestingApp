@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="confirmButton" destination="Z0s-8k-HtC" id="Z1Z-c2-nb9"/>
                 <outlet property="phoneTextField" destination="wI5-sU-UyG" id="KrH-Qy-fCF"/>
+                <outlet property="signUpButton" destination="W7U-3D-N3C" id="rYV-2a-4jZ"/>
                 <outlet property="view" destination="aaa-bb-ccc" id="mmm-nn-xxx"/>
             </connections>
         </placeholder>

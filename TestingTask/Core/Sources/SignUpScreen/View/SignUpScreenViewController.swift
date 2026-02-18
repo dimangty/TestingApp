@@ -123,6 +123,16 @@ extension SignUpScreenViewController: SignUpScreenViewInput {
 
         createAccountButton.isEnabled = false
         createAccountButton.alpha = 0.5
+
+        firstNameField.accessibilityIdentifier = "signup.firstName"
+        lastNameField.accessibilityIdentifier = "signup.lastName"
+        genderField.accessibilityIdentifier = "signup.gender"
+        birthDateField.accessibilityIdentifier = "signup.birthDate"
+        countryField.accessibilityIdentifier = "signup.country"
+        cityField.accessibilityIdentifier = "signup.city"
+        emailField.accessibilityIdentifier = "signup.email"
+        phoneField.accessibilityIdentifier = "signup.phone"
+        createAccountButton.accessibilityIdentifier = "signup.createAccount"
     }
 
     func updateCreateButton(enabled: Bool) {
