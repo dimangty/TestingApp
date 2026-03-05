@@ -12,7 +12,7 @@ final class NewsService : INewsService {
 
     private let cacheService: ICacheService
 
-    private init(cacheService: ICacheService = CacheService.shared) {
+    init(cacheService: ICacheService = CacheService.shared) {
         self.cacheService = cacheService
     }
 

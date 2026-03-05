@@ -16,9 +16,19 @@ class ServiceLocator : NSObject {
             containerServices[key] = service
         }
     }
+
+    // Explicit replacement is used by unit tests to inject deterministic doubles.
+    func setService<T>(service: T) {
+        let key = "\(T.self)"
+        containerServices[key] = service
+    }
     
     func getService<T>(type: T.Type)->T? {
         let key = "\(T.self)"
         return containerServices[key] as? T
+    }
+
+    func removeAllServices() {
+        containerServices.removeAll()
     }
 }

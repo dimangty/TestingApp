@@ -11,15 +11,30 @@ class Configurator {
     let serviceLocator = ServiceLocator()
 
     func setup() {
-        registerServices()
+        registerServices(reset: false)
 #if DEBUG
+        if isRunningUnitTests() {
+            configureForUnitTests()
+            return
+        }
         if ProcessInfo.processInfo.arguments.contains("UITESTS") {
             configureForUITests()
         }
 #endif
     }
     
-    private func registerServices() {
+    #if DEBUG
+    func setupForUnitTests() {
+        registerServices(reset: true)
+        configureForUnitTests()
+    }
+    #endif
+
+    private func registerServices(reset: Bool) {
+       if reset {
+           serviceLocator.removeAllServices()
+       }
+
        serviceLocator.addService(service: ApplicationCoordinator())
        serviceLocator.addService(service: Obfuscator())
        serviceLocator.addService(service: CurrateService())
@@ -35,6 +50,16 @@ class Configurator {
     }
 
 #if DEBUG
+    private func isRunningUnitTests() -> Bool {
+        let processInfo = ProcessInfo.processInfo
+        return processInfo.arguments.contains("UNITTESTS")
+            || processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
+    private func configureForUnitTests() {
+        CacheService.shared.clearCache()
+    }
+
     private func configureForUITests() {
         let sampleArticles = [
             Article(author: "Test Author",

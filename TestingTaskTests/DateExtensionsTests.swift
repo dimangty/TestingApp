@@ -1,8 +1,11 @@
-import XCTest
+import Foundation
+import Testing
 @testable import TestingTask
 
-final class DateExtensionsTests: XCTestCase {
-    func test_toString_formatsDateWithRussianLocale() {
+@Suite("Formatter and Request Tests")
+struct DateExtensionsTests {
+    @Test("Date toString formats using provided pattern")
+    func toStringFormatsDateWithExpectedPattern() {
         // Given
         var components = DateComponents()
         components.year = 2024
@@ -15,9 +18,47 @@ final class DateExtensionsTests: XCTestCase {
         let date = calendar.date(from: components) ?? Date(timeIntervalSince1970: 0)
 
         // When
-        let result = date.toString(format: "dd.MM.yyyy")
+        let value = date.toString(format: "dd.MM.yyyy")
 
         // Then
-        XCTAssertEqual(result, "03.02.2024")
+        #expect(value == "03.02.2024")
+    }
+
+    @Test("Currency list request path is stable")
+    func requestCurrencyListHasExpectedValue() {
+        // Given
+        let request = Requests.currencyList
+
+        // When
+        let path = request.value
+
+        // Then
+        #expect(path == "?get=currency_list")
+    }
+
+    @Test("Rates request interpolates pairs parameter")
+    func requestRatesBuildsExpectedPath() {
+        // Given
+        let request = Requests.rates(pairs: "USDRUB,EURRUB")
+
+        // When
+        let path = request.value
+
+        // Then
+        #expect(path == "?get=rates&pairs=USDRUB,EURRUB")
+    }
+
+    @Test("Network configuration returns base url and key shape")
+    func networkConfigurationContainsBaseUrlAndKeyEntry() {
+        // Given
+        let configuration = NetworkConfiguration()
+
+        // When
+        let baseURL = configuration.getBaseUrl()
+        let keyDictionary = configuration.getKey()
+
+        // Then
+        #expect(baseURL == "https://currate.ru/api/")
+        #expect(keyDictionary.keys.contains("key"))
     }
 }

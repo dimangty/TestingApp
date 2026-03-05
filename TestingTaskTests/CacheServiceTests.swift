@@ -1,58 +1,149 @@
-import XCTest
+import Foundation
+import Testing
 @testable import TestingTask
 
-final class CacheServiceTests: XCTestCase {
-    private struct Fixtures {
-        static func newsSource() -> NewsSource {
-            let article = Article(author: "A",
-                                  title: "T",
-                                  description: "D",
-                                  url: URL(string: "https://example.com"),
-                                  urlToImage: nil,
-                                  publishedAt: Date(timeIntervalSince1970: 0))
-            return NewsSource(status: "ok", totalResults: 1, articles: [article])
+@Suite("Cache + DI Tests")
+struct CacheServiceTests {
+    @Test("Returns cached data while cache is fresh")
+    func returnsCachedDataWhenNotExpired() {
+        // Given
+        var now = Date(timeIntervalSince1970: 1_000)
+        let sut = CacheService(nowProvider: { now }, cacheExpirationInterval: 10)
+        let expected = Self.fixtureNewsSource()
+        sut.cacheNews(expected)
+
+        // When
+        now = Date(timeIntervalSince1970: 1_005)
+        let result = sut.getCachedNews()
+
+        // Then
+        #expect(result?.totalResults == expected.totalResults)
+        #expect(result?.articles.first?.title == expected.articles.first?.title)
+    }
+
+    @Test("Returns nil when cache is expired")
+    func returnsNilWhenExpired() {
+        // Given
+        var now = Date(timeIntervalSince1970: 1_000)
+        let sut = CacheService(nowProvider: { now }, cacheExpirationInterval: 10)
+        sut.cacheNews(Self.fixtureNewsSource())
+
+        // When
+        now = Date(timeIntervalSince1970: 1_020)
+        let result = sut.getCachedNews()
+
+        // Then
+        #expect(result == nil)
+    }
+
+    @Test("Clear cache removes cached object")
+    func clearCacheRemovesValue() {
+        // Given
+        let sut = CacheService(nowProvider: Date.init, cacheExpirationInterval: 10)
+        sut.cacheNews(Self.fixtureNewsSource())
+
+        // When
+        sut.clearCache()
+
+        // Then
+        #expect(sut.getCachedNews() == nil)
+    }
+
+    @Test("News service returns cache hit and skips re-caching")
+    func newsServiceUsesCacheHit() {
+        // Given
+        let fakeCache = FakeCacheService()
+        let cached = Self.fixtureNewsSource()
+        fakeCache.cached = cached
+        let sut = NewsService(cacheService: fakeCache)
+        var receivedResult: Result<NewsSource, Error>?
+
+        // When
+        sut.performNewsRequest { result in
+            receivedResult = result
+        }
+
+        // Then
+        #expect(fakeCache.getCachedNewsCallCount == 1)
+        #expect(fakeCache.cacheNewsCallCount == 0)
+
+        switch receivedResult {
+        case .success(let newsSource):
+            #expect(newsSource.articles.count == cached.articles.count)
+            #expect(newsSource.articles.first?.title == cached.articles.first?.title)
+        default:
+            #expect(false)
         }
     }
 
-    func test_getCachedNews_returnsCachedWhenNotExpired() {
+    @Test("Service locator can replace existing service in tests")
+    func serviceLocatorSetServiceOverridesExistingInstance() {
         // Given
-        var now = Date(timeIntervalSince1970: 1000)
-        let service = CacheService(nowProvider: { now }, cacheExpirationInterval: 10)
-        let expected = Fixtures.newsSource()
-        service.cacheNews(expected)
+        let locator = ServiceLocator()
+        let first = ValidationService()
+        let second = ValidationService()
+        locator.addService(service: first)
 
         // When
-        now = Date(timeIntervalSince1970: 1005)
-        let result = service.getCachedNews()
+        locator.setService(service: second)
+        let resolved: ValidationService? = locator.getService(type: ValidationService.self)
 
         // Then
-        XCTAssertNotNil(result)
-        XCTAssertEqual(result?.totalResults, expected.totalResults)
+        #expect(resolved === second)
+        #expect(resolved !== first)
     }
 
-    func test_getCachedNews_returnsNilWhenExpired() {
+    @Test("Configurator unit setup registers dependencies and clears cache")
+    func configuratorSetupForUnitTestsRegistersServicesAndResetsState() {
         // Given
-        var now = Date(timeIntervalSince1970: 1000)
-        let service = CacheService(nowProvider: { now }, cacheExpirationInterval: 10)
-        service.cacheNews(Fixtures.newsSource())
+        CacheService.shared.cacheNews(Self.fixtureNewsSource())
 
         // When
-        now = Date(timeIntervalSince1970: 1015)
-        let result = service.getCachedNews()
+        #if DEBUG
+        Configurator.shared.setupForUnitTests()
+        #else
+        Configurator.shared.setup()
+        #endif
 
         // Then
-        XCTAssertNil(result)
+        let locator = Configurator.shared.serviceLocator
+        let coordinator = locator.getService(type: ApplicationCoordinator.self)
+        let validation = locator.getService(type: ValidationService.self)
+        let auth = locator.getService(type: AuthServiceProtocol.self)
+        #expect(coordinator != nil)
+        #expect(validation != nil)
+        #expect(auth != nil)
+        #expect(CacheService.shared.getCachedNews() == nil)
     }
 
-    func test_clearCache_removesCachedData() {
-        // Given
-        let service = CacheService(nowProvider: Date.init, cacheExpirationInterval: 10)
-        service.cacheNews(Fixtures.newsSource())
+    private static func fixtureNewsSource() -> NewsSource {
+        let article = Article(author: "Author",
+                              title: "Title",
+                              description: "Body",
+                              url: URL(string: "https://example.com"),
+                              urlToImage: nil,
+                              publishedAt: Date(timeIntervalSince1970: 0))
+        return NewsSource(status: "ok", totalResults: 1, articles: [article])
+    }
+}
 
-        // When
-        service.clearCache()
+private final class FakeCacheService: ICacheService {
+    // SwiftMocky-style counters for interaction verification.
+    private(set) var getCachedNewsCallCount = 0
+    private(set) var cacheNewsCallCount = 0
+    var cached: NewsSource?
 
-        // Then
-        XCTAssertNil(service.getCachedNews())
+    func getCachedNews() -> NewsSource? {
+        getCachedNewsCallCount += 1
+        return cached
+    }
+
+    func cacheNews(_ newsSource: NewsSource) {
+        cacheNewsCallCount += 1
+        cached = newsSource
+    }
+
+    func clearCache() {
+        cached = nil
     }
 }

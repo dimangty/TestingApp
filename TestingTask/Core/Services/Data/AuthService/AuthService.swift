@@ -18,6 +18,15 @@ protocol AuthServiceProtocol: AnyObject {
 }
 
 class AuthService: AuthServiceProtocol {
+    typealias DelayedExecutor = (TimeInterval, @escaping () -> Void) -> Void
+    private let executeAfter: DelayedExecutor
+
+    init(executeAfter: @escaping DelayedExecutor = { delay, action in
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: action)
+    }) {
+        self.executeAfter = executeAfter
+    }
+
     func login(phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let digitsOnly = phone.filter { $0.isNumber }
         guard digitsOnly.count >= 7, digitsOnly.count <= 15 else {
@@ -25,7 +34,7 @@ class AuthService: AuthServiceProtocol {
             return
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+        executeAfter(0.4) {
             completion(.success(()))
         }
     }
@@ -36,7 +45,7 @@ class AuthService: AuthServiceProtocol {
             return
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+        executeAfter(0.6) {
             completion(.success(()))
         }
     }

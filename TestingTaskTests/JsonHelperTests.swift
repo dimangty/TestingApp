@@ -1,18 +1,21 @@
-import XCTest
+import Foundation
+import Testing
 @testable import TestingTask
 
-final class JsonHelperTests: XCTestCase {
-    private struct Sample: Codable, Equatable {
+@Suite("JSON Helper Tests")
+struct JsonHelperTests {
+    private struct Sample: Codable {
         let firstName: String
         let createdAt: Date
     }
 
-    func test_decodeData_whenStatusIsSuccess_returnsDecodedModel() throws {
+    @Test("Decodes snake_case JSON for success status")
+    func decodeDataSuccessStatusReturnsDecodedModel() {
         // Given
         let json = """
         {"first_name":"Ivan","created_at":"2024-01-02T03:04:05Z"}
         """
-        let data = try XCTUnwrap(json.data(using: .utf8))
+        let data = Data(json.utf8)
         let response = HTTPURLResponse(url: URL(string: "https://example.com")!,
                                        statusCode: 200,
                                        httpVersion: nil,
@@ -23,15 +26,16 @@ final class JsonHelperTests: XCTestCase {
 
         // Then
         switch result {
-        case .success(let model):
-            XCTAssertEqual(model.firstName, "Ivan")
-            XCTAssertEqual(model.createdAt, Date(timeIntervalSince1970: 1704164645))
-        case .failure(let error):
-            XCTFail("Unexpected error: \(error)")
+        case .success(let sample):
+            #expect(sample.firstName == "Ivan")
+            #expect(sample.createdAt == Date(timeIntervalSince1970: 1_704_164_645))
+        case .failure:
+            #expect(false)
         }
     }
 
-    func test_decodeData_whenStatusIsError_returnsTechError() {
+    @Test("Returns tech error for non-success status")
+    func decodeDataErrorStatusReturnsTechError() {
         // Given
         let data = Data("{}".utf8)
         let response = HTTPURLResponse(url: URL(string: "https://example.com")!,
@@ -45,10 +49,36 @@ final class JsonHelperTests: XCTestCase {
         // Then
         switch result {
         case .success:
-            XCTFail("Expected failure")
+            #expect(false)
         case .failure(let error):
             let responseError = error as? ErrorResponse
-            XCTAssertEqual(responseError?.type, .tech)
+            switch responseError?.type {
+            case .tech:
+                #expect(true)
+            default:
+                #expect(false)
+            }
+        }
+    }
+
+    @Test("Returns decode failure for malformed success payload")
+    func decodeDataMalformedPayloadReturnsFailure() {
+        // Given
+        let malformed = Data("{\"first_name\":123}".utf8)
+        let response = HTTPURLResponse(url: URL(string: "https://example.com")!,
+                                       statusCode: 200,
+                                       httpVersion: nil,
+                                       headerFields: nil)!
+
+        // When
+        let result: Result<Sample, Error> = JsonHelper.shared.decodeData(response: response, data: malformed, Sample.self)
+
+        // Then
+        switch result {
+        case .success:
+            #expect(false)
+        case .failure:
+            #expect(true)
         }
     }
 }
