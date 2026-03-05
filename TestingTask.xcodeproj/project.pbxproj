@@ -15,8 +15,13 @@
 		A20000010000000000000003 /* ErrorResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000003 /* ErrorResponseTests.swift */; };
 		A20000010000000000000004 /* JsonHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000004 /* JsonHelperTests.swift */; };
 		A20000010000000000000005 /* ObfuscatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000005 /* ObfuscatorTests.swift */; };
-		A20000010000000000000006 /* SignUpScreenPresenterNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000006 /* SignUpScreenPresenterNavigationTests.swift */; };
+		A20000010000000000000006 /* SignUpScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000006 /* SignUpScreenPresenterTests.swift */; };
 		A20000010000000000000007 /* ValidationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000007 /* ValidationServiceTests.swift */; };
+		A20000010000000000000008 /* LoginScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000008 /* LoginScreenPresenterTests.swift */; };
+		A20000010000000000000009 /* ArticleScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000009 /* ArticleScreenPresenterTests.swift */; };
+		A2000001000000000000000A /* NewsScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000A /* NewsScreenPresenterTests.swift */; };
+		A2000001000000000000000B /* FavoriteScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */; };
+		A2000001000000000000000C /* SwiftMockySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000C /* SwiftMockySupport.swift */; };
 		27B571324CC344358DBFD835 /* FavoriteViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D66663629541F690CD23BA /* FavoriteViewInput.swift */; };
 		32C483F8CF894EB3B123BE80 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21A4DAF8EC483E94854E57 /* FavoritePresenter.swift */; };
 		48C3AA360A2B40E8B2F3A669 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC86ED6CB45C3A9498334 /* FavoriteRouter.swift */; };
@@ -225,8 +230,13 @@
 		A10000010000000000000003 /* ErrorResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponseTests.swift; sourceTree = "<group>"; };
 		A10000010000000000000004 /* JsonHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelperTests.swift; sourceTree = "<group>"; };
 		A10000010000000000000005 /* ObfuscatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObfuscatorTests.swift; sourceTree = "<group>"; };
-		A10000010000000000000006 /* SignUpScreenPresenterNavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenPresenterNavigationTests.swift; sourceTree = "<group>"; };
+		A10000010000000000000006 /* SignUpScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenPresenterTests.swift; sourceTree = "<group>"; };
 		A10000010000000000000007 /* ValidationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationServiceTests.swift; sourceTree = "<group>"; };
+		A10000010000000000000008 /* LoginScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenPresenterTests.swift; sourceTree = "<group>"; };
+		A10000010000000000000009 /* ArticleScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleScreenPresenterTests.swift; sourceTree = "<group>"; };
+		A1000001000000000000000A /* NewsScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsScreenPresenterTests.swift; sourceTree = "<group>"; };
+		A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteScreenPresenterTests.swift; sourceTree = "<group>"; };
+		A1000001000000000000000C /* SwiftMockySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMockySupport.swift; sourceTree = "<group>"; };
 		B6D66663629541F690CD23BA /* FavoriteViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewInput.swift; sourceTree = "<group>"; };
 		C9D391E8FCAC90C7CAAB1334 /* SignUpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUITests.swift; sourceTree = "<group>"; };
 		D029C50F57B0AD04CDC6057A /* LoginFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowUITests.swift; sourceTree = "<group>"; };
@@ -308,8 +318,13 @@
 				A10000010000000000000003 /* ErrorResponseTests.swift */,
 				A10000010000000000000004 /* JsonHelperTests.swift */,
 				A10000010000000000000005 /* ObfuscatorTests.swift */,
-				A10000010000000000000006 /* SignUpScreenPresenterNavigationTests.swift */,
+				A10000010000000000000006 /* SignUpScreenPresenterTests.swift */,
 				A10000010000000000000007 /* ValidationServiceTests.swift */,
+				A10000010000000000000008 /* LoginScreenPresenterTests.swift */,
+				A10000010000000000000009 /* ArticleScreenPresenterTests.swift */,
+				A1000001000000000000000A /* NewsScreenPresenterTests.swift */,
+				A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */,
+				A1000001000000000000000C /* SwiftMockySupport.swift */,
 			);
 			path = TestingTaskTests;
 			sourceTree = "<group>";
@@ -999,8 +1014,13 @@
 				A20000010000000000000003 /* ErrorResponseTests.swift in Sources */,
 				A20000010000000000000004 /* JsonHelperTests.swift in Sources */,
 				A20000010000000000000005 /* ObfuscatorTests.swift in Sources */,
-				A20000010000000000000006 /* SignUpScreenPresenterNavigationTests.swift in Sources */,
+				A20000010000000000000006 /* SignUpScreenPresenterTests.swift in Sources */,
 				A20000010000000000000007 /* ValidationServiceTests.swift in Sources */,
+				A20000010000000000000008 /* LoginScreenPresenterTests.swift in Sources */,
+				A20000010000000000000009 /* ArticleScreenPresenterTests.swift in Sources */,
+				A2000001000000000000000A /* NewsScreenPresenterTests.swift in Sources */,
+				A2000001000000000000000B /* FavoriteScreenPresenterTests.swift in Sources */,
+				A2000001000000000000000C /* SwiftMockySupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

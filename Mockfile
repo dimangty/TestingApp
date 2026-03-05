@@ -1,0 +1,18 @@
+sourceryCommand: /opt/homebrew/bin/sourcery
+sourceryTemplate: /tmp/SwiftyMocky/Sources/SwiftyMocky/Mock.swifttemplate
+
+screenMocks:
+  sources:
+    include:
+      - ./TestingTask
+      - ./TestingTaskTests/ScreenMockables.swift
+    exclude:
+      - ./TestingTaskUITests
+  output: ./TestingTaskTests/Support/Generated/Mock.generated.swift
+  targets:
+    - TestingTaskTests
+  testable:
+    - TestingTask
+  import:
+    - Foundation
+    - UIKit
