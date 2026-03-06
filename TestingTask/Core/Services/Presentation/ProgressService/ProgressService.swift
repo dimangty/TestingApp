@@ -15,6 +15,26 @@ class ProgressService: IProgressService {
     private var pendingEmergencyHideWorkItem: DispatchWorkItem?
     private let emergencyHideTimeout: DispatchTimeInterval = .seconds(10)
 
+    private func performOnMain(_ block: @escaping () -> Void) {
+        if Thread.isMainThread {
+            block()
+        } else {
+            DispatchQueue.main.async(execute: block)
+        }
+    }
+
+    private func performOnMainSync<T>(_ block: () -> T) -> T {
+        if Thread.isMainThread {
+            return block()
+        }
+
+        var result: T?
+        DispatchQueue.main.sync {
+            result = block()
+        }
+        return result!
+    }
+
     class HudViewController: UIViewController {
         override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     }
@@ -40,22 +60,28 @@ class ProgressService: IProgressService {
     }()
 
     func showWithoutDim() {
-        self.show(dimming: false)
+        performOnMain { [weak self] in
+            self?.show(dimming: false)
+        }
     }
     
     func showWithoutDim(timeOut: Int) {
-        self.show(dimming: false, timeOut: timeOut)
+        performOnMain { [weak self] in
+            self?.show(dimming: false, timeOut: timeOut)
+        }
     }
 
     func show() {
-        self.show(dimming: true)
+        performOnMain { [weak self] in
+            self?.show(dimming: true)
+        }
     }
 
     private func show(dimming: Bool = true, style: ProgressStyle = .standard, timeOut: Int = 0) {
         guard hud == nil else {
             hideProgress()
             pendingEmergencyHideWorkItem?.cancel()
-            show(dimming: dimming)
+            show(dimming: dimming, style: style, timeOut: timeOut)
             return
         }
 
@@ -93,18 +119,28 @@ class ProgressService: IProgressService {
     }
 
     var isShown: Bool {
-        return hud != nil
+        return performOnMainSync { hud != nil }
     }
 
     func show(style: ProgressStyle) {
-        self.show(dimming: true, style: style)
+        performOnMain { [weak self] in
+            self?.show(dimming: true, style: style)
+        }
     }
 
     func showWithoutDim(style: ProgressStyle) {
-        self.show(dimming: false, style: style)
+        performOnMain { [weak self] in
+            self?.show(dimming: false, style: style)
+        }
     }
 
     func hide() {
+        performOnMain { [weak self] in
+            self?.hideOnMain()
+        }
+    }
+
+    private func hideOnMain() {
         guard hud?.backgroundColor != UIColor.clear else {
             hideProgress()
             return

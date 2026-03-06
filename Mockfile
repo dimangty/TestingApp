@@ -1,4 +1,4 @@
-sourceryCommand: /opt/homebrew/bin/sourcery
+sourceryCommand: sourcery
 sourceryTemplate: null
 
 unit.tests.mock:
