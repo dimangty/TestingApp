@@ -1,5 +1,6 @@
 import Foundation
 
+// sourcery: AutoMockable
 protocol FavoriteViewInput: AnyObject {
     func setup()
     func reloadData()

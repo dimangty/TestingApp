@@ -12,6 +12,7 @@ enum AuthError: Error {
     case invalidData
 }
 
+// sourcery: AutoMockable
 protocol AuthServiceProtocol: AnyObject {
     func login(phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func signUp(data: SignUpData, completion: @escaping (Result<Void, Error>) -> Void)

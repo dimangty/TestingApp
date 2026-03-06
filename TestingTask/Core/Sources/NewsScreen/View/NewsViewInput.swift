@@ -1,5 +1,6 @@
 import Foundation
 
+// sourcery: AutoMockable
 protocol NewsViewInput: AnyObject {
     func setup()
     func showLoading(_ isLoading: Bool)

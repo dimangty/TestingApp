@@ -8,13 +8,14 @@
 
 import UIKit
 
+// sourcery: AutoMockable
 protocol IErrorService {
     func setDelegate(_ delegate: ErrorServiceDelegate)
 
     func show(errorText: String)
 
     func show(with title: String?, errorText: String, completion: @escaping (() -> Void))
-   
+
     func show(title: String?,
               message: String,
               actionTitle: String?,

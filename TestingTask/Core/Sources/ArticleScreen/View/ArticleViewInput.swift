@@ -1,5 +1,6 @@
 import UIKit
 
+// sourcery: AutoMockable
 protocol ArticleViewInput: AnyObject {
     func setup()
     func display(title: String?, date: String, content: String?)

@@ -1,0 +1,17 @@
+---
+# Mockfile for SwiftyMocky
+# This file defines which protocols should have mocks generated
+
+sourceryCommand: ~/.local/bin/sourcery-1.8
+
+TestingTaskMocks:
+  sources:
+    include:
+      - ./TestingTask
+    exclude: []
+  output: ./TestingTaskTests/GeneratedMocks/Mocks.generated.swift
+  targets:
+    - TestingTaskTests
+  testable:
+    - TestingTask
+  import: []

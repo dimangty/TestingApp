@@ -1,24 +1,25 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol IStorageService {
-    
+
     var articles: [ArticleEntity] {get}
-    
+
     func isArticleInFavorites(title: String) -> Bool
-    
+
     func isEmailRegistered(_ email: String) -> Bool
-    
+
     func addToFavorites(title: String, contents: String, publishedAt: Date, urlToImage: String?)
-    
+
     func removeFromFavorites(title: String)
-    
+
     func addObserver(_ observer: any NewsAppStorageObserver)
-    
+
     func removeObserver(_ observer: any NewsAppStorageObserver)
-    
+
     func addUser(userName: String, email: String, password: String) -> UserEntity
-    
+
     func getUserByEmailAndPassword(email: String, password: String) -> UserEntity?
 }
 
