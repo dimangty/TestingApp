@@ -8,6 +8,7 @@ struct ArticlePresenterTests {
     @Test("Article presenter displays article data on load")
     func viewLoadedDisplaysArticleDataAndLikeState() {
         // Given
+        // Build deterministic article model and capture display callbacks.
         let storage = ArticleStorageSpy()
         let article = Article(author: "A",
                               title: "ArticleTitle",
@@ -29,9 +30,11 @@ struct ArticlePresenterTests {
         Perform(view, .displayLike(isFavorite: .any, perform: { displayedLikeState = $0 }))
 
         // When
+        // Trigger initial presenter lifecycle rendering.
         sut.viewLoaded()
 
         // Then
+        // Presenter should display article text and current non-favorite state.
         Verify(view, .once, .setup())
         Verify(view, .once, .display(title: .value("ArticleTitle"), date: .any, content: .value("Body")))
         Verify(view, .once, .displayLike(isFavorite: .value(false)))
@@ -43,6 +46,7 @@ struct ArticlePresenterTests {
     @Test("Heart tap toggles favorite state")
     func heartTappedTogglesFavoriteState() {
         // Given
+        // Prepare article not yet marked as favorite in storage spy.
         let storage = ArticleStorageSpy()
         let article = Article(author: "A",
                               title: "FavArticle",
@@ -58,9 +62,11 @@ struct ArticlePresenterTests {
         Perform(view, .displayLike(isFavorite: .any, perform: { likeValues.append($0) }))
 
         // When
+        // Simulate tapping heart action once.
         sut.heartTapped()
 
         // Then
+        // Storage should add article to favorites and UI should show filled heart.
         #expect(storage.addToFavoritesCallCount == 1)
         #expect(storage.removeFromFavoritesCallCount == 0)
         Verify(view, .once, .displayLike(isFavorite: .value(true)))
@@ -70,6 +76,7 @@ struct ArticlePresenterTests {
     @Test("View will appear refreshes like state")
     func viewWillAppearRefreshesLikeState() {
         // Given
+        // Pre-mark article as favorite so presenter reflects existing state.
         let storage = ArticleStorageSpy(initialFavorites: ["FavArticle"])
         let article = Article(author: "A",
                               title: "FavArticle",
@@ -85,9 +92,11 @@ struct ArticlePresenterTests {
         Perform(view, .displayLike(isFavorite: .any, perform: { displayedLikeState = $0 }))
 
         // When
+        // Trigger refresh path used when returning from another screen.
         sut.viewWillAppear()
 
         // Then
+        // Presenter should redraw favorite control as active.
         Verify(view, .once, .displayLike(isFavorite: .value(true)))
         #expect(displayedLikeState == true)
     }

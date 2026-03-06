@@ -22,7 +22,9 @@
 		A2000001000000000000000A /* NewsScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000A /* NewsScreenPresenterTests.swift */; };
 		A2000001000000000000000B /* FavoriteScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */; };
 		A2000001000000000000000C /* SwiftMockySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000C /* SwiftMockySupport.swift */; };
+		A2000001000000000000000D /* ScreenSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000D /* ScreenSnapshotTests.swift */; };
 		27B571324CC344358DBFD835 /* FavoriteViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D66663629541F690CD23BA /* FavoriteViewInput.swift */; };
+		C10000010000000000000001 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = C10000010000000000000002 /* SnapshotTesting */; };
 		32C483F8CF894EB3B123BE80 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21A4DAF8EC483E94854E57 /* FavoritePresenter.swift */; };
 		48C3AA360A2B40E8B2F3A669 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC86ED6CB45C3A9498334 /* FavoriteRouter.swift */; };
 		7C9D0482CE88ECD7184BF3E9 /* SignUpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D391E8FCAC90C7CAAB1334 /* SignUpUITests.swift */; };
@@ -237,6 +239,7 @@
 		A1000001000000000000000A /* NewsScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsScreenPresenterTests.swift; sourceTree = "<group>"; };
 		A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteScreenPresenterTests.swift; sourceTree = "<group>"; };
 		A1000001000000000000000C /* SwiftMockySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMockySupport.swift; sourceTree = "<group>"; };
+		A1000001000000000000000D /* ScreenSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSnapshotTests.swift; sourceTree = "<group>"; };
 		B6D66663629541F690CD23BA /* FavoriteViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewInput.swift; sourceTree = "<group>"; };
 		C9D391E8FCAC90C7CAAB1334 /* SignUpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUITests.swift; sourceTree = "<group>"; };
 		D029C50F57B0AD04CDC6057A /* LoginFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowUITests.swift; sourceTree = "<group>"; };
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08194562B1AD539B54E72D73 /* XCTest.framework in Frameworks */,
+				C10000010000000000000001 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +329,7 @@
 				A1000001000000000000000A /* NewsScreenPresenterTests.swift */,
 				A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */,
 				A1000001000000000000000C /* SwiftMockySupport.swift */,
+				A1000001000000000000000D /* ScreenSnapshotTests.swift */,
 			);
 			path = TestingTaskTests;
 			sourceTree = "<group>";
@@ -822,6 +827,9 @@
 				8E2856F0E2C9AC735C1993F0 /* PBXTargetDependency */,
 			);
 			name = TestingTaskTests;
+			packageProductDependencies = (
+				C10000010000000000000002 /* SnapshotTesting */,
+			);
 			productName = TestingTaskTests;
 			productReference = 2000D02CA243BEC8AC40DD7C /* TestingTaskTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -875,6 +883,9 @@
 				Base,
 			);
 			mainGroup = 8CCD41EA28867E7E00A36142;
+			packageReferences = (
+				C10000010000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 8CCD41F428867E7E00A36142 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1021,6 +1032,7 @@
 				A2000001000000000000000A /* NewsScreenPresenterTests.swift in Sources */,
 				A2000001000000000000000B /* FavoriteScreenPresenterTests.swift in Sources */,
 				A2000001000000000000000C /* SwiftMockySupport.swift in Sources */,
+				A2000001000000000000000D /* ScreenSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1354,6 +1366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C10000010000000000000002 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C10000010000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C10000010000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.18.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		8BD48A882F1BB7B900802454 /* NewsApp.xcdatamodeld */ = {

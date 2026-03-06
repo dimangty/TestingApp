@@ -7,6 +7,7 @@ struct NewsScreenPresenterTests {
     @Test("View load pulls cached data and applies search filter")
     func viewLoadedPullsCachedDataAndFilters() {
         // Given
+        // Configure deterministic cache payload to avoid real network requests.
         bootstrapUnitDITestSetup()
         let uniquePrefix = "news-\(UUID().uuidString)"
         let source = NewsSource(status: "ok", totalResults: 2, articles: [
@@ -22,11 +23,13 @@ struct NewsScreenPresenterTests {
         Perform(view, .reloadData(perform: { reloadSemaphore.signal() }))
 
         // When
+        // Load presenter data and then apply a narrowing search term.
         sut.viewLoaded()
         let waitResult = reloadSemaphore.wait(timeout: .now() + 2)
         sut.didUpdateSearch(text: "alpha")
 
         // Then
+        // Presenter should complete loading cycle and expose filtered content.
         switch waitResult {
         case .success:
             #expect(true)
@@ -46,6 +49,7 @@ struct NewsScreenPresenterTests {
     @Test("Select row routes to article screen")
     func didSelectRowRoutesToArticle() {
         // Given
+        // Seed one cached article to keep route target deterministic.
         bootstrapUnitDITestSetup()
         let title = "select-\(UUID().uuidString)"
         CacheService.shared.cacheNews(NewsSource(status: "ok", totalResults: 1, articles: [
@@ -61,9 +65,11 @@ struct NewsScreenPresenterTests {
         _ = reloadSemaphore.wait(timeout: .now() + 2)
 
         // When
+        // Simulate selecting the first list cell.
         sut.didSelectRow(at: IndexPath(row: 0, section: 0))
 
         // Then
+        // Router must receive openArticle interaction once.
         Verify(router, .once, .openArticle(article: .any))
 
         StorageService.shared.removeObserver(sut)
@@ -73,6 +79,7 @@ struct NewsScreenPresenterTests {
     @Test("Favorite tap updates favorite UI state")
     func didTapFavoriteUpdatesFavoriteUI() {
         // Given
+        // Cache one article so favorite toggle has a valid target row.
         bootstrapUnitDITestSetup()
         let title = "fav-\(UUID().uuidString)"
         CacheService.shared.cacheNews(NewsSource(status: "ok", totalResults: 1, articles: [
@@ -88,9 +95,11 @@ struct NewsScreenPresenterTests {
         _ = reloadSemaphore.wait(timeout: .now() + 2)
 
         // When
+        // Toggle favorite state from list cell action.
         sut.didTapFavorite(at: IndexPath(row: 0, section: 0))
 
         // Then
+        // View should receive favorite cell refresh request.
         Verify(view, .once, .updateFavorite(at: .any))
 
         StorageService.shared.removeObserver(sut)

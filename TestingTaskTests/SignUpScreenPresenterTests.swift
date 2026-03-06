@@ -7,6 +7,7 @@ struct SignUpScreenPresenterTests {
     @Test("View load configures screen and disables create for empty fields")
     func viewLoadedConfiguresAndDisablesCreate() {
         // Given
+        // Use real validation with mock view/router to verify initial state.
         let view = SignUpScreenViewInputMockableMock()
         let router = SignUpScreenRouterInputMockableMock()
         let validation = ValidationService()
@@ -16,9 +17,11 @@ struct SignUpScreenPresenterTests {
         Perform(view, .updateCreateButton(enabled: .any, perform: { lastCreateEnabled = $0 }))
 
         // When
+        // Run initial lifecycle callback.
         sut.viewLoaded()
 
         // Then
+        // Create button remains disabled until all fields become valid.
         Verify(view, .once, .setup())
         Verify(view, .once, .updateCreateButton(enabled: .value(false)))
         #expect(lastCreateEnabled == false)
@@ -27,6 +30,7 @@ struct SignUpScreenPresenterTests {
     @Test("Valid fields enable create button")
     func fieldChangedWithValidValuesEnablesCreate() {
         // Given
+        // Capture every button state update to inspect final transition.
         let view = SignUpScreenViewInputMockableMock()
         let router = SignUpScreenRouterInputMockableMock()
         let validation = ValidationService()
@@ -36,12 +40,14 @@ struct SignUpScreenPresenterTests {
         Perform(view, .updateCreateButton(enabled: .any, perform: { createStates.append($0) }))
 
         // When
+        // Fill all fields with values that satisfy validation rules.
         for field in SignUpField.allCases {
             let value = field == .email ? "test@mail.com" : (field == .phone ? "1234567" : "Value")
             sut.fieldChanged(field, value: value)
         }
 
         // Then
+        // Presenter should eventually enable account creation action.
         Verify(view, .updateCreateButton(enabled: .value(true)))
         #expect(createStates.last == true)
     }
@@ -49,6 +55,7 @@ struct SignUpScreenPresenterTests {
     @Test("Successful account creation opens main")
     func createAccountTappedSuccessOpensMain() {
         // Given
+        // Stub successful sign-up completion for happy-path behavior verification.
         let view = SignUpScreenViewInputMockableMock()
         let router = SignUpScreenRouterInputMockableMock()
         let auth = AuthServiceProtocolMockableMock()
@@ -70,9 +77,11 @@ struct SignUpScreenPresenterTests {
         }
 
         // When
+        // Trigger account creation after valid form input.
         sut.createAccountTapped()
 
         // Then
+        // Sign-up should call auth once, stop loader, and navigate to main.
         Verify(auth, .once, .signUp(data: .any, completion: .any))
         #expect(progress.showCallCount == 1)
         #expect(progress.hideCallCount == 1)
@@ -83,6 +92,7 @@ struct SignUpScreenPresenterTests {
     @Test("Failed account creation shows error")
     func createAccountTappedFailureShowsError() {
         // Given
+        // Stub failed sign-up to check presenter error flow.
         let view = SignUpScreenViewInputMockableMock()
         let router = SignUpScreenRouterInputMockableMock()
         let auth = AuthServiceProtocolMockableMock()
@@ -104,9 +114,11 @@ struct SignUpScreenPresenterTests {
         }
 
         // When
+        // Execute create action with fully populated form.
         sut.createAccountTapped()
 
         // Then
+        // Failure should keep user on screen and display dedicated message.
         Verify(auth, .once, .signUp(data: .any, completion: .any))
         #expect(progress.showCallCount == 1)
         #expect(progress.hideCallCount == 1)
@@ -118,14 +130,17 @@ struct SignUpScreenPresenterTests {
     @Test("Back action closes module")
     func backTappedClosesModule() {
         // Given
+        // Router mock validates only navigation interactions.
         let view = SignUpScreenViewInputMockableMock()
         let router = SignUpScreenRouterInputMockableMock()
         let sut = SignUpScreenPresenter(view: view, router: router)
 
         // When
+        // User requests to close sign-up flow.
         sut.backTapped()
 
         // Then
+        // Presenter should close current module without opening main screen.
         Verify(router, .once, .close())
         Verify(router, .never, .openMainScreen())
     }
