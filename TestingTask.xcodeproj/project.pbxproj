@@ -10,21 +10,7 @@
 		08194562B1AD539B54E72D73 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED9F00C773A489EAAB0806E /* XCTest.framework */; };
 		13193EF5805CC06979C972FF /* UITestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BE01B62383FA548936D12 /* UITestBase.swift */; };
 		164DD8DB6CD1135E7F806AF0 /* EndToEndUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9AA4C580E7341D7F72D032 /* EndToEndUITests.swift */; };
-		A20000010000000000000001 /* CacheServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000001 /* CacheServiceTests.swift */; };
-		A20000010000000000000002 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000002 /* DateExtensionsTests.swift */; };
-		A20000010000000000000003 /* ErrorResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000003 /* ErrorResponseTests.swift */; };
-		A20000010000000000000004 /* JsonHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000004 /* JsonHelperTests.swift */; };
-		A20000010000000000000005 /* ObfuscatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000005 /* ObfuscatorTests.swift */; };
-		A20000010000000000000006 /* SignUpScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000006 /* SignUpScreenPresenterTests.swift */; };
-		A20000010000000000000007 /* ValidationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000007 /* ValidationServiceTests.swift */; };
-		A20000010000000000000008 /* LoginScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000008 /* LoginScreenPresenterTests.swift */; };
-		A20000010000000000000009 /* ArticleScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000009 /* ArticleScreenPresenterTests.swift */; };
-		A2000001000000000000000A /* NewsScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000A /* NewsScreenPresenterTests.swift */; };
-		A2000001000000000000000B /* FavoriteScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */; };
-		A2000001000000000000000C /* SwiftMockySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000C /* SwiftMockySupport.swift */; };
-		A2000001000000000000000D /* ScreenSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000D /* ScreenSnapshotTests.swift */; };
 		27B571324CC344358DBFD835 /* FavoriteViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D66663629541F690CD23BA /* FavoriteViewInput.swift */; };
-		C10000010000000000000001 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = C10000010000000000000002 /* SnapshotTesting */; };
 		32C483F8CF894EB3B123BE80 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21A4DAF8EC483E94854E57 /* FavoritePresenter.swift */; };
 		48C3AA360A2B40E8B2F3A669 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC86ED6CB45C3A9498334 /* FavoriteRouter.swift */; };
 		7C9D0482CE88ECD7184BF3E9 /* SignUpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D391E8FCAC90C7CAAB1334 /* SignUpUITests.swift */; };
@@ -110,7 +96,21 @@
 		8CCD44C92886F30000A36142 /* SignUpField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44A12886F30000A36142 /* SignUpField.swift */; };
 		8CCD44CA2886F30000A36142 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD44A22886F30000A36142 /* SignUpData.swift */; };
 		9DB2B7CFF4BC4F6BBBC64A2F /* FavoriteViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919D00FE275440549F9A8340 /* FavoriteViewOutput.swift */; };
+		A20000010000000000000001 /* CacheServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000001 /* CacheServiceTests.swift */; };
+		A20000010000000000000002 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000002 /* DateExtensionsTests.swift */; };
+		A20000010000000000000003 /* ErrorResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000003 /* ErrorResponseTests.swift */; };
+		A20000010000000000000004 /* JsonHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000004 /* JsonHelperTests.swift */; };
+		A20000010000000000000005 /* ObfuscatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000005 /* ObfuscatorTests.swift */; };
+		A20000010000000000000006 /* SignUpScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000006 /* SignUpScreenPresenterTests.swift */; };
+		A20000010000000000000007 /* ValidationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000007 /* ValidationServiceTests.swift */; };
+		A20000010000000000000008 /* LoginScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000008 /* LoginScreenPresenterTests.swift */; };
+		A20000010000000000000009 /* ArticleScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000009 /* ArticleScreenPresenterTests.swift */; };
+		A2000001000000000000000A /* NewsScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000A /* NewsScreenPresenterTests.swift */; };
+		A2000001000000000000000B /* FavoriteScreenPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000B /* FavoriteScreenPresenterTests.swift */; };
+		A2000001000000000000000C /* SwiftMockySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000C /* SwiftMockySupport.swift */; };
+		A2000001000000000000000D /* ScreenSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000D /* ScreenSnapshotTests.swift */; };
 		B20B6AEE08C2410380DDCA91 /* FavoriteRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2120BA704A52BD9D9452 /* FavoriteRouterInput.swift */; };
+		C10000010000000000000001 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = C10000010000000000000002 /* SnapshotTesting */; };
 		DD2EC4FBDB8D2E3D14012D24 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED9F00C773A489EAAB0806E /* XCTest.framework */; };
 		E4141E3DF412BEDC9406AE07 /* LoginFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029C50F57B0AD04CDC6057A /* LoginFlowUITests.swift */; };
 		FB2F5F4B856642929781C71C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FCF210D0F744CEAF77EFDA /* FavoriteViewController.swift */; };
@@ -1367,14 +1367,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		C10000010000000000000002 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C10000010000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
-		};
-/* End XCSwiftPackageProductDependency section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		C10000010000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1385,6 +1377,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C10000010000000000000002 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C10000010000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8BD48A882F1BB7B900802454 /* NewsApp.xcdatamodeld */ = {
