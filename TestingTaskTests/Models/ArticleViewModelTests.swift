@@ -4,6 +4,8 @@ import Foundation
 
 @Suite("ArticleViewModel Tests")
 struct ArticleViewModelTests {
+    // These tests use StorageServiceMock to verify side effects of
+    // favorite toggling without touching persistent storage.
 
     // MARK: - Properties
 
@@ -78,6 +80,8 @@ struct ArticleViewModelTests {
         let result = sut.publishedAt
 
         // Then
+        // The exact month text may vary by locale, so we assert on stable
+        // parts while still validating that formatting happened.
         #expect(result.contains("15"))
         #expect(result.contains("March") || result.contains("марта") || result.contains("3"))
     }
@@ -248,6 +252,7 @@ struct ArticleViewModelTests {
         vm1.addOrRemoveFromFavorites() // Adds Article 1
 
         // Then
+        // Both view models observe the same underlying storage state.
         #expect(vm1.isFavorite == true)
         #expect(vm2.isFavorite == false)
         #expect(storage.favoritesTitles.contains("Article 1"))
@@ -294,6 +299,7 @@ struct ArticleViewModelTests {
         let vmNil = ArticleViewModel(article: articleWithNil, storage: storage)
 
         // Then
+        // Empty and nil titles are different states and should remain distinct.
         #expect(vmEmpty.title == "")
         #expect(vmNil.title == nil)
     }
