@@ -10,8 +10,8 @@ class LoginScreenPresenter {
     private let router: LoginScreenRouterInput
 
     @Injected var authService: AuthServiceProtocol?
-    @Injected var progressService: ProgressService?
-    @Injected var errorService: ErrorService?
+    @Injected var progressService: IProgressService?
+    @Injected var errorService: IErrorService?
 
     private var phone: String = ""
 

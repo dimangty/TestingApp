@@ -11,8 +11,8 @@ class SignUpScreenPresenter {
 
     @Injected var authService: AuthServiceProtocol?
     @Injected var validationService: ValidationService?
-    @Injected var progressService: ProgressService?
-    @Injected var errorService: ErrorService?
+    @Injected var progressService: IProgressService?
+    @Injected var errorService: IErrorService?
 
     private var fields: [SignUpField: String] = [:]
 

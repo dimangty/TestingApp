@@ -1,17 +1,33 @@
----
-# Mockfile for SwiftyMocky
-# This file defines which protocols should have mocks generated
+sourceryCommand: /opt/homebrew/bin/sourcery
+sourceryTemplate: null
 
-sourceryCommand: ~/.local/bin/sourcery-1.8
-
-TestingTaskMocks:
+unit.tests.mock:
   sources:
     include:
-      - ./TestingTask
-    exclude: []
-  output: ./TestingTaskTests/GeneratedMocks/Mocks.generated.swift
-  targets:
-    - TestingTaskTests
+      - ./TestingTask/Core/Services/Data/AuthService/AuthService.swift
+      - ./TestingTask/Core/Services/Data/NewsService/INewsService.swift
+      - ./TestingTask/Core/Services/Data/Storage/IStorageService.swift
+      - ./TestingTask/Core/Services/Data/Cache/ICacheService.swift
+      - ./TestingTask/Core/Services/Presentation/ErrorService/IErrorService.swift
+      - ./TestingTask/Core/Services/Presentation/ProgressService/IProgressService.swift
+      - ./TestingTask/Core/Sources/LoginScreen/View/LoginScreenViewInput.swift
+      - ./TestingTask/Core/Sources/LoginScreen/View/LoginScreenViewOutput.swift
+      - ./TestingTask/Core/Sources/LoginScreen/Router/LoginScreenRouterInput.swift
+      - ./TestingTask/Core/Sources/SignUpScreen/View/SignUpScreenViewInput.swift
+      - ./TestingTask/Core/Sources/SignUpScreen/View/SignUpScreenViewOutput.swift
+      - ./TestingTask/Core/Sources/SignUpScreen/Router/SignUpScreenRouterInput.swift
+      - ./TestingTask/Core/Sources/NewsScreen/View/NewsViewInput.swift
+      - ./TestingTask/Core/Sources/NewsScreen/View/NewsViewOutput.swift
+      - ./TestingTask/Core/Sources/NewsScreen/Router/NewsRouterInput.swift
+      - ./TestingTask/Core/Sources/ArticleScreen/View/ArticleViewInput.swift
+      - ./TestingTask/Core/Sources/ArticleScreen/View/ArticleViewOutput.swift
+      - ./TestingTask/Core/Sources/ArticleScreen/Router/ArticleRouterInput.swift
+      - ./TestingTask/Core/Sources/FavoriteScreen/View/FavoriteViewInput.swift
+      - ./TestingTask/Core/Sources/FavoriteScreen/View/FavoriteViewOutput.swift
+      - ./TestingTask/Core/Sources/FavoriteScreen/Router/FavoriteRouterInput.swift
+  output: ./TestingTaskTests/Mocks/GeneratedMocks.swift
   testable:
     - TestingTask
-  import: []
+  import:
+    - UIKit
+    - Foundation

@@ -1,4 +1,4 @@
-// Generated using Sourcery 1.8.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 2.3.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 
@@ -8,6 +8,8 @@
 
 import SwiftyMocky
 import XCTest
+import UIKit
+import Foundation
 @testable import TestingTask
 
 
@@ -1672,6 +1674,275 @@ open class INewsServiceMock: INewsService, Mock {
     }
 }
 
+// MARK: - IProgressService
+
+open class IProgressServiceMock: IProgressService, Mock {
+    public init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
+        SwiftyMockyTestObserver.setup()
+        self.sequencingPolicy = sequencingPolicy
+        self.stubbingPolicy = stubbingPolicy
+        self.file = file
+        self.line = line
+    }
+
+    var matcher: Matcher = Matcher.default
+    var stubbingPolicy: StubbingPolicy = .wrap
+    var sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst
+
+    private var queue = DispatchQueue(label: "com.swiftymocky.invocations", qos: .userInteractive)
+    private var invocations: [MethodType] = []
+    private var methodReturnValues: [Given] = []
+    private var methodPerformValues: [Perform] = []
+    private var file: StaticString?
+    private var line: UInt?
+
+    public typealias PropertyStub = Given
+    public typealias MethodStub = Given
+    public typealias SubscriptStub = Given
+
+    /// Convenience method - call setupMock() to extend debug information when failure occurs
+    public func setupMock(file: StaticString = #file, line: UInt = #line) {
+        self.file = file
+        self.line = line
+    }
+
+    /// Clear mock internals. You can specify what to reset (invocations aka verify, givens or performs) or leave it empty to clear all mock internals
+    public func resetMock(_ scopes: MockScope...) {
+        let scopes: [MockScope] = scopes.isEmpty ? [.invocation, .given, .perform] : scopes
+        if scopes.contains(.invocation) { invocations = [] }
+        if scopes.contains(.given) { methodReturnValues = [] }
+        if scopes.contains(.perform) { methodPerformValues = [] }
+    }
+
+    public var isShown: Bool {
+		get {	invocations.append(.p_isShown_get); return __p_isShown ?? givenGetterValue(.p_isShown_get, "IProgressServiceMock - stub value for isShown was not defined") }
+	}
+	private var __p_isShown: (Bool)?
+
+
+
+
+
+    open func show() {
+        addInvocation(.m_show)
+		let perform = methodPerformValue(.m_show) as? () -> Void
+		perform?()
+    }
+
+    open func showWithoutDim() {
+        addInvocation(.m_showWithoutDim)
+		let perform = methodPerformValue(.m_showWithoutDim) as? () -> Void
+		perform?()
+    }
+
+    open func showWithoutDim(timeOut: Int) {
+        addInvocation(.m_showWithoutDim__timeOut_timeOut(Parameter<Int>.value(`timeOut`)))
+		let perform = methodPerformValue(.m_showWithoutDim__timeOut_timeOut(Parameter<Int>.value(`timeOut`))) as? (Int) -> Void
+		perform?(`timeOut`)
+    }
+
+    open func show(style: ProgressStyle) {
+        addInvocation(.m_show__style_style(Parameter<ProgressStyle>.value(`style`)))
+		let perform = methodPerformValue(.m_show__style_style(Parameter<ProgressStyle>.value(`style`))) as? (ProgressStyle) -> Void
+		perform?(`style`)
+    }
+
+    open func showWithoutDim(style: ProgressStyle) {
+        addInvocation(.m_showWithoutDim__style_style(Parameter<ProgressStyle>.value(`style`)))
+		let perform = methodPerformValue(.m_showWithoutDim__style_style(Parameter<ProgressStyle>.value(`style`))) as? (ProgressStyle) -> Void
+		perform?(`style`)
+    }
+
+    open func hide() {
+        addInvocation(.m_hide)
+		let perform = methodPerformValue(.m_hide) as? () -> Void
+		perform?()
+    }
+
+
+    fileprivate enum MethodType {
+        case m_show
+        case m_showWithoutDim
+        case m_showWithoutDim__timeOut_timeOut(Parameter<Int>)
+        case m_show__style_style(Parameter<ProgressStyle>)
+        case m_showWithoutDim__style_style(Parameter<ProgressStyle>)
+        case m_hide
+        case p_isShown_get
+
+        static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Matcher.ComparisonResult {
+            switch (lhs, rhs) {
+            case (.m_show, .m_show): return .match
+
+            case (.m_showWithoutDim, .m_showWithoutDim): return .match
+
+            case (.m_showWithoutDim__timeOut_timeOut(let lhsTimeout), .m_showWithoutDim__timeOut_timeOut(let rhsTimeout)):
+				var results: [Matcher.ParameterComparisonResult] = []
+				results.append(Matcher.ParameterComparisonResult(Parameter.compare(lhs: lhsTimeout, rhs: rhsTimeout, with: matcher), lhsTimeout, rhsTimeout, "timeOut"))
+				return Matcher.ComparisonResult(results)
+
+            case (.m_show__style_style(let lhsStyle), .m_show__style_style(let rhsStyle)):
+				var results: [Matcher.ParameterComparisonResult] = []
+				results.append(Matcher.ParameterComparisonResult(Parameter.compare(lhs: lhsStyle, rhs: rhsStyle, with: matcher), lhsStyle, rhsStyle, "style"))
+				return Matcher.ComparisonResult(results)
+
+            case (.m_showWithoutDim__style_style(let lhsStyle), .m_showWithoutDim__style_style(let rhsStyle)):
+				var results: [Matcher.ParameterComparisonResult] = []
+				results.append(Matcher.ParameterComparisonResult(Parameter.compare(lhs: lhsStyle, rhs: rhsStyle, with: matcher), lhsStyle, rhsStyle, "style"))
+				return Matcher.ComparisonResult(results)
+
+            case (.m_hide, .m_hide): return .match
+            case (.p_isShown_get,.p_isShown_get): return Matcher.ComparisonResult.match
+            default: return .none
+            }
+        }
+
+        func intValue() -> Int {
+            switch self {
+            case .m_show: return 0
+            case .m_showWithoutDim: return 0
+            case let .m_showWithoutDim__timeOut_timeOut(p0): return p0.intValue
+            case let .m_show__style_style(p0): return p0.intValue
+            case let .m_showWithoutDim__style_style(p0): return p0.intValue
+            case .m_hide: return 0
+            case .p_isShown_get: return 0
+            }
+        }
+        func assertionName() -> String {
+            switch self {
+            case .m_show: return ".show()"
+            case .m_showWithoutDim: return ".showWithoutDim()"
+            case .m_showWithoutDim__timeOut_timeOut: return ".showWithoutDim(timeOut:)"
+            case .m_show__style_style: return ".show(style:)"
+            case .m_showWithoutDim__style_style: return ".showWithoutDim(style:)"
+            case .m_hide: return ".hide()"
+            case .p_isShown_get: return "[get] .isShown"
+            }
+        }
+    }
+
+    open class Given: StubbedMethod {
+        fileprivate var method: MethodType
+
+        private init(method: MethodType, products: [StubProduct]) {
+            self.method = method
+            super.init(products)
+        }
+
+        public static func isShown(getter defaultValue: Bool...) -> PropertyStub {
+            return Given(method: .p_isShown_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
+        }
+
+    }
+
+    public struct Verify {
+        fileprivate var method: MethodType
+
+        public static func show() -> Verify { return Verify(method: .m_show)}
+        public static func showWithoutDim() -> Verify { return Verify(method: .m_showWithoutDim)}
+        public static func showWithoutDim(timeOut: Parameter<Int>) -> Verify { return Verify(method: .m_showWithoutDim__timeOut_timeOut(`timeOut`))}
+        public static func show(style: Parameter<ProgressStyle>) -> Verify { return Verify(method: .m_show__style_style(`style`))}
+        public static func showWithoutDim(style: Parameter<ProgressStyle>) -> Verify { return Verify(method: .m_showWithoutDim__style_style(`style`))}
+        public static func hide() -> Verify { return Verify(method: .m_hide)}
+        public static var isShown: Verify { return Verify(method: .p_isShown_get) }
+    }
+
+    public struct Perform {
+        fileprivate var method: MethodType
+        var performs: Any
+
+        public static func show(perform: @escaping () -> Void) -> Perform {
+            return Perform(method: .m_show, performs: perform)
+        }
+        public static func showWithoutDim(perform: @escaping () -> Void) -> Perform {
+            return Perform(method: .m_showWithoutDim, performs: perform)
+        }
+        public static func showWithoutDim(timeOut: Parameter<Int>, perform: @escaping (Int) -> Void) -> Perform {
+            return Perform(method: .m_showWithoutDim__timeOut_timeOut(`timeOut`), performs: perform)
+        }
+        public static func show(style: Parameter<ProgressStyle>, perform: @escaping (ProgressStyle) -> Void) -> Perform {
+            return Perform(method: .m_show__style_style(`style`), performs: perform)
+        }
+        public static func showWithoutDim(style: Parameter<ProgressStyle>, perform: @escaping (ProgressStyle) -> Void) -> Perform {
+            return Perform(method: .m_showWithoutDim__style_style(`style`), performs: perform)
+        }
+        public static func hide(perform: @escaping () -> Void) -> Perform {
+            return Perform(method: .m_hide, performs: perform)
+        }
+    }
+
+    public func given(_ method: Given) {
+        methodReturnValues.append(method)
+    }
+
+    public func perform(_ method: Perform) {
+        methodPerformValues.append(method)
+        methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
+    }
+
+    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
+        let fullMatches = matchingCalls(method, file: file, line: line)
+        let success = count.matches(fullMatches)
+        let assertionName = method.method.assertionName()
+        let feedback: String = {
+            guard !success else { return "" }
+            return Utils.closestCallsMessage(
+                for: self.invocations.map { invocation in
+                    matcher.set(file: file, line: line)
+                    defer { matcher.clearFileAndLine() }
+                    return MethodType.compareParameters(lhs: invocation, rhs: method.method, matcher: matcher)
+                },
+                name: assertionName
+            )
+        }()
+        MockyAssert(success, "Expected: \(count) invocations of `\(assertionName)`, but was: \(fullMatches).\(feedback)", file: file, line: line)
+    }
+
+    private func addInvocation(_ call: MethodType) {
+        self.queue.sync { invocations.append(call) }
+    }
+    private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
+        matcher.set(file: self.file, line: self.line)
+        defer { matcher.clearFileAndLine() }
+        let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
+        let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch })
+        guard let product = matched?.getProduct(policy: self.stubbingPolicy) else { throw MockError.notStubed }
+        return product
+    }
+    private func methodPerformValue(_ method: MethodType) -> Any? {
+        matcher.set(file: self.file, line: self.line)
+        defer { matcher.clearFileAndLine() }
+        let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch }
+        return matched?.performs
+    }
+    private func matchingCalls(_ method: MethodType, file: StaticString?, line: UInt?) -> [MethodType] {
+        matcher.set(file: file ?? self.file, line: line ?? self.line)
+        defer { matcher.clearFileAndLine() }
+        return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher).isFullMatch }
+    }
+    private func matchingCalls(_ method: Verify, file: StaticString?, line: UInt?) -> Int {
+        return matchingCalls(method.method, file: file, line: line).count
+    }
+    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+        do {
+            return try methodReturnValue(method).casted()
+        } catch {
+            onFatalFailure(message)
+            Failure(message)
+        }
+    }
+    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+        do {
+            return try methodReturnValue(method).casted()
+        } catch {
+            return nil
+        }
+    }
+    private func onFatalFailure(_ message: String) {
+        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
+        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, line: line)
+    }
+}
+
 // MARK: - IStorageService
 
 open class IStorageServiceMock: IStorageService, Mock {
@@ -2364,6 +2635,199 @@ open class LoginScreenViewInputMock: LoginScreenViewInput, Mock {
         }
         public static func updateConfirmButton(enabled: Parameter<Bool>, perform: @escaping (Bool) -> Void) -> Perform {
             return Perform(method: .m_updateConfirmButton__enabled_enabled(`enabled`), performs: perform)
+        }
+    }
+
+    public func given(_ method: Given) {
+        methodReturnValues.append(method)
+    }
+
+    public func perform(_ method: Perform) {
+        methodPerformValues.append(method)
+        methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
+    }
+
+    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
+        let fullMatches = matchingCalls(method, file: file, line: line)
+        let success = count.matches(fullMatches)
+        let assertionName = method.method.assertionName()
+        let feedback: String = {
+            guard !success else { return "" }
+            return Utils.closestCallsMessage(
+                for: self.invocations.map { invocation in
+                    matcher.set(file: file, line: line)
+                    defer { matcher.clearFileAndLine() }
+                    return MethodType.compareParameters(lhs: invocation, rhs: method.method, matcher: matcher)
+                },
+                name: assertionName
+            )
+        }()
+        MockyAssert(success, "Expected: \(count) invocations of `\(assertionName)`, but was: \(fullMatches).\(feedback)", file: file, line: line)
+    }
+
+    private func addInvocation(_ call: MethodType) {
+        self.queue.sync { invocations.append(call) }
+    }
+    private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
+        matcher.set(file: self.file, line: self.line)
+        defer { matcher.clearFileAndLine() }
+        let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
+        let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch })
+        guard let product = matched?.getProduct(policy: self.stubbingPolicy) else { throw MockError.notStubed }
+        return product
+    }
+    private func methodPerformValue(_ method: MethodType) -> Any? {
+        matcher.set(file: self.file, line: self.line)
+        defer { matcher.clearFileAndLine() }
+        let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch }
+        return matched?.performs
+    }
+    private func matchingCalls(_ method: MethodType, file: StaticString?, line: UInt?) -> [MethodType] {
+        matcher.set(file: file ?? self.file, line: line ?? self.line)
+        defer { matcher.clearFileAndLine() }
+        return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher).isFullMatch }
+    }
+    private func matchingCalls(_ method: Verify, file: StaticString?, line: UInt?) -> Int {
+        return matchingCalls(method.method, file: file, line: line).count
+    }
+    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+        do {
+            return try methodReturnValue(method).casted()
+        } catch {
+            onFatalFailure(message)
+            Failure(message)
+        }
+    }
+    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+        do {
+            return try methodReturnValue(method).casted()
+        } catch {
+            return nil
+        }
+    }
+    private func onFatalFailure(_ message: String) {
+        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
+        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, line: line)
+    }
+}
+
+// MARK: - NewsAppStorageObserver
+
+open class NewsAppStorageObserverMock: NewsAppStorageObserver, Mock {
+    public init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
+        SwiftyMockyTestObserver.setup()
+        self.sequencingPolicy = sequencingPolicy
+        self.stubbingPolicy = stubbingPolicy
+        self.file = file
+        self.line = line
+    }
+
+    var matcher: Matcher = Matcher.default
+    var stubbingPolicy: StubbingPolicy = .wrap
+    var sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst
+
+    private var queue = DispatchQueue(label: "com.swiftymocky.invocations", qos: .userInteractive)
+    private var invocations: [MethodType] = []
+    private var methodReturnValues: [Given] = []
+    private var methodPerformValues: [Perform] = []
+    private var file: StaticString?
+    private var line: UInt?
+
+    public typealias PropertyStub = Given
+    public typealias MethodStub = Given
+    public typealias SubscriptStub = Given
+
+    /// Convenience method - call setupMock() to extend debug information when failure occurs
+    public func setupMock(file: StaticString = #file, line: UInt = #line) {
+        self.file = file
+        self.line = line
+    }
+
+    /// Clear mock internals. You can specify what to reset (invocations aka verify, givens or performs) or leave it empty to clear all mock internals
+    public func resetMock(_ scopes: MockScope...) {
+        let scopes: [MockScope] = scopes.isEmpty ? [.invocation, .given, .perform] : scopes
+        if scopes.contains(.invocation) { invocations = [] }
+        if scopes.contains(.given) { methodReturnValues = [] }
+        if scopes.contains(.perform) { methodPerformValues = [] }
+    }
+
+
+
+
+
+    open func didRemoveFromFavorites(title: String) {
+        addInvocation(.m_didRemoveFromFavorites__title_title(Parameter<String>.value(`title`)))
+		let perform = methodPerformValue(.m_didRemoveFromFavorites__title_title(Parameter<String>.value(`title`))) as? (String) -> Void
+		perform?(`title`)
+    }
+
+    open func didAddToFavorites(article: ArticleEntity) {
+        addInvocation(.m_didAddToFavorites__article_article(Parameter<ArticleEntity>.value(`article`)))
+		let perform = methodPerformValue(.m_didAddToFavorites__article_article(Parameter<ArticleEntity>.value(`article`))) as? (ArticleEntity) -> Void
+		perform?(`article`)
+    }
+
+
+    fileprivate enum MethodType {
+        case m_didRemoveFromFavorites__title_title(Parameter<String>)
+        case m_didAddToFavorites__article_article(Parameter<ArticleEntity>)
+
+        static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Matcher.ComparisonResult {
+            switch (lhs, rhs) {
+            case (.m_didRemoveFromFavorites__title_title(let lhsTitle), .m_didRemoveFromFavorites__title_title(let rhsTitle)):
+				var results: [Matcher.ParameterComparisonResult] = []
+				results.append(Matcher.ParameterComparisonResult(Parameter.compare(lhs: lhsTitle, rhs: rhsTitle, with: matcher), lhsTitle, rhsTitle, "title"))
+				return Matcher.ComparisonResult(results)
+
+            case (.m_didAddToFavorites__article_article(let lhsArticle), .m_didAddToFavorites__article_article(let rhsArticle)):
+				var results: [Matcher.ParameterComparisonResult] = []
+				results.append(Matcher.ParameterComparisonResult(Parameter.compare(lhs: lhsArticle, rhs: rhsArticle, with: matcher), lhsArticle, rhsArticle, "article"))
+				return Matcher.ComparisonResult(results)
+            default: return .none
+            }
+        }
+
+        func intValue() -> Int {
+            switch self {
+            case let .m_didRemoveFromFavorites__title_title(p0): return p0.intValue
+            case let .m_didAddToFavorites__article_article(p0): return p0.intValue
+            }
+        }
+        func assertionName() -> String {
+            switch self {
+            case .m_didRemoveFromFavorites__title_title: return ".didRemoveFromFavorites(title:)"
+            case .m_didAddToFavorites__article_article: return ".didAddToFavorites(article:)"
+            }
+        }
+    }
+
+    open class Given: StubbedMethod {
+        fileprivate var method: MethodType
+
+        private init(method: MethodType, products: [StubProduct]) {
+            self.method = method
+            super.init(products)
+        }
+
+
+    }
+
+    public struct Verify {
+        fileprivate var method: MethodType
+
+        public static func didRemoveFromFavorites(title: Parameter<String>) -> Verify { return Verify(method: .m_didRemoveFromFavorites__title_title(`title`))}
+        public static func didAddToFavorites(article: Parameter<ArticleEntity>) -> Verify { return Verify(method: .m_didAddToFavorites__article_article(`article`))}
+    }
+
+    public struct Perform {
+        fileprivate var method: MethodType
+        var performs: Any
+
+        public static func didRemoveFromFavorites(title: Parameter<String>, perform: @escaping (String) -> Void) -> Perform {
+            return Perform(method: .m_didRemoveFromFavorites__title_title(`title`), performs: perform)
+        }
+        public static func didAddToFavorites(article: Parameter<ArticleEntity>, perform: @escaping (ArticleEntity) -> Void) -> Perform {
+            return Perform(method: .m_didAddToFavorites__article_article(`article`), performs: perform)
         }
     }
 

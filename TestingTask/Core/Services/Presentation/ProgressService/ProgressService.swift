@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProgressService {
+class ProgressService: IProgressService {
 
     private var hud: UIView?
     private var pendingEmergencyHideWorkItem: DispatchWorkItem?

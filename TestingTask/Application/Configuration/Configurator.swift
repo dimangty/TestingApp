@@ -24,7 +24,10 @@ class Configurator {
        serviceLocator.addService(service: Obfuscator())
        serviceLocator.addService(service: CurrateService())
        serviceLocator.addService(service: ErrorService())
+        serviceLocator.addService(service: ErrorService() as IErrorService)
+        
        serviceLocator.addService(service: ProgressService())
+        serviceLocator.addService(service: ProgressService() as IProgressService)
        serviceLocator.addService(service: ValidationService())
        serviceLocator.addService(service: AuthService() as AuthServiceProtocol)
        
