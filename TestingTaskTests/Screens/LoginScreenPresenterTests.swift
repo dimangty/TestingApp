@@ -1,275 +1,326 @@
-import Testing
+//
+//  LoginScreenPresenterTests.swift
+//  TestingTaskTests
+//
+//  Unit tests for LoginScreenPresenter
+//  Following Mobile Testing Guidelines v3 - Given/When/Then pattern
+//
+//  Tests cover:
+//  - View lifecycle events (viewLoaded)
+//  - Phone number validation (state and branching)
+//  - Login success and failure scenarios
+//  - Confirm button state management
+//  - Navigation routing
+//
+
 import Foundation
+import Testing
 import SwiftyMocky
 @testable import TestingTask
 
-@Suite("LoginScreenPresenter Tests")
+@Suite("Login Presenter Tests")
 struct LoginScreenPresenterTests {
 
-    // MARK: - View Loaded
+    @Test("View load configures screen and disables confirm for empty phone")
+    func viewLoadedConfiguresAndDisablesConfirm() {
+        // Given: Presenter with mocked dependencies and empty phone
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var lastConfirmEnabled: Bool?
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { lastConfirmEnabled = $0 }))
 
-    @Test("viewLoaded calls setup on view")
-    func viewLoaded_callsSetup() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-
-        // When
+        // When: View is loaded
         presenter.viewLoaded()
 
-        // Then
-        view.verify(.setup(), count: .exactly(1))
+        // Then: View setup is called and confirm button is disabled (empty phone)
+        Verify(mockView, .once, .setup())
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(false)))
+        #expect(lastConfirmEnabled == false)
     }
 
-    @Test("viewLoaded updates confirm button to disabled state initially")
-    func viewLoaded_updatesConfirmButton_disabled() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
+    @Test("Phone changes update confirm button state")
+    func phoneChangedUpdatesConfirmButtonState() {
+        // Given: Presenter with mocked dependencies and state capture
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var states: [Bool] = []
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { states.append($0) }))
 
-        // When
-        presenter.viewLoaded()
-
-        // Then
-        view.verify(.updateConfirmButton(enabled: .value(false)), count: .exactly(1))
-    }
-
-    // MARK: - Phone Validation
-
-    @Test("phoneChanged with short phone keeps button disabled")
-    func phoneChanged_shortPhone_buttonDisabled() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-
-        // When
-        presenter.phoneChanged("123456") // 6 digits - too short
-
-        // Then
-        view.verify(.updateConfirmButton(enabled: .value(false)), count: .exactly(1))
-    }
-
-    @Test("phoneChanged with valid phone enables button")
-    func phoneChanged_validPhone_buttonEnabled() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-
-        // When
-        presenter.phoneChanged("1234567") // 7 digits - valid minimum
-
-        // Then
-        view.verify(.updateConfirmButton(enabled: .value(true)), count: .exactly(1))
-    }
-
-    @Test("phoneChanged with max length phone enables button")
-    func phoneChanged_maxLengthPhone_buttonEnabled() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-
-        // When
-        presenter.phoneChanged("123456789012345") // 15 digits - valid maximum
-
-        // Then
-        view.verify(.updateConfirmButton(enabled: .value(true)), count: .exactly(1))
-    }
-
-    @Test("phoneChanged with too long phone disables button")
-    func phoneChanged_tooLongPhone_buttonDisabled() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-
-        // When
-        presenter.phoneChanged("1234567890123456") // 16 digits - too long
-
-        // Then
-        view.verify(.updateConfirmButton(enabled: .value(false)), count: .exactly(1))
-    }
-
-    @Test("phoneChanged updates button state on each change")
-    func phoneChanged_multipleChanges_updatesButtonEachTime() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-
-        // When
+        // When: Send invalid and then valid phone values
         presenter.phoneChanged("123")
         presenter.phoneChanged("1234567")
-        presenter.phoneChanged("12")
 
-        // Then
-        view.verify(.updateConfirmButton(enabled: .any), count: .exactly(3))
+        // Then: Presenter should transition button from disabled to enabled
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(false)))
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(true)))
+        #expect(states == [false, true])
     }
 
-    // MARK: - Confirm Tapped
+    @Test("Phone too long disables confirm button")
+    func phoneTooLongDisablesConfirm() {
+        // Given: Presenter with mocked dependencies
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var lastConfirmEnabled: Bool?
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { lastConfirmEnabled = $0 }))
 
-    @Test("confirmTapped with invalid phone does not call auth service")
-    func confirmTapped_invalidPhone_noAuthServiceCall() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-        let authService = AuthServiceProtocolMock()
-        presenter.authService = authService
+        // When: Phone with 16 digits is entered
+        presenter.phoneChanged("1234567890123456")
 
-        // When
-        presenter.phoneChanged("123") // Invalid phone
-        presenter.confirmTapped()
-
-        // Then
-        authService.verify(.login(phone: .any, completion: .any), count: .exactly(0))
+        // Then: Confirm button is disabled
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(false)))
+        #expect(lastConfirmEnabled == false)
     }
 
-    @Test("confirmTapped with invalid phone does not navigate")
-    func confirmTapped_invalidPhone_noNavigation() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-        let authService = AuthServiceProtocolMock()
-        presenter.authService = authService
+    @Test("Invalid phone does not trigger auth or navigation")
+    func confirmTappedWithInvalidPhoneDoesNotNavigate() {
+        // Given: Presenter with mocked dependencies and invalid phone
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let mockAuthService = AuthServiceProtocolMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        presenter.authService = mockAuthService
 
-        // When
+        // When: Attempt login with invalid phone length
         presenter.phoneChanged("123")
         presenter.confirmTapped()
 
-        // Then
-        router.verify(.openMainScreen(), count: .exactly(0))
-        router.verify(.openSignUpScreen(), count: .exactly(0))
+        // Then: No network call and no navigation should be performed
+        Verify(mockAuthService, .never, .login(phone: .any, completion: .any))
+        Verify(mockRouter, .never, .openMainScreen())
+        Verify(mockRouter, .never, .openSignUpScreen())
     }
 
-    @Test("confirmTapped with valid phone calls auth service login")
-    func confirmTapped_validPhone_callsLogin() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-        let authService = AuthServiceProtocolMock()
-        presenter.authService = authService
-
-        // Stub auth service to succeed
-        authService.perform(.login(phone: .any, completion: .any, perform: { phone, completion in
+    @Test("Valid phone with successful auth opens main")
+    func confirmTappedSuccessOpensMain() {
+        // Given: Stub auth success path and observe progress/error side effects
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let mockAuthService = AuthServiceProtocolMock()
+        let progressSpy = ProgressServiceSpy()
+        let errorSpy = ErrorServiceSpy()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        presenter.authService = mockAuthService
+        presenter.progressService = progressSpy
+        presenter.errorService = errorSpy
+        Perform(mockAuthService, .login(phone: .any, completion: .any, perform: { _, completion in
             completion(.success(()))
         }))
 
-        // When
+        // When: Submit valid phone and execute confirmation action
         presenter.phoneChanged("1234567")
         presenter.confirmTapped()
 
-        // Then
-        authService.verify(.login(phone: .value("1234567"), completion: .any), count: .exactly(1))
+        // Then: Presenter should run happy-path flow: auth -> hide loader -> route to main
+        Verify(mockAuthService, .once, .login(phone: .value("1234567"), completion: .any))
+        #expect(progressSpy.showCallCount == 1)
+        #expect(progressSpy.hideCallCount == 1)
+        Verify(mockRouter, .once, .openMainScreen())
+        #expect(errorSpy.showErrorCallCount == 0)
     }
 
-    @Test("confirmTapped with valid phone shows progress")
-    func confirmTapped_validPhone_showsProgress() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-        let authService = AuthServiceProtocolMock()
-        let progressService = IProgressServiceMock()
-        presenter.authService = authService
-        presenter.progressService = progressService
-
-        // Stub auth service to succeed
-        authService.perform(.login(phone: .any, completion: .any, perform: { phone, completion in
-            completion(.success(()))
+    @Test("Auth failure shows user-facing error")
+    func confirmTappedFailureShowsError() {
+        // Given: Stub auth failure to validate user-facing error handling
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let mockAuthService = AuthServiceProtocolMock()
+        let progressSpy = ProgressServiceSpy()
+        let errorSpy = ErrorServiceSpy()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        presenter.authService = mockAuthService
+        presenter.progressService = progressSpy
+        presenter.errorService = errorSpy
+        let testError = NSError(domain: "TestError", code: 401, userInfo: nil)
+        Perform(mockAuthService, .login(phone: .any, completion: .any, perform: { _, completion in
+            completion(.failure(testError))
         }))
 
-        // When
+        // When: Execute confirmation flow for a valid phone
         presenter.phoneChanged("1234567")
         presenter.confirmTapped()
 
-        // Then
-        progressService.verify(.show(), count: .exactly(1))
-        progressService.verify(.hide(), count: .exactly(1))
+        // Then: Presenter should not navigate and must display mapped error text
+        Verify(mockAuthService, .once, .login(phone: .value("1234567"), completion: .any))
+        #expect(progressSpy.showCallCount == 1)
+        #expect(progressSpy.hideCallCount == 1)
+        Verify(mockRouter, .never, .openMainScreen())
+        #expect(errorSpy.showErrorCallCount == 1)
+        #expect(errorSpy.lastErrorText == "Invalid phone number")
     }
 
-    @Test("confirmTapped on login success navigates to main screen")
-    func confirmTapped_loginSuccess_navigatesToMain() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-        let authService = AuthServiceProtocolMock()
-        presenter.authService = authService
+    @Test("Sign up action routes to sign-up screen")
+    func signUpTappedOpensSignUpScreen() {
+        // Given: Router mock is used to verify navigation-only interaction
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
 
-        // Stub auth service to succeed
-        authService.perform(.login(phone: .any, completion: .any, perform: { phone, completion in
-            completion(.success(()))
-        }))
+        // When: User taps secondary sign-up action
+        presenter.signUpTapped()
 
-        // When
+        // Then: Presenter should open sign-up flow and avoid main route
+        Verify(mockRouter, .once, .openSignUpScreen())
+        Verify(mockRouter, .never, .openMainScreen())
+    }
+
+    @Test("Phone with exactly 7 digits enables confirm button")
+    func phoneWithMinimumLengthEnablesConfirm() {
+        // Given: Presenter with mocked dependencies
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var lastConfirmEnabled: Bool?
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { lastConfirmEnabled = $0 }))
+
+        // When: Phone with exactly 7 digits (minimum valid) is entered
         presenter.phoneChanged("1234567")
+
+        // Then: Confirm button is enabled
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(true)))
+        #expect(lastConfirmEnabled == true)
+    }
+
+    @Test("Phone with exactly 15 digits enables confirm button")
+    func phoneWithMaximumLengthEnablesConfirm() {
+        // Given: Presenter with mocked dependencies
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var lastConfirmEnabled: Bool?
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { lastConfirmEnabled = $0 }))
+
+        // When: Phone with exactly 15 digits (maximum valid) is entered
+        presenter.phoneChanged("123456789012345")
+
+        // Then: Confirm button is enabled
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(true)))
+        #expect(lastConfirmEnabled == true)
+    }
+
+    @Test("Phone with 6 digits disables confirm button")
+    func phoneJustBelowMinimumDisablesConfirm() {
+        // Given: Presenter with mocked dependencies
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var lastConfirmEnabled: Bool?
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { lastConfirmEnabled = $0 }))
+
+        // When: Phone with 6 digits (just below minimum) is entered
+        presenter.phoneChanged("123456")
+
+        // Then: Confirm button is disabled
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(false)))
+        #expect(lastConfirmEnabled == false)
+    }
+
+    @Test("Rapid phone changes update button state correctly")
+    func rapidPhoneChangesUpdateButtonState() {
+        // Given: Presenter with mocked dependencies
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var states: [Bool] = []
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { states.append($0) }))
+
+        // When: Multiple rapid phone changes occur
+        presenter.phoneChanged("12")      // Invalid
+        presenter.phoneChanged("123456")  // Invalid
+        presenter.phoneChanged("1234567") // Valid
+        presenter.phoneChanged("123456789012345") // Valid
+        presenter.phoneChanged("1234567890123456") // Invalid (too long)
+
+        // Then: Button state changes reflect validity at each step
+        #expect(states.count == 5)
+        #expect(states[0] == false) // 2 digits
+        #expect(states[1] == false) // 6 digits
+        #expect(states[2] == true)  // 7 digits (valid)
+        #expect(states[3] == true)  // 15 digits (valid)
+        #expect(states[4] == false) // 16 digits
+    }
+
+    @Test("Multiple confirm taps with invalid phone do not trigger auth")
+    func multipleConfirmTapsInvalidPhoneNoAuth() {
+        // Given: Presenter with invalid phone
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let mockAuthService = AuthServiceProtocolMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        presenter.authService = mockAuthService
+        presenter.phoneChanged("12345") // Invalid
+
+        // When: Confirm is tapped multiple times
+        presenter.confirmTapped()
+        presenter.confirmTapped()
         presenter.confirmTapped()
 
-        // Then
-        router.verify(.openMainScreen(), count: .exactly(1))
+        // Then: Auth service is never called
+        Verify(mockAuthService, .never, .login(phone: .any, completion: .any))
     }
 
-    @Test("confirmTapped on login failure shows error")
-    func confirmTapped_loginFailure_showsError() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
-        let authService = AuthServiceProtocolMock()
-        let errorService = IErrorServiceMock()
-        presenter.authService = authService
-        presenter.errorService = errorService
+    @Test("Empty phone keeps confirm button disabled")
+    func emptyPhoneKeepsConfirmDisabled() {
+        // Given: Presenter with initially valid phone
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var lastConfirmEnabled: Bool?
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { lastConfirmEnabled = $0 }))
 
-        // Stub auth service to fail
-        authService.perform(.login(phone: .any, completion: .any, perform: { phone, completion in
-            completion(.failure(AuthError.invalidPhone))
-        }))
+        presenter.phoneChanged("1234567") // Valid phone
+        mockView.resetMock()
 
-        // When
-        presenter.phoneChanged("1234567")
-        presenter.confirmTapped()
+        // When: Phone is changed to empty string
+        presenter.phoneChanged("")
 
-        // Then
-        router.verify(.openMainScreen(), count: .exactly(0))
-        errorService.verify(.show(errorText: .value("Invalid phone number")), count: .exactly(1))
+        // Then: Confirm button is disabled
+        Verify(mockView, .once, .updateConfirmButton(enabled: .value(false)))
+        #expect(lastConfirmEnabled == false)
     }
 
-    // MARK: - Sign Up Tapped
+    @Test("Valid phone to invalid phone transition disables button")
+    func validToInvalidPhoneTransitionDisablesButton() {
+        // Given: Presenter with valid phone
+        let mockView = LoginScreenViewInputMock()
+        let mockRouter = LoginScreenRouterInputMock()
+        let presenter = LoginScreenPresenter(view: mockView, router: mockRouter)
+        var states: [Bool] = []
+        Perform(mockView, .updateConfirmButton(enabled: .any, perform: { states.append($0) }))
 
-    @Test("signUpTapped navigates to sign up screen")
-    func signUpTapped_navigatesToSignUp() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
+        // When: Phone changes from valid to invalid
+        presenter.phoneChanged("1234567890") // Valid
+        presenter.phoneChanged("12")         // Invalid
 
-        // When
-        presenter.signUpTapped()
+        // Then: Button state transitions from enabled to disabled
+        #expect(states == [true, false])
+    }
+}
 
-        // Then
-        router.verify(.openSignUpScreen(), count: .exactly(1))
-        router.verify(.openMainScreen(), count: .exactly(0))
+// MARK: - Spy Classes
+
+private final class ProgressServiceSpy: IProgressService {
+    private(set) var showCallCount = 0
+    private(set) var hideCallCount = 0
+
+    func show() {
+        showCallCount += 1
     }
 
-    @Test("signUpTapped can be called multiple times")
-    func signUpTapped_multipleTimes_navigatesEachTime() {
-        // Given
-        let view = LoginScreenViewInputMock()
-        let router = LoginScreenRouterInputMock()
-        let presenter = LoginScreenPresenter(view: view, router: router)
+    func hide() {
+        hideCallCount += 1
+    }
+}
 
-        // When
-        presenter.signUpTapped()
-        presenter.signUpTapped()
+private final class ErrorServiceSpy: IErrorService {
+    private(set) var showErrorCallCount = 0
+    private(set) var lastErrorText: String?
 
-        // Then
-        router.verify(.openSignUpScreen(), count: .exactly(2))
+    func show(errorText: String) {
+        showErrorCallCount += 1
+        lastErrorText = errorText
     }
 }
