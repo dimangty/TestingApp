@@ -1,95 +1,148 @@
 # Prompt Examples for All Scripts (OpenCode + Ollama + qwen3-coder:30b)
 
-Ниже готовые промты для каждого `*.sh` в проекте.
+Ниже готовые промты для всех `*.sh` скриптов проекта.
 
-## Общий шаблон (самый стабильный)
-
-```text
-Build mode. Execute exactly one command and nothing else: <COMMAND>. Then return only: <EXPECTED_OUTPUT>.
-```
-
-## 1) scripts/opencode_create_login_presenter_tests.sh
+## Общий шаблон
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_login_presenter_tests.sh . Then return only: DONE + TestingTaskTests/LoginScreenPresenterTests.swift
+Build mode. Execute exactly one command and nothing else:
+<COMMAND>
+Then return only: <EXPECTED_OUTPUT>
 ```
 
-## 2) scripts/opencode_create_login_presenter_swifttesting_tests.sh
+## qwen3 schema-safe (если просит `description` для bash)
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_login_presenter_swifttesting_tests.sh . Then return only: DONE + TestingTaskTests/LoginScreenPresenterSwiftTestingTests.swift
+Build mode. Call bash tool with:
+command='<COMMAND>'
+description='<SHORT_DESCRIPTION>'
+Do not call any other tools.
+Then return only: <EXPECTED_OUTPUT>
 ```
 
-## 3) scripts/opencode_create_presenter_tests.sh
+## 1) Универсальный скрипт (рекомендуется)
 
-Шаблон:
+Файл:
+
+- `scripts/opencode_create_presenter_swiftymocky_tests.sh`
+
+Назначение:
+
+- один скрипт для любого presenter;
+- поддержка `xctest` и `swifttesting`.
+
+Формат:
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_presenter_tests.sh . <PresenterName> [OutputFile]. Then return only: DONE + <OutputFileOrDefault>.
+bash scripts/opencode_create_presenter_swiftymocky_tests.sh <root_dir> <PresenterName> [xctest|swifttesting] [output_file]
 ```
 
-Примеры:
+Пример (`xctest`):
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_presenter_tests.sh . NewsPresenter. Then return only: DONE + TestingTaskTests/NewsPresenterTests.swift
+Build mode. Execute exactly one command and nothing else:
+bash scripts/opencode_create_presenter_swiftymocky_tests.sh . NewsPresenter xctest
+Then return only: DONE: ./TestingTaskTests/NewsPresenterTests.swift
 ```
+
+Пример (`swifttesting`):
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_presenter_tests.sh . ArticlePresenter TestingTaskTests/ArticlePresenterTests.swift. Then return only: DONE + TestingTaskTests/ArticlePresenterTests.swift
+Build mode. Execute exactly one command and nothing else:
+bash scripts/opencode_create_presenter_swiftymocky_tests.sh . SignUpScreenPresenter swifttesting
+Then return only: DONE: ./TestingTaskTests/SignUpScreenPresenterSwiftTestingTests.swift
 ```
 
-## 4) scripts/opencode_create_presenter_swifttesting_tests.sh
-
-Шаблон:
+Schema-safe пример (`opencode-cli` / qwen3):
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_presenter_swifttesting_tests.sh . <PresenterName> [OutputFile]. Then return only: DONE + <OutputFileOrDefault>.
+Build mode. Call bash tool with:
+command='bash /Users/dmitrijbykov/Documents/IOS_Projects/Qwen/scripts/opencode_create_presenter_swiftymocky_tests.sh /Users/dmitrijbykov/Documents/IOS_Projects/Qwen SignUpScreenPresenter swifttesting'
+description='Generate SwiftyMocky SwiftTesting tests for SignUpScreenPresenter'
+Do not call any other tools.
+Then return only: DONE: /Users/dmitrijbykov/Documents/IOS_Projects/Qwen/TestingTaskTests/SignUpScreenPresenterSwiftTestingTests.swift
 ```
 
-Примеры:
+## 2) scripts/opencode_create_login_presenter_tests.sh
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_presenter_swifttesting_tests.sh . SignUpScreenPresenter. Then return only: DONE + TestingTaskTests/SignUpScreenPresenterSwiftTestingTests.swift
+Build mode. Execute exactly one command and nothing else:
+bash scripts/opencode_create_login_presenter_tests.sh .
+Then return only: DONE: ./TestingTaskTests/LoginScreenPresenterTests.swift
 ```
+
+## 3) scripts/opencode_create_login_presenter_swifttesting_tests.sh
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash scripts/opencode_create_presenter_swifttesting_tests.sh . FavoritePresenter TestingTaskTests/FavoritePresenterSwiftTestingTests.swift. Then return only: DONE + TestingTaskTests/FavoritePresenterSwiftTestingTests.swift
+Build mode. Execute exactly one command and nothing else:
+bash scripts/opencode_create_login_presenter_swifttesting_tests.sh .
+Then return only: DONE: ./TestingTaskTests/LoginScreenPresenterSwiftTestingTests.swift
 ```
 
-## 5) skills/ios-presenter-unit-test-writer/scripts/create_login_presenter_tests.sh
-
-Прямой вызов (если нужен именно skill-скрипт):
+## 4) scripts/opencode_create_presenter_tests.sh
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash skills/ios-presenter-unit-test-writer/scripts/create_login_presenter_tests.sh . Then return only: DONE + TestingTaskTests/LoginScreenPresenterTests.swift
+Build mode. Execute exactly one command and nothing else:
+bash scripts/opencode_create_presenter_tests.sh . <PresenterName> [OutputFile]
+Then return only: DONE: <OutputFileOrDefault>
 ```
 
-## 6) skills/ios-selected-presenter-swifttesting-writer/scripts/create_login_presenter_swifttesting_tests.sh
+## 5) scripts/opencode_create_presenter_swifttesting_tests.sh
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash skills/ios-selected-presenter-swifttesting-writer/scripts/create_login_presenter_swifttesting_tests.sh . Then return only: DONE + TestingTaskTests/LoginScreenPresenterSwiftTestingTests.swift
+Build mode. Execute exactly one command and nothing else:
+bash scripts/opencode_create_presenter_swifttesting_tests.sh . <PresenterName> [OutputFile]
+Then return only: DONE: <OutputFileOrDefault>
 ```
 
-## 7) skills/ios-swiftymocky-maintainer/scripts/regenerate_swiftymocky.sh
+## 6) skills/ios-presenter-unit-test-writer/scripts/create_login_presenter_tests.sh
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash skills/ios-swiftymocky-maintainer/scripts/regenerate_swiftymocky.sh . Then return only: DONE + SwiftyMocky generation completed
+Build mode. Execute exactly one command and nothing else:
+bash skills/ios-presenter-unit-test-writer/scripts/create_login_presenter_tests.sh .
+Then return only: DONE: ./TestingTaskTests/LoginScreenPresenterTests.swift
 ```
 
-## 8) skills/ios-test-coverage-auditor/scripts/build_coverage_backlog.sh
+## 7) skills/ios-selected-presenter-swifttesting-writer/scripts/create_login_presenter_swifttesting_tests.sh
+
+```text
+Build mode. Execute exactly one command and nothing else:
+bash skills/ios-selected-presenter-swifttesting-writer/scripts/create_login_presenter_swifttesting_tests.sh .
+Then return only: DONE: ./TestingTaskTests/LoginScreenPresenterSwiftTestingTests.swift
+```
+
+## 8) skills/ios-swiftymocky-maintainer/scripts/regenerate_swiftymocky.sh
+
+```text
+Build mode. Execute exactly one command and nothing else:
+bash skills/ios-swiftymocky-maintainer/scripts/regenerate_swiftymocky.sh .
+Then return only: SwiftyMocky generation completed.
+```
+
+## 9) skills/ios-test-coverage-auditor/scripts/build_coverage_backlog.sh
 
 В файл:
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash skills/ios-test-coverage-auditor/scripts/build_coverage_backlog.sh . /tmp/testingtask_coverage_backlog.md. Then return only: DONE + /tmp/testingtask_coverage_backlog.md
+Build mode. Execute exactly one command and nothing else:
+bash skills/ios-test-coverage-auditor/scripts/build_coverage_backlog.sh . /tmp/testingtask_coverage_backlog.md
+Then return only: DONE: /tmp/testingtask_coverage_backlog.md
 ```
 
 В stdout:
 
 ```text
-Build mode. Execute exactly one command and nothing else: bash skills/ios-test-coverage-auditor/scripts/build_coverage_backlog.sh . Then return only: DONE + coverage backlog printed
+Build mode. Execute exactly one command and nothing else:
+bash skills/ios-test-coverage-auditor/scripts/build_coverage_backlog.sh .
+Then return only: DONE: coverage backlog printed
 ```
 
-## Рекомендация
+## Если видишь `EACCES ... mkdir '/Users/user/Projects'`
 
-Для OpenCode лучше использовать скрипты из `scripts/` (пункты 1-4): они короче и не содержат в пути слова `skills`, что снижает риск ложного skill-loading поведения у qwen3-coder:30b.
+Используй абсолютные пути (и корень, и скрипт), например:
+
+```text
+Build mode. Execute exactly one command and nothing else:
+bash /Users/dmitrijbykov/Documents/IOS_Projects/Qwen/scripts/opencode_create_presenter_swiftymocky_tests.sh /Users/dmitrijbykov/Documents/IOS_Projects/Qwen SignUpScreenPresenter swifttesting
+Then return only: DONE: /Users/dmitrijbykov/Documents/IOS_Projects/Qwen/TestingTaskTests/SignUpScreenPresenterSwiftTestingTests.swift
+```
