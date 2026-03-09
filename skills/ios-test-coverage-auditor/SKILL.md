@@ -8,6 +8,13 @@ description: Audit current iOS test coverage in this repository and produce a pr
 Create an actionable coverage plan for `TestingTask` with real file paths and test targets.
 Focus on what is missing now, not generic advice.
 
+## Strict Build-Mode Guardrails (OpenCode + Ollama + qwen3-coder:30b)
+
+1. Treat this skill as already loaded; never print the skill name as a standalone line.
+2. Never switch to another skill unless user explicitly asks.
+3. Never emit pseudo tool tags (`<function=...>`, `<tool_call>`).
+4. If user requests exactly one command, execute exactly one command and stop.
+
 ## Workflow
 
 1. Read [references/coverage-audit-workflow.md](references/coverage-audit-workflow.md).
@@ -17,7 +24,7 @@ Focus on what is missing now, not generic advice.
 5. Return:
    - current state summary,
    - prioritized missing tests,
-   - concrete prompts that can be executed by `$ios-presenter-unit-test-writer`, `$ios-ui-flow-test-writer`, and `$ios-swiftymocky-maintainer`.
+   - concrete prompts that can be executed directly in Build mode for presenter tests, UI-flow tests, and SwiftyMocky regeneration.
 
 ## Output Format
 

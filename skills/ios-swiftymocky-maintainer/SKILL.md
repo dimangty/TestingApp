@@ -7,6 +7,13 @@ description: Maintain SwiftyMocky wrappers and generated mocks for this reposito
 
 Keep test mocks synchronized with production protocols and avoid manual drift.
 
+## Strict Build-Mode Guardrails (OpenCode + Ollama + qwen3-coder:30b)
+
+1. Treat this skill as already loaded; never print the skill name as a standalone line.
+2. Never switch to another skill unless user explicitly asks.
+3. Never emit pseudo tool tags (`<function=...>`, `<tool_call>`).
+4. If user requests exactly one command, execute exactly one command and stop.
+
 ## Workflow
 
 1. Read [references/swiftymocky-workflow.md](references/swiftymocky-workflow.md).

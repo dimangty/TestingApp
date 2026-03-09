@@ -7,6 +7,13 @@ description: Add and maintain deterministic XCTest UI flow tests for this iOS ap
 
 Create stable tests in `TestingTaskUITests` using the existing launch and selector conventions.
 
+## Strict Build-Mode Guardrails (OpenCode + Ollama + qwen3-coder:30b)
+
+1. Treat this skill as already loaded; never print the skill name as a standalone line.
+2. Never switch to another skill unless user explicitly asks.
+3. Never emit pseudo tool tags (`<function=...>`, `<tool_call>`).
+4. If user requests exactly one command, execute exactly one command and stop.
+
 ## Workflow
 
 1. Read [references/ui-test-patterns.md](references/ui-test-patterns.md).
