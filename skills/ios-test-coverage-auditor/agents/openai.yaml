@@ -1,0 +1,4 @@
+interface:
+  display_name: "iOS Test Coverage Auditor"
+  short_description: "Find missing test coverage and produce an actionable backlog"
+  default_prompt: "Build mode. Use $ios-test-coverage-auditor to map current coverage and produce a prioritized test backlog for this app. Save report to disk when requested and fallback to bash if write fails."

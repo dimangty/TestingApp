@@ -1,0 +1,4 @@
+interface:
+  display_name: "iOS Selected Presenter SwiftTesting Writer"
+  short_description: "Cover one presenter with Swift Testing and SwiftyMocky"
+  default_prompt: "Build mode. Use $ios-selected-presenter-swifttesting-writer to add Swift Testing + SwiftyMocky tests for a chosen presenter and persist file changes to disk. Do not call todolist/todowrite/skill tools and do not emit <function=...> markup. If write fails, fallback to bash."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "iOS UI Flow Test Writer"
+  short_description: "Add stable XCTest UI flow tests for the app"
+  default_prompt: "Build mode. Use $ios-ui-flow-test-writer to add deterministic UI tests in TestingTaskUITests and persist changes to disk. If write tool fails, fallback to bash."

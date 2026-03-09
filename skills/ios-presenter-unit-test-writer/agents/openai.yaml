@@ -1,0 +1,4 @@
+interface:
+  display_name: "iOS Presenter Unit Test Writer"
+  short_description: "Write deterministic XCTest unit tests for VIPER presenters"
+  default_prompt: "Build mode. Use $ios-presenter-unit-test-writer to add or update presenter unit tests in TestingTaskTests and persist changes to disk. Do not call todolist/todowrite/skill tools and do not emit <function=...> markup. If write tool fails, fallback to bash."

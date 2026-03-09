@@ -1,0 +1,4 @@
+interface:
+  display_name: "iOS SwiftyMocky Maintainer"
+  short_description: "Regenerate and validate SwiftyMocky mocks safely"
+  default_prompt: "Build mode. Use $ios-swiftymocky-maintainer to keep mock wrappers and generated mocks in sync. Run bash regeneration script and persist updates to disk."
