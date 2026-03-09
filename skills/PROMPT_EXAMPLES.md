@@ -30,6 +30,10 @@
 
 `Build mode. Create/update TestingTaskTests/LoginScreenPresenterTests.swift with unit tests for LoginScreenPresenter using XCTest + SwiftyMocky. Persist real file edits. Do not call todolist/todowrite/skill tools. Do not output <function=...> or <tool_call>. Use bash fallback on write errors.`
 
+### Ultra-strict prompt (qwen3-coder:30b)
+
+`Build mode. Task: directly edit TestingTaskTests/LoginScreenPresenterTests.swift. Write deterministic XCTest + SwiftyMocky tests for LoginScreenPresenter (viewLoaded, phoneChanged valid/invalid, confirm success/failure, signUpTapped). Do not ask questions. Do not print planning text. Do not call tools todolist, todowrite, skill, ls, find, pwd. Do not output <function=...> or <tool_call>. Persist file edits, then return only: DONE + updated file path.`
+
 ## ios-ui-flow-test-writer
 
 1. `Use $ios-ui-flow-test-writer. Build mode. Add a UI test that verifies invalid login phone keeps confirm button disabled. Save in TestingTaskUITests/LoginFlowUITests.swift.`
@@ -48,6 +52,10 @@
 2. `Use $ios-selected-presenter-swifttesting-writer to add SwiftTesting tests for NewsPresenter: viewLoaded, search filtering, didSelectRow routing, and favorite tap flow.`
 3. `Use $ios-selected-presenter-swifttesting-writer for SignUpScreenPresenter and include valid, invalid, and sign up failure scenarios.`
 
+### Ultra-strict prompt (qwen3-coder:30b)
+
+`Build mode. Task: directly edit TestingTaskTests/LoginScreenPresenterSwiftTestingTests.swift. Write Swift Testing + SwiftyMocky tests for LoginScreenPresenter (@Suite/@Test/#expect + Verify/Perform). Cover: viewLoaded, phoneChanged valid/invalid, confirm success/failure, signUpTapped. Do not ask questions. Do not print planning text. Do not call tools todolist, todowrite, skill, ls, find, pwd. Do not output <function=...> or <tool_call>. Persist file edits, then return only: DONE + updated file path.`
+
 ## Russian Prompts
 
 1. `Используй $ios-test-coverage-auditor и составь приоритетный бэклог покрытия тестами с путями файлов.`
@@ -63,3 +71,7 @@
 ### Если триггер `$skill` не сработал
 
 `Build mode. Создай/обнови TestingTaskTests/LoginScreenPresenterTests.swift: unit-тесты для LoginScreenPresenter на XCTest + SwiftyMocky. Сохрани реальные изменения в файле. Не вызывай todolist/todowrite/skill и не выводи <function=...>/<tool_call>. При ошибках write используй bash fallback.`
+
+### Русский ultra-strict промт (qwen3-coder:30b)
+
+`Build mode. Задача: напрямую отредактируй TestingTaskTests/LoginScreenPresenterTests.swift. Напиши детерминированные XCTest + SwiftyMocky тесты для LoginScreenPresenter (viewLoaded, phoneChanged valid/invalid, confirm success/failure, signUpTapped). Не задавай вопросов. Не пиши план/прелюдию. Не вызывай инструменты todolist, todowrite, skill, ls, find, pwd. Не выводи теги <function=...> или <tool_call>. Сохрани изменения в файл и верни только: DONE + путь к файлу.`

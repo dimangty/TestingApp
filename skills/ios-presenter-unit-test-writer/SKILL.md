@@ -50,6 +50,14 @@ presenter.$errorService.wrappedValue = errorSpy
 6. Do not output "I will load this skill first"; assume the skill is already active and execute immediately.
 7. If tool call fails with invalid arguments or unavailable tool, retry via `bash` and continue.
 
+## qwen3-coder:30b Execution Contract
+
+1. If presenter name and output file path are already provided, do not ask clarifying questions.
+2. Do not write planning/preamble text like "I will load this skill first".
+3. Do not call exploratory tools (`ls`, `pwd`, `find`) when target files are explicit in prompt.
+4. Perform edits first, then return a short completion message.
+5. If tool environment is limited, still complete task via bash-based file write.
+
 ## Done Criteria
 
 1. Test file is persisted under `TestingTaskTests`.

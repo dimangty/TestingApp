@@ -14,28 +14,29 @@
 		32C483F8CF894EB3B123BE80 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21A4DAF8EC483E94854E57 /* FavoritePresenter.swift */; };
 		48C3AA360A2B40E8B2F3A669 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC86ED6CB45C3A9498334 /* FavoriteRouter.swift */; };
 		7C9D0482CE88ECD7184BF3E9 /* SignUpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D391E8FCAC90C7CAAB1334 /* SignUpUITests.swift */; };
-		8B4DB8BB2F5DCC00005E8C40 /* CustomAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B42F5DCC00005E8C40 /* CustomAssertions.swift */; };
-		8B4DB8BC2F5DCC00005E8C40 /* Policies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8AF2F5DCC00005E8C40 /* Policies.swift */; };
-		8B4DB8BE2F5DCC00005E8C40 /* Parameter+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8AD2F5DCC00005E8C40 /* Parameter+Compare.swift */; };
-		8B4DB8BF2F5DCC00005E8C40 /* Parameter+Literals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B62F5DCC00005E8C40 /* Parameter+Literals.swift */; };
-		8B4DB8C02F5DCC00005E8C40 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8A62F5DCC00005E8C40 /* Count.swift */; };
-		8B4DB8C12F5DCC00005E8C40 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B12F5DCC00005E8C40 /* Utils.swift */; };
-		8B4DB8C22F5DCC00005E8C40 /* SwiftyMockyTestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B72F5DCC00005E8C40 /* SwiftyMockyTestObserver.swift */; };
-		8B4DB8C32F5DCC00005E8C40 /* MockyAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B52F5DCC00005E8C40 /* MockyAssert.swift */; };
-		8B4DB8C42F5DCC00005E8C40 /* ArgumentCaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B32F5DCC00005E8C40 /* ArgumentCaptor.swift */; };
-		8B4DB8C52F5DCC00005E8C40 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8AC2F5DCC00005E8C40 /* Parameter.swift */; };
-		8B4DB8C62F5DCC00005E8C40 /* Mock+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8AB2F5DCC00005E8C40 /* Mock+Assertions.swift */; };
-		8B4DB8C72F5DCC00005E8C40 /* GenericAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8A82F5DCC00005E8C40 /* GenericAttribute.swift */; };
-		8B4DB8C82F5DCC00005E8C40 /* Countable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8A72F5DCC00005E8C40 /* Countable.swift */; };
-		8B4DB8C92F5DCC00005E8C40 /* Parameter+Optionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8AE2F5DCC00005E8C40 /* Parameter+Optionals.swift */; };
-		8B4DB8CA2F5DCC00005E8C40 /* Stubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8B02F5DCC00005E8C40 /* Stubbing.swift */; };
-		8B4DB8CB2F5DCC00005E8C40 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8A92F5DCC00005E8C40 /* Matcher.swift */; };
-		8B4DB8CC2F5DCC00005E8C40 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8AA2F5DCC00005E8C40 /* Mock.swift */; };
 		8B4DB8CF2F5DCC3A005E8C40 /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4DB8CE2F5DCC3A005E8C40 /* SwiftyMocky */; };
 		8B4DB8D12F5DCC3A005E8C40 /* SwiftyPrototype in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4DB8D02F5DCC3A005E8C40 /* SwiftyPrototype */; };
 		8B4DB8D32F5DCC3A005E8C40 /* swiftymocky in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4DB8D22F5DCC3A005E8C40 /* swiftymocky */; };
 		8B4DB8D52F5EA2AD005E8C40 /* ScreenMockables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8D42F5EA2AD005E8C40 /* ScreenMockables.swift */; };
 		8B4DB8D82F5EA2E9005E8C40 /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4DB8D72F5EA2E9005E8C40 /* SwiftyMocky */; };
+		8B4DB8F02F5EAAC8005E8C40 /* Countable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8DC2F5EAAC8005E8C40 /* Countable.swift */; };
+		8B4DB8F12F5EAAC8005E8C40 /* Parameter+Optionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E32F5EAAC8005E8C40 /* Parameter+Optionals.swift */; };
+		8B4DB8F22F5EAAC8005E8C40 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8DB2F5EAAC8005E8C40 /* Count.swift */; };
+		8B4DB8F32F5EAAC8005E8C40 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E62F5EAAC8005E8C40 /* Utils.swift */; };
+		8B4DB8F42F5EAAC8005E8C40 /* Policies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E42F5EAAC8005E8C40 /* Policies.swift */; };
+		8B4DB8F52F5EAAC8005E8C40 /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8D92F5EAAC8005E8C40 /* Mock.generated.swift */; };
+		8B4DB8F62F5EAAC8005E8C40 /* SwiftyMockyTestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8EC2F5EAAC8005E8C40 /* SwiftyMockyTestObserver.swift */; };
+		8B4DB8F72F5EAAC8005E8C40 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8DE2F5EAAC8005E8C40 /* Matcher.swift */; };
+		8B4DB8F82F5EAAC8005E8C40 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E12F5EAAC8005E8C40 /* Parameter.swift */; };
+		8B4DB8F92F5EAAC8005E8C40 /* Parameter+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E22F5EAAC8005E8C40 /* Parameter+Compare.swift */; };
+		8B4DB8FA2F5EAAC8005E8C40 /* Stubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E52F5EAAC8005E8C40 /* Stubbing.swift */; };
+		8B4DB8FB2F5EAAC8005E8C40 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8DF2F5EAAC8005E8C40 /* Mock.swift */; };
+		8B4DB8FC2F5EAAC8005E8C40 /* Mock+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E02F5EAAC8005E8C40 /* Mock+Assertions.swift */; };
+		8B4DB8FD2F5EAAC8005E8C40 /* MockyAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8EA2F5EAAC8005E8C40 /* MockyAssert.swift */; };
+		8B4DB8FE2F5EAAC8005E8C40 /* Parameter+Literals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8EB2F5EAAC8005E8C40 /* Parameter+Literals.swift */; };
+		8B4DB8FF2F5EAAC8005E8C40 /* ArgumentCaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E82F5EAAC8005E8C40 /* ArgumentCaptor.swift */; };
+		8B4DB9002F5EAAC8005E8C40 /* CustomAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8E92F5EAAC8005E8C40 /* CustomAssertions.swift */; };
+		8B4DB9012F5EAAC8005E8C40 /* GenericAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4DB8DD2F5EAAC8005E8C40 /* GenericAttribute.swift */; };
 		8BD489F72F1BA86D00802454 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD489F62F1BA86B00802454 /* ApplicationCoordinator.swift */; };
 		8BD48A822F1BB75F00802454 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD48A812F1BB75F00802454 /* ArticleViewModel.swift */; };
 		8BD48A8C2F1BB7B900802454 /* ArticleEntityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD48A862F1BB7B900802454 /* ArticleEntityExtensions.swift */; };
@@ -149,24 +150,25 @@
 		4B9AA4C580E7341D7F72D032 /* EndToEndUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndUITests.swift; sourceTree = "<group>"; };
 		5175E6A0C94A13C3ED456AB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		519C633FF53ABA6AEE27D3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B4DB8A62F5DCC00005E8C40 /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
-		8B4DB8A72F5DCC00005E8C40 /* Countable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countable.swift; sourceTree = "<group>"; };
-		8B4DB8A82F5DCC00005E8C40 /* GenericAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAttribute.swift; sourceTree = "<group>"; };
-		8B4DB8A92F5DCC00005E8C40 /* Matcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
-		8B4DB8AA2F5DCC00005E8C40 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
-		8B4DB8AB2F5DCC00005E8C40 /* Mock+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mock+Assertions.swift"; sourceTree = "<group>"; };
-		8B4DB8AC2F5DCC00005E8C40 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
-		8B4DB8AD2F5DCC00005E8C40 /* Parameter+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parameter+Compare.swift"; sourceTree = "<group>"; };
-		8B4DB8AE2F5DCC00005E8C40 /* Parameter+Optionals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parameter+Optionals.swift"; sourceTree = "<group>"; };
-		8B4DB8AF2F5DCC00005E8C40 /* Policies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Policies.swift; sourceTree = "<group>"; };
-		8B4DB8B02F5DCC00005E8C40 /* Stubbing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubbing.swift; sourceTree = "<group>"; };
-		8B4DB8B12F5DCC00005E8C40 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		8B4DB8B32F5DCC00005E8C40 /* ArgumentCaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentCaptor.swift; sourceTree = "<group>"; };
-		8B4DB8B42F5DCC00005E8C40 /* CustomAssertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssertions.swift; sourceTree = "<group>"; };
-		8B4DB8B52F5DCC00005E8C40 /* MockyAssert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockyAssert.swift; sourceTree = "<group>"; };
-		8B4DB8B62F5DCC00005E8C40 /* Parameter+Literals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parameter+Literals.swift"; sourceTree = "<group>"; };
-		8B4DB8B72F5DCC00005E8C40 /* SwiftyMockyTestObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMockyTestObserver.swift; sourceTree = "<group>"; };
 		8B4DB8D42F5EA2AD005E8C40 /* ScreenMockables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMockables.swift; sourceTree = "<group>"; };
+		8B4DB8D92F5EAAC8005E8C40 /* Mock.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
+		8B4DB8DB2F5EAAC8005E8C40 /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
+		8B4DB8DC2F5EAAC8005E8C40 /* Countable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countable.swift; sourceTree = "<group>"; };
+		8B4DB8DD2F5EAAC8005E8C40 /* GenericAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAttribute.swift; sourceTree = "<group>"; };
+		8B4DB8DE2F5EAAC8005E8C40 /* Matcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
+		8B4DB8DF2F5EAAC8005E8C40 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		8B4DB8E02F5EAAC8005E8C40 /* Mock+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mock+Assertions.swift"; sourceTree = "<group>"; };
+		8B4DB8E12F5EAAC8005E8C40 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
+		8B4DB8E22F5EAAC8005E8C40 /* Parameter+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parameter+Compare.swift"; sourceTree = "<group>"; };
+		8B4DB8E32F5EAAC8005E8C40 /* Parameter+Optionals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parameter+Optionals.swift"; sourceTree = "<group>"; };
+		8B4DB8E42F5EAAC8005E8C40 /* Policies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Policies.swift; sourceTree = "<group>"; };
+		8B4DB8E52F5EAAC8005E8C40 /* Stubbing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubbing.swift; sourceTree = "<group>"; };
+		8B4DB8E62F5EAAC8005E8C40 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8B4DB8E82F5EAAC8005E8C40 /* ArgumentCaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentCaptor.swift; sourceTree = "<group>"; };
+		8B4DB8E92F5EAAC8005E8C40 /* CustomAssertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssertions.swift; sourceTree = "<group>"; };
+		8B4DB8EA2F5EAAC8005E8C40 /* MockyAssert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockyAssert.swift; sourceTree = "<group>"; };
+		8B4DB8EB2F5EAAC8005E8C40 /* Parameter+Literals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parameter+Literals.swift"; sourceTree = "<group>"; };
+		8B4DB8EC2F5EAAC8005E8C40 /* SwiftyMockyTestObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMockyTestObserver.swift; sourceTree = "<group>"; };
 		8BD489F62F1BA86B00802454 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		8BD48A812F1BB75F00802454 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		8BD48A832F1BB7B900802454 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
@@ -332,57 +334,66 @@
 		7C4366F89315AD5726631597 /* TestingTaskTests */ = {
 			isa = PBXGroup;
 			children = (
+				8B4DB8EF2F5EAAC8005E8C40 /* Support */,
 				8B4DB8D42F5EA2AD005E8C40 /* ScreenMockables.swift */,
-				8B4DB8BA2F5DCC00005E8C40 /* Support */,
 				519C633FF53ABA6AEE27D3CA /* Info.plist */,
 			);
 			path = TestingTaskTests;
 			sourceTree = "<group>";
 		};
-		8B4DB8B22F5DCC00005E8C40 /* Shared */ = {
+		8B4DB8DA2F5EAAC8005E8C40 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				8B4DB8A62F5DCC00005E8C40 /* Count.swift */,
-				8B4DB8A72F5DCC00005E8C40 /* Countable.swift */,
-				8B4DB8A82F5DCC00005E8C40 /* GenericAttribute.swift */,
-				8B4DB8A92F5DCC00005E8C40 /* Matcher.swift */,
-				8B4DB8AA2F5DCC00005E8C40 /* Mock.swift */,
-				8B4DB8AB2F5DCC00005E8C40 /* Mock+Assertions.swift */,
-				8B4DB8AC2F5DCC00005E8C40 /* Parameter.swift */,
-				8B4DB8AD2F5DCC00005E8C40 /* Parameter+Compare.swift */,
-				8B4DB8AE2F5DCC00005E8C40 /* Parameter+Optionals.swift */,
-				8B4DB8AF2F5DCC00005E8C40 /* Policies.swift */,
-				8B4DB8B02F5DCC00005E8C40 /* Stubbing.swift */,
-				8B4DB8B12F5DCC00005E8C40 /* Utils.swift */,
+				8B4DB8D92F5EAAC8005E8C40 /* Mock.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		8B4DB8E72F5EAAC8005E8C40 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8B4DB8DB2F5EAAC8005E8C40 /* Count.swift */,
+				8B4DB8DC2F5EAAC8005E8C40 /* Countable.swift */,
+				8B4DB8DD2F5EAAC8005E8C40 /* GenericAttribute.swift */,
+				8B4DB8DE2F5EAAC8005E8C40 /* Matcher.swift */,
+				8B4DB8DF2F5EAAC8005E8C40 /* Mock.swift */,
+				8B4DB8E02F5EAAC8005E8C40 /* Mock+Assertions.swift */,
+				8B4DB8E12F5EAAC8005E8C40 /* Parameter.swift */,
+				8B4DB8E22F5EAAC8005E8C40 /* Parameter+Compare.swift */,
+				8B4DB8E32F5EAAC8005E8C40 /* Parameter+Optionals.swift */,
+				8B4DB8E42F5EAAC8005E8C40 /* Policies.swift */,
+				8B4DB8E52F5EAAC8005E8C40 /* Stubbing.swift */,
+				8B4DB8E62F5EAAC8005E8C40 /* Utils.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		8B4DB8B82F5DCC00005E8C40 /* SwiftyMocky */ = {
+		8B4DB8ED2F5EAAC8005E8C40 /* SwiftyMocky */ = {
 			isa = PBXGroup;
 			children = (
-				8B4DB8B32F5DCC00005E8C40 /* ArgumentCaptor.swift */,
-				8B4DB8B42F5DCC00005E8C40 /* CustomAssertions.swift */,
-				8B4DB8B52F5DCC00005E8C40 /* MockyAssert.swift */,
-				8B4DB8B62F5DCC00005E8C40 /* Parameter+Literals.swift */,
-				8B4DB8B72F5DCC00005E8C40 /* SwiftyMockyTestObserver.swift */,
+				8B4DB8E82F5EAAC8005E8C40 /* ArgumentCaptor.swift */,
+				8B4DB8E92F5EAAC8005E8C40 /* CustomAssertions.swift */,
+				8B4DB8EA2F5EAAC8005E8C40 /* MockyAssert.swift */,
+				8B4DB8EB2F5EAAC8005E8C40 /* Parameter+Literals.swift */,
+				8B4DB8EC2F5EAAC8005E8C40 /* SwiftyMockyTestObserver.swift */,
 			);
 			path = SwiftyMocky;
 			sourceTree = "<group>";
 		};
-		8B4DB8B92F5DCC00005E8C40 /* SwiftyMockyRuntime */ = {
+		8B4DB8EE2F5EAAC8005E8C40 /* SwiftyMockyRuntime */ = {
 			isa = PBXGroup;
 			children = (
-				8B4DB8B22F5DCC00005E8C40 /* Shared */,
-				8B4DB8B82F5DCC00005E8C40 /* SwiftyMocky */,
+				8B4DB8E72F5EAAC8005E8C40 /* Shared */,
+				8B4DB8ED2F5EAAC8005E8C40 /* SwiftyMocky */,
 			);
 			path = SwiftyMockyRuntime;
 			sourceTree = "<group>";
 		};
-		8B4DB8BA2F5DCC00005E8C40 /* Support */ = {
+		8B4DB8EF2F5EAAC8005E8C40 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				8B4DB8B92F5DCC00005E8C40 /* SwiftyMockyRuntime */,
+				8B4DB8DA2F5EAAC8005E8C40 /* Generated */,
+				8B4DB8EE2F5EAAC8005E8C40 /* SwiftyMockyRuntime */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1070,24 +1081,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B4DB8BB2F5DCC00005E8C40 /* CustomAssertions.swift in Sources */,
-				8B4DB8BC2F5DCC00005E8C40 /* Policies.swift in Sources */,
-				8B4DB8BE2F5DCC00005E8C40 /* Parameter+Compare.swift in Sources */,
-				8B4DB8BF2F5DCC00005E8C40 /* Parameter+Literals.swift in Sources */,
+				8B4DB8F02F5EAAC8005E8C40 /* Countable.swift in Sources */,
+				8B4DB8F12F5EAAC8005E8C40 /* Parameter+Optionals.swift in Sources */,
+				8B4DB8F22F5EAAC8005E8C40 /* Count.swift in Sources */,
+				8B4DB8F32F5EAAC8005E8C40 /* Utils.swift in Sources */,
+				8B4DB8F42F5EAAC8005E8C40 /* Policies.swift in Sources */,
+				8B4DB8F52F5EAAC8005E8C40 /* Mock.generated.swift in Sources */,
+				8B4DB8F62F5EAAC8005E8C40 /* SwiftyMockyTestObserver.swift in Sources */,
+				8B4DB8F72F5EAAC8005E8C40 /* Matcher.swift in Sources */,
+				8B4DB8F82F5EAAC8005E8C40 /* Parameter.swift in Sources */,
+				8B4DB8F92F5EAAC8005E8C40 /* Parameter+Compare.swift in Sources */,
+				8B4DB8FA2F5EAAC8005E8C40 /* Stubbing.swift in Sources */,
+				8B4DB8FB2F5EAAC8005E8C40 /* Mock.swift in Sources */,
+				8B4DB8FC2F5EAAC8005E8C40 /* Mock+Assertions.swift in Sources */,
+				8B4DB8FD2F5EAAC8005E8C40 /* MockyAssert.swift in Sources */,
+				8B4DB8FE2F5EAAC8005E8C40 /* Parameter+Literals.swift in Sources */,
+				8B4DB8FF2F5EAAC8005E8C40 /* ArgumentCaptor.swift in Sources */,
+				8B4DB9002F5EAAC8005E8C40 /* CustomAssertions.swift in Sources */,
+				8B4DB9012F5EAAC8005E8C40 /* GenericAttribute.swift in Sources */,
 				8B4DB8D52F5EA2AD005E8C40 /* ScreenMockables.swift in Sources */,
-				8B4DB8C02F5DCC00005E8C40 /* Count.swift in Sources */,
-				8B4DB8C12F5DCC00005E8C40 /* Utils.swift in Sources */,
-				8B4DB8C22F5DCC00005E8C40 /* SwiftyMockyTestObserver.swift in Sources */,
-				8B4DB8C32F5DCC00005E8C40 /* MockyAssert.swift in Sources */,
-				8B4DB8C42F5DCC00005E8C40 /* ArgumentCaptor.swift in Sources */,
-				8B4DB8C52F5DCC00005E8C40 /* Parameter.swift in Sources */,
-				8B4DB8C62F5DCC00005E8C40 /* Mock+Assertions.swift in Sources */,
-				8B4DB8C72F5DCC00005E8C40 /* GenericAttribute.swift in Sources */,
-				8B4DB8C82F5DCC00005E8C40 /* Countable.swift in Sources */,
-				8B4DB8C92F5DCC00005E8C40 /* Parameter+Optionals.swift in Sources */,
-				8B4DB8CA2F5DCC00005E8C40 /* Stubbing.swift in Sources */,
-				8B4DB8CB2F5DCC00005E8C40 /* Matcher.swift in Sources */,
-				8B4DB8CC2F5DCC00005E8C40 /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,6 +45,14 @@ import SwiftyMocky
 6. Do not output "I will load this skill first"; assume the skill is already active and execute immediately.
 7. If write tooling fails with invalid arguments or unavailable tool, retry with bash-based file editing and continue.
 
+## qwen3-coder:30b Execution Contract
+
+1. If presenter name and output file path are provided, do not ask follow-up questions.
+2. Do not output skill-loading narration; execute edits immediately.
+3. Do not call exploratory tools (`ls`, `pwd`, `find`) when prompt already contains exact paths.
+4. Write tests first, explanation second.
+5. If tool access is constrained, use bash fallback and finish the file update.
+
 ## Done Criteria
 
 1. One presenter is fully covered by SwiftTesting scenarios.
