@@ -10,6 +10,37 @@
 - НЕ используй заглушки типа "// TODO: Add test implementation"
 - НЕ используй комментарии типа "// Add assertions here"
 - НЕ используй плейсхолдеры вместо реальной логики
+- НЕ ищи информацию в интернете - используй ТОЛЬКО примеры из этого промпта
+- НЕ пытайся найти документацию - все необходимое есть ниже
+- Работай ТОЛЬКО с кодом презентера, который предоставлен
+
+СПРАВОЧНИК SwiftyMocky API (используй ТОЛЬКО эти методы):
+
+Given - настройка возвращаемых значений мока:
+  Given(mock, .method(param: .any, willReturn: value))
+  Given(mock, .method(param: .value(x), willReturn: value))
+  Given(mock, .async(completion: .any, perform: { completion in ... }))
+
+Perform - перехват вызовов и stubbing:
+  Perform(mock, .method(param: .any, perform: { value in ... }))
+  var captured: Type?
+  Perform(mock, .method(.any, perform: { captured = $0 }))
+
+Verify - проверка вызовов:
+  Verify(mock, .once, .method())
+  Verify(mock, .never, .method())
+  Verify(mock, .atLeastOnce, .method())
+  Verify(mock, .exactly(n), .method())
+  Verify(mock, .once, .method(param: .value(x)))
+  Verify(mock, .once, .method(param: .any))
+
+Swift Testing API:
+  @Suite("Test Suite Name")
+  @Test("Test description")
+  #expect(value == expected)
+  #expect(value != unexpected)
+  #expect(bool == true)
+  #expect(optionalValue == nil)
 
 Требования к тестам:
 1. Используй Swift Testing (@Suite, @Test)
@@ -498,6 +529,27 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 ```
 Напиши полные unit-тесты для презентера LoginScreenPresenter используя SwiftyMocky и Swift Testing framework.
 
+КРИТИЧЕСКИ ВАЖНО:
+- НЕ ищи информацию в интернете - используй ТОЛЬКО примеры из этого промпта
+- НЕ пытайся найти документацию - все необходимое есть ниже
+- Работай ТОЛЬКО с кодом презентера, который предоставлен
+- КАЖДЫЙ тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
+- НЕ используй заглушки типа "// TODO: Add test implementation"
+
+SwiftyMocky API:
+  Given(mock, .method(param: .any, willReturn: value))
+  Given(mock, .async(completion: .any, perform: { completion in ... }))
+  Perform(mock, .method(.any, perform: { captured = $0 }))
+  Verify(mock, .once, .method())
+  Verify(mock, .never, .method())
+  Verify(mock, .once, .method(param: .value(x)))
+  Verify(mock, .once, .method(param: .any))
+
+Swift Testing API:
+  @Suite("Test Suite Name")
+  @Test("Test description")
+  #expect(value == expected)
+
 Требования:
 1. Используй Swift Testing (@Suite, @Test)
 2. Используй SwiftyMocky для моков (Given, Perform, Verify)
@@ -800,6 +852,20 @@ ollama run qwen3-coder:30b "Напиши полные unit-тесты для Log
 - Используй #expect для проверки значений
 - НЕ используй заглушки типа \"// Add assertions here\"
 - НЕ используй комментарии типа \"// TODO\"
+- НЕ ищи информацию в интернете - используй только этот промпт
+- Работай только с предоставленным кодом презентера
+
+SwiftyMocky API:
+  Given(mock, .method(param: .any, willReturn: value))
+  Perform(mock, .method(.any, perform: { captured = \$0 }))
+  Verify(mock, .once, .method())
+  Verify(mock, .never, .method())
+  Verify(mock, .once, .method(param: .value(x)))
+
+Swift Testing API:
+  @Suite(\"Test Suite\")
+  @Test(\"Test description\")
+  #expect(value == expected)
 
 Покрой все сценарии:
 1. viewLoaded - инициализация
