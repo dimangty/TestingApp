@@ -926,6 +926,9 @@ $PRESENTER_CODE" > LoginScreenPresenterTests.swift
 
 ## 🚀 Специальный промт для opencode-desktop (УПРОЩЕННЫЙ)
 
+⚠️ **ВАЖНО**: Модель Qwen может не иметь доступа к Write tool для создания файлов.
+После генерации кода нужно будет вручную скопировать его в файл или попросить Claude Code создать файл.
+
 Для использования в opencode-desktop используйте этот короткий и четкий промпт:
 
 ```
@@ -1001,9 +1004,44 @@ private final class ProgressServiceSpy: ProgressService {
 1. Скопируй промпт выше
 2. Замени {PRESENTER_NAME} на имя твоего презентера (например: LoginScreenPresenter)
 3. Вставь промпт в opencode-desktop
-4. Модель должна:
-   - Прочитать презентер
-   - **СОЗДАТЬ ФАЙЛ** с тестами через Write tool
-   - Показать резюме
+4. Модель сгенерирует код тестов
 
-Если файл не создался - попроси модель явно: "Используй Write tool чтобы создать файл TestingTaskTests/LoginScreenPresenterTests.swift"
+**Если файл не создался автоматически (проблема с Qwen):**
+
+**Решение 1 - Использовать Claude Code для создания файла:**
+```
+Скопируй весь сгенерированный код тестов и запусти Claude Code:
+
+claude-code "Создай файл TestingTaskTests/LoginScreenPresenterTests.swift с таким содержимым:
+
+[вставь сюда весь сгенерированный код]
+"
+```
+
+**Решение 2 - Создать файл вручную:**
+1. Скопируй весь сгенерированный код из opencode-desktop
+2. Создай файл `TestingTaskTests/LoginScreenPresenterTests.swift`
+3. Вставь код в файл
+
+**Решение 3 - Использовать промпт прямо в Claude Code:**
+```bash
+# Скопируй код презентера
+PRESENTER_CODE=$(cat TestingTask/Screens/LoginScreen/LoginScreenPresenter.swift)
+
+# Запусти Claude Code с промптом
+claude-code "
+Создай файл TestingTaskTests/LoginScreenPresenterTests.swift с comprehensive unit-тестами.
+
+Код презентера:
+$PRESENTER_CODE
+
+Используй:
+- Swift Testing (@Suite, @Test)
+- SwiftyMocky (Given, Perform, Verify)
+- Spy классы для @Injected сервисов
+- #expect для проверок
+
+Покрой все методы, edge cases, async операции.
+НЕ используй заглушки.
+"
+```
