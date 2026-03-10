@@ -1,0 +1,25 @@
+{
+  "name": "generate-presenter-tests",
+  "description": "Generate comprehensive unit tests for a presenter using SwiftyMocky and Swift Testing",
+  "version": "1.0.0",
+  "author": "Auto-generated",
+  "model": "qwen3-coder:30b",
+  "temperature": 0.3,
+  "prompt": "Напиши полные unit-тесты для презентера {presenter_file} используя SwiftyMocky и Swift Testing framework.\n\nТребования:\n1. Используй Swift Testing (@Suite, @Test)\n2. Используй SwiftyMocky для моков (Given, Perform, Verify)\n3. Следуй Given/When/Then паттерну в комментариях\n4. Покрой ВСЕ методы презентера тестами\n5. Создай Spy классы для сервисов (@Injected dependencies)\n6. Тестируй edge cases (nil values, boundary conditions, multiple calls)\n7. Проверь все пути выполнения (success/failure scenarios)\n8. Используй реальную логику без заглушек\n\nСтруктура тестов должна включать:\n- View lifecycle events (viewLoaded, viewWillAppear, etc.)\n- User actions (button taps, text changes, etc.)\n- Validation logic (проверка валидации данных)\n- Navigation routing (проверка всех переходов)\n- Error scenarios (обработка ошибок)\n- State management (управление состоянием UI)\n- Edge cases (граничные условия, nil значения)\n- Service interactions (вызовы сервисов с моками)\n\nКаждый тест должен:\n- Иметь описательное имя функции в camelCase\n- Иметь четкое описание в @Test(\"...\")\n- Содержать Given/When/Then комментарии\n- Проверять конкретное поведение (один аспект)\n- Использовать Verify для проверки вызовов моков\n- Использовать #expect для проверки значений\n\nСоздай приватные Spy классы для всех @Injected зависимостей.\n\nПример структуры теста:\n```swift\n@Test(\"Description of what is being tested\")\nfunc testMethodName() {\n    // Given: Setup with mocked dependencies\n    let mockView = {ScreenName}ViewInputMock()\n    let mockRouter = {ScreenName}RouterInputMock()\n    let presenter = {PresenterName}(view: mockView, router: mockRouter)\n    var capturedValue: Type?\n    Perform(mockView, .method(param: .any, perform: { capturedValue = $0 }))\n\n    // When: Execute action being tested\n    presenter.someAction()\n\n    // Then: Verify expected behavior\n    Verify(mockView, .once, .method(param: .value(expectedValue)))\n    #expect(capturedValue == expectedValue)\n}\n```\n\nНЕ используй заглушки типа \"// TODO: Add test implementation\"\nКаждый тест должен быть полностью реализован с реальными проверками.\n\nПроанализируй код презентера:\n{presenter_content}",
+  "parameters": {
+    "presenter_file": {
+      "type": "string",
+      "description": "Path to the presenter file",
+      "required": true
+    },
+    "presenter_content": {
+      "type": "string",
+      "description": "Content of the presenter file",
+      "required": true
+    }
+  },
+  "output": {
+    "type": "file",
+    "path": "{test_output_path}"
+  }
+}

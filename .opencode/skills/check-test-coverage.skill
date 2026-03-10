@@ -1,0 +1,21 @@
+{
+  "name": "check-test-coverage",
+  "description": "Check test coverage for presenter and suggest missing tests",
+  "version": "1.0.0",
+  "author": "Auto-generated",
+  "model": "qwen3-coder:30b",
+  "temperature": 0.2,
+  "prompt": "Проверь покрытие тестов для презентера.\n\nКод презентера:\n{presenter_content}\n\nСуществующие тесты:\n{test_content}\n\nПроверь, что тесты покрывают:\n\n1. ✅ Все публичные методы презентера\n2. ✅ Все ветки условий (if/else, switch/case, guard)\n3. ✅ Все async completion handlers (success/failure)\n4. ✅ Все вызовы view методов\n5. ✅ Все вызовы router методов\n6. ✅ Все вызовы сервисов\n7. ✅ Все edge cases (nil, empty, boundary)\n8. ✅ Все переходы состояний\n9. ✅ Валидация данных (все валидные/невалидные случаи)\n10. ✅ Множественные вызовы методов\n\nВыведи отчет:\n\n## ✅ Покрыто тестами\n- Список покрытых методов и сценариев\n\n## ❌ Не покрыто тестами\n- Список непокрытых методов и сценариев\n- Непокрытые ветки условий\n- Непокрытые edge cases\n\n## 📝 Рекомендации\n- Предложения по дополнительным тестам\n- Конкретные сценарии, которые нужно добавить\n- Примеры тестов для непокрытых случаев\n\n## 📊 Статистика покрытия\n- Количество методов: X / Y покрыто\n- Количество веток: X / Y покрыто\n- Оценка покрытия: X%\n\nБудь детальным и конкретным в рекомендациях.",
+  "parameters": {
+    "presenter_content": {
+      "type": "string",
+      "description": "Content of the presenter file",
+      "required": true
+    },
+    "test_content": {
+      "type": "string",
+      "description": "Content of the test file",
+      "required": true
+    }
+  }
+}

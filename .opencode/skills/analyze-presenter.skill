@@ -1,0 +1,16 @@
+{
+  "name": "analyze-presenter",
+  "description": "Analyze presenter to identify methods, dependencies, and test scenarios",
+  "version": "1.0.0",
+  "author": "Auto-generated",
+  "model": "qwen3-coder:30b",
+  "temperature": 0.2,
+  "prompt": "Проанализируй презентер и выведи детальную информацию для написания тестов.\n\nКод презентера:\n{presenter_content}\n\nВыведи:\n\n## 1. Публичные методы (ViewOutput)\nСписок всех публичных методов с сигнатурами\n\n## 2. Зависимости (@Injected)\nВсе @Injected зависимости с типами\n\n## 3. Приватные методы и свойства\nВсе приватные методы и свойства\n\n## 4. Протоколы\n- View protocol\n- Router protocol\n\n## 5. Пути выполнения\nВсе возможные пути выполнения (success/failure branches)\n\n## 6. Edge cases для тестирования\n- Empty/nil values\n- Boundary conditions\n- Multiple calls\n- State transitions\n\n## 7. Необходимые Spy классы\nСписок Spy классов, которые нужно создать\n\n## 8. Методы View протокола\nКакие методы view вызываются из презентера\n\n## 9. Методы Router протокола\nКакие методы router вызываются из презентера\n\n## 10. Async операции\nВсе async операции и completion handlers\n\nФормат ответа должен быть структурированным и готовым для использования при написании тестов.",
+  "parameters": {
+    "presenter_content": {
+      "type": "string",
+      "description": "Content of the presenter file to analyze",
+      "required": true
+    }
+  }
+}

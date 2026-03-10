@@ -1,0 +1,9 @@
+cat: TestingTask/Core/Sources/ArticleScreen/Presenter/ArticlePresenter.swift: No such file or directory
+Testing generate-presenter-tests skill with ArticlePresenter...
+==================================================================
+
+./test-generate-tests.sh: line 70: .opencode/generated-article-presenter-tests.swift: No such file or directory
+Tests generated and saved to .opencode/generated-article-presenter-tests.swift
+
+First 100 lines of generated tests:
+head: .opencode/generated-article-presenter-tests.swift: No such file or directory

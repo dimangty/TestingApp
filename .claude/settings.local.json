@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ollama list:*)",
+      "Bash(chmod:*)",
+      "Bash(./test_prompt.sh:*)",
+      "Bash(./test_simple_check.sh:*)",
+      "Bash(./test_desktop_prompt.sh:*)",
+      "Bash(ls:*)",
+      "Bash(/tmp/test_simplified_prompt.sh)",
+      "Bash(perl:*)",
+      "Bash(find:*)",
+      "Bash(/Applications/OpenCode.app/Contents/MacOS/opencode-cli:*)",
+      "Bash(timeout 120:*)",
+      "Bash(timeout 180 .opencode/test-generate-tests.sh:*)",
+      "Bash(./test-all.sh)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd comprehensive testing prompt guide for SwiftyMocky\n\nAdded universal prompt template for generating unit tests for presenters using SwiftyMocky and Swift Testing framework. Includes detailed requirements for test coverage, Spy class creation, and real implementation examples without placeholders.\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)"
+    ]
+  }
+}

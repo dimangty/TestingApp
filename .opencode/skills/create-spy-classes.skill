@@ -1,0 +1,16 @@
+{
+  "name": "create-spy-classes",
+  "description": "Generate Spy classes for all @Injected services in presenter",
+  "version": "1.0.0",
+  "author": "Auto-generated",
+  "model": "qwen3-coder:30b",
+  "temperature": 0.2,
+  "prompt": "Создай Spy классы для всех @Injected сервисов в презентере.\n\nКод презентера:\n{presenter_content}\n\nТребования для каждого Spy класса:\n1. Используй private final class\n2. Наследуйся от протокола или класса сервиса\n3. Добавь счетчики вызовов для каждого метода ({methodName}CallCount)\n4. Сохраняй последние переданные параметры (last{ParamName})\n5. Implement все методы протокола\n6. Increment callCount в каждом методе\n7. Сохраняй параметры для проверки в тестах\n\nПример структуры:\n```swift\nprivate final class ProgressServiceSpy: IProgressService {\n    private(set) var showCallCount = 0\n    private(set) var hideCallCount = 0\n\n    func show() {\n        showCallCount += 1\n    }\n\n    func hide() {\n        hideCallCount += 1\n    }\n}\n\nprivate final class ErrorServiceSpy: IErrorService {\n    private(set) var showErrorCallCount = 0\n    private(set) var lastErrorText: String?\n\n    func show(errorText: String) {\n        showErrorCallCount += 1\n        lastErrorText = errorText\n    }\n}\n```\n\nСоздай Spy классы для всех найденных @Injected сервисов.\nНЕ создавай Spy для view и router - для них используются моки из SwiftyMocky.",
+  "parameters": {
+    "presenter_content": {
+      "type": "string",
+      "description": "Content of the presenter file",
+      "required": true
+    }
+  }
+}

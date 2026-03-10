@@ -1,0 +1,21 @@
+{
+  "name": "test-specific-method",
+  "description": "Generate comprehensive tests for a specific presenter method",
+  "version": "1.0.0",
+  "author": "Auto-generated",
+  "model": "qwen3-coder:30b",
+  "temperature": 0.3,
+  "prompt": "Напиши comprehensive тесты для метода {method_name} презентера.\n\nКод презентера:\n{presenter_content}\n\nМетод для тестирования: {method_name}\n\nПокрой все сценарии:\n1. ✅ Happy path (основной успешный сценарий)\n2. ❌ Error paths (все возможные ошибки)\n3. 🔄 Edge cases (граничные случаи)\n4. ⚠️ Invalid input (невалидные входные данные)\n5. ∅ Nil values (nil значения)\n6. 🔁 Multiple calls (множественные вызовы)\n7. 🔀 State transitions (переходы состояний)\n8. ⏱️ Async operations (асинхронные операции)\n9. 🔢 Boundary conditions (граничные значения)\n10. 🎯 All code paths (все пути выполнения)\n\nДля каждого теста:\n- Given: детальная настройка моков и начального состояния\n- When: вызов тестируемого метода с конкретными параметрами\n- Then: проверка всех side effects и изменений состояния\n\nИспользуй:\n```swift\n// Stubbing с захватом параметров\nvar capturedValue: Type?\nPerform(mockView, .method(param: .any, perform: { capturedValue = $0 }))\n\n// Настройка возвращаемых значений\nGiven(mockService, .method(param: .any, willReturn: value))\n\n// Настройка async callbacks\nGiven(mockService, .asyncMethod(completion: .any, perform: { completion in\n    completion(.success(result))\n}))\n\n// Проверка вызовов\nVerify(mockView, .once, .method(param: .value(expectedValue)))\nVerify(mockRouter, .never, .wrongMethod())\n\n// Проверка значений\n#expect(capturedValue == expectedValue)\n#expect(spy.callCount == expectedCount)\n```\n\nКаждый тест должен:\n1. Иметь описательное имя (test{MethodName}_{Scenario})\n2. Иметь четкое описание в @Test(\"...\")\n3. Содержать Given/When/Then комментарии\n4. Проверять ВСЕ side effects метода\n5. Быть независимым от других тестов\n6. НЕ содержать заглушек или TODO\n\nПример:\n```swift\n@Test(\"Method processes valid input and calls view\")\nfunc testMethodName_validInput_callsView() {\n    // Given: Presenter with mocked dependencies\n    let mockView = ViewInputMock()\n    let mockRouter = RouterInputMock()\n    let presenter = Presenter(view: mockView, router: mockRouter)\n    var capturedTitle: String?\n    Perform(mockView, .displayTitle(title: .any, perform: { capturedTitle = $0 }))\n\n    // When: Method is called with valid input\n    presenter.methodName(input: \"Valid\")\n\n    // Then: View displays correct title\n    Verify(mockView, .once, .displayTitle(title: .value(\"Valid\")))\n    #expect(capturedTitle == \"Valid\")\n}\n```\n\nСоздай минимум 5-10 тестов для метода, покрывающих все возможные сценарии.",
+  "parameters": {
+    "method_name": {
+      "type": "string",
+      "description": "Name of the method to test",
+      "required": true
+    },
+    "presenter_content": {
+      "type": "string",
+      "description": "Content of the presenter file",
+      "required": true
+    }
+  }
+}
