@@ -5,7 +5,16 @@
 ```
 Напиши полные unit-тесты для презентера {PRESENTER_NAME} используя SwiftyMocky и Swift Testing framework.
 
+ИНСТРУКЦИЯ ПО ВЫПОЛНЕНИЮ:
+1. Проанализируй код презентера {PRESENTER_NAME}
+2. СОЗДАЙ НОВЫЙ ФАЙЛ TestingTaskTests/{PRESENTER_NAME}Tests.swift
+3. Напиши в файл полные comprehensive тесты со всеми проверками
+
 КРИТИЧЕСКИ ВАЖНО:
+- ОБЯЗАТЕЛЬНО СОЗДАЙ ФАЙЛ - не просто покажи код, а создай файл
+- Используй инструмент Write для создания файла TestingTaskTests/{PRESENTER_NAME}Tests.swift
+- НЕ просто выводи код в чат - создай реальный файл в проекте
+- Путь к файлу: TestingTaskTests/{PRESENTER_NAME}Tests.swift
 - КАЖДЫЙ тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
 - НЕ используй заглушки типа "// TODO: Add test implementation"
 - НЕ используй комментарии типа "// Add assertions here"
@@ -13,6 +22,11 @@
 - НЕ ищи информацию в интернете - используй ТОЛЬКО примеры из этого промпта
 - НЕ пытайся найти документацию - все необходимое есть ниже
 - Работай ТОЛЬКО с кодом презентера, который предоставлен
+
+ФОРМАТ ОТВЕТА:
+1. Сначала проанализируй презентер
+2. Затем используй Write tool чтобы создать файл с тестами
+3. Покажи краткое резюме созданных тестов
 
 СПРАВОЧНИК SwiftyMocky API (используй ТОЛЬКО эти методы):
 
@@ -529,12 +543,26 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 ```
 Напиши полные unit-тесты для презентера LoginScreenPresenter используя SwiftyMocky и Swift Testing framework.
 
+ИНСТРУКЦИЯ ПО ВЫПОЛНЕНИЮ:
+1. Проанализируй код презентера LoginScreenPresenter
+2. СОЗДАЙ НОВЫЙ ФАЙЛ TestingTaskTests/LoginScreenPresenterTests.swift
+3. Напиши в файл полные comprehensive тесты со всеми проверками
+
 КРИТИЧЕСКИ ВАЖНО:
+- ОБЯЗАТЕЛЬНО СОЗДАЙ ФАЙЛ - не просто покажи код, а создай файл
+- Используй инструмент Write для создания файла TestingTaskTests/LoginScreenPresenterTests.swift
+- НЕ просто выводи код в чат - создай реальный файл в проекте
+- Путь к файлу: TestingTaskTests/LoginScreenPresenterTests.swift
 - НЕ ищи информацию в интернете - используй ТОЛЬКО примеры из этого промпта
 - НЕ пытайся найти документацию - все необходимое есть ниже
 - Работай ТОЛЬКО с кодом презентера, который предоставлен
 - КАЖДЫЙ тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
 - НЕ используй заглушки типа "// TODO: Add test implementation"
+
+ФОРМАТ ОТВЕТА:
+1. Сначала проанализируй презентер
+2. Затем используй Write tool чтобы создать файл с тестами
+3. Покажи краткое резюме созданных тестов
 
 SwiftyMocky API:
   Given(mock, .method(param: .any, willReturn: value))
@@ -847,9 +875,9 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 # Генерация тестов
 ollama run qwen3-coder:30b "Напиши полные unit-тесты для LoginScreenPresenter используя SwiftyMocky и Swift Testing.
 
-КРИТИЧЕСКИ ВАЖНО - каждый тест должен содержать РЕАЛЬНЫЕ проверки:
-- Используй Verify для проверки вызовов моков
-- Используй #expect для проверки значений
+КРИТИЧЕСКИ ВАЖНО:
+- СОЗДАЙ ФАЙЛ LoginScreenPresenterTests.swift с полным содержимым тестов
+- Каждый тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
 - НЕ используй заглушки типа \"// Add assertions here\"
 - НЕ используй комментарии типа \"// TODO\"
 - НЕ ищи информацию в интернете - используй только этот промпт
@@ -893,3 +921,89 @@ $PRESENTER_CODE" > LoginScreenPresenterTests.swift
 - ✅ БЕЗ заглушек и TODO
 
 Этот пример демонстрирует полный цикл: от кода презентера до готовых comprehensive тестов за 1-2 минуты!
+
+---
+
+## 🚀 Специальный промт для opencode-desktop (УПРОЩЕННЫЙ)
+
+Для использования в opencode-desktop используйте этот короткий и четкий промпт:
+
+```
+Создай тесты для презентера {PRESENTER_NAME}.
+
+ШАГ 1: Прочитай файл презентера
+ШАГ 2: СОЗДАЙ ФАЙЛ TestingTaskTests/{PRESENTER_NAME}Tests.swift используя Write tool
+ШАГ 3: Напиши тесты в файл
+
+ОБЯЗАТЕЛЬНО:
+- Используй Write tool для создания файла (НЕ просто показывай код)
+- Путь: TestingTaskTests/{PRESENTER_NAME}Tests.swift
+- НЕ ищи в интернете - используй только API ниже
+
+API для использования:
+
+SwiftyMocky:
+  Given(mock, .method(param: .any, willReturn: value))
+  Given(mock, .async(completion: .any, perform: { completion in completion(.success(data)) }))
+  Perform(mock, .method(.any, perform: { param in captured = param }))
+  Verify(mock, .once, .method())
+  Verify(mock, .never, .method())
+  Verify(mock, .once, .method(param: .value(x)))
+
+Swift Testing:
+  @Suite("Presenter Tests")
+  @Test("Test description")
+  #expect(value == expected)
+
+Структура теста:
+```swift
+@Test("Description")
+func testMethod() {
+    // Given
+    let mockView = {Screen}ViewInputMock()
+    let mockRouter = {Screen}RouterInputMock()
+    let presenter = {Presenter}(view: mockView, router: mockRouter)
+
+    // When
+    presenter.someAction()
+
+    // Then
+    Verify(mockView, .once, .someMethod())
+    #expect(condition == true)
+}
+```
+
+Spy классы:
+```swift
+private final class ProgressServiceSpy: ProgressService {
+    private(set) var showCallCount = 0
+    override func show() { showCallCount += 1 }
+}
+```
+
+Покрой тестами:
+- Все public методы презентера
+- Lifecycle (viewLoaded, viewWillAppear, etc.)
+- User actions (button taps, text changes)
+- Validation (граничные значения)
+- Async (success + failure paths)
+- Navigation
+- Edge cases
+
+НЕ используй:
+- "// TODO"
+- "// Add assertions"
+- Заглушки
+```
+
+### Пример использования в opencode-desktop:
+
+1. Скопируй промпт выше
+2. Замени {PRESENTER_NAME} на имя твоего презентера (например: LoginScreenPresenter)
+3. Вставь промпт в opencode-desktop
+4. Модель должна:
+   - Прочитать презентер
+   - **СОЗДАТЬ ФАЙЛ** с тестами через Write tool
+   - Показать резюме
+
+Если файл не создался - попроси модель явно: "Используй Write tool чтобы создать файл TestingTaskTests/LoginScreenPresenterTests.swift"
