@@ -5,16 +5,15 @@
 ```
 Напиши полные unit-тесты для презентера {PRESENTER_NAME} используя SwiftyMocky и Swift Testing framework.
 
-ИНСТРУКЦИЯ ПО ВЫПОЛНЕНИЮ:
-1. Проанализируй код презентера {PRESENTER_NAME}
-2. СОЗДАЙ НОВЫЙ ФАЙЛ TestingTaskTests/{PRESENTER_NAME}Tests.swift
-3. Напиши в файл полные comprehensive тесты со всеми проверками
+ФОРМАТ ВЫВОДА - КРИТИЧЕСКИ ВАЖНО:
+- Выводи ТОЛЬКО чистый код Swift файла
+- БЕЗ markdown блоков (```swift)
+- БЕЗ пояснений до или после кода
+- БЕЗ слов "вот тесты", "код готов" и подобных
+- Первая строка: import Testing
+- Последняя строка: закрывающая скобка последнего Spy класса
 
-КРИТИЧЕСКИ ВАЖНО:
-- ОБЯЗАТЕЛЬНО СОЗДАЙ ФАЙЛ - не просто покажи код, а создай файл
-- Используй инструмент Write для создания файла TestingTaskTests/{PRESENTER_NAME}Tests.swift
-- НЕ просто выводи код в чат - создай реальный файл в проекте
-- Путь к файлу: TestingTaskTests/{PRESENTER_NAME}Tests.swift
+ТРЕБОВАНИЯ К ТЕСТАМ:
 - КАЖДЫЙ тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
 - НЕ используй заглушки типа "// TODO: Add test implementation"
 - НЕ используй комментарии типа "// Add assertions here"
@@ -22,11 +21,6 @@
 - НЕ ищи информацию в интернете - используй ТОЛЬКО примеры из этого промпта
 - НЕ пытайся найти документацию - все необходимое есть ниже
 - Работай ТОЛЬКО с кодом презентера, который предоставлен
-
-ФОРМАТ ОТВЕТА:
-1. Сначала проанализируй презентер
-2. Затем используй Write tool чтобы создать файл с тестами
-3. Покажи краткое резюме созданных тестов
 
 СПРАВОЧНИК SwiftyMocky API (используй ТОЛЬКО эти методы):
 
@@ -543,26 +537,19 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 ```
 Напиши полные unit-тесты для презентера LoginScreenPresenter используя SwiftyMocky и Swift Testing framework.
 
-ИНСТРУКЦИЯ ПО ВЫПОЛНЕНИЮ:
-1. Проанализируй код презентера LoginScreenPresenter
-2. СОЗДАЙ НОВЫЙ ФАЙЛ TestingTaskTests/LoginScreenPresenterTests.swift
-3. Напиши в файл полные comprehensive тесты со всеми проверками
+ФОРМАТ ВЫВОДА - КРИТИЧЕСКИ ВАЖНО:
+- Выводи ТОЛЬКО чистый код Swift файла
+- БЕЗ markdown блоков (```swift)
+- БЕЗ пояснений до или после кода
+- Первая строка: import Testing
+- Последняя строка: закрывающая скобка последнего Spy класса
 
-КРИТИЧЕСКИ ВАЖНО:
-- ОБЯЗАТЕЛЬНО СОЗДАЙ ФАЙЛ - не просто покажи код, а создай файл
-- Используй инструмент Write для создания файла TestingTaskTests/LoginScreenPresenterTests.swift
-- НЕ просто выводи код в чат - создай реальный файл в проекте
-- Путь к файлу: TestingTaskTests/LoginScreenPresenterTests.swift
+ТРЕБОВАНИЯ:
 - НЕ ищи информацию в интернете - используй ТОЛЬКО примеры из этого промпта
 - НЕ пытайся найти документацию - все необходимое есть ниже
 - Работай ТОЛЬКО с кодом презентера, который предоставлен
 - КАЖДЫЙ тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
 - НЕ используй заглушки типа "// TODO: Add test implementation"
-
-ФОРМАТ ОТВЕТА:
-1. Сначала проанализируй презентер
-2. Затем используй Write tool чтобы создать файл с тестами
-3. Покажи краткое резюме созданных тестов
 
 SwiftyMocky API:
   Given(mock, .method(param: .any, willReturn: value))
@@ -873,10 +860,17 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 '
 
 # Генерация тестов
-ollama run qwen3-coder:30b "Напиши полные unit-тесты для LoginScreenPresenter используя SwiftyMocky и Swift Testing.
+ollama run qwen3-coder:30b "
+Напиши полные unit-тесты для LoginScreenPresenter используя SwiftyMocky и Swift Testing.
 
-КРИТИЧЕСКИ ВАЖНО:
-- СОЗДАЙ ФАЙЛ LoginScreenPresenterTests.swift с полным содержимым тестов
+ФОРМАТ ВЫВОДА - КРИТИЧЕСКИ ВАЖНО:
+- Выводи ТОЛЬКО чистый код Swift
+- БЕЗ markdown блоков (\\\`\\\`\\\`swift)
+- БЕЗ пояснений
+- Начни с: import Testing
+- Закончи на: последней }
+
+ТРЕБОВАНИЯ:
 - Каждый тест должен содержать РЕАЛЬНЫЕ проверки (Verify, #expect)
 - НЕ используй заглушки типа \"// Add assertions here\"
 - НЕ используй комментарии типа \"// TODO\"
@@ -885,6 +879,7 @@ ollama run qwen3-coder:30b "Напиши полные unit-тесты для Log
 
 SwiftyMocky API:
   Given(mock, .method(param: .any, willReturn: value))
+  Given(mock, .async(completion: .any, perform: { c in c(.success(data)) }))
   Perform(mock, .method(.any, perform: { captured = \$0 }))
   Verify(mock, .once, .method())
   Verify(mock, .never, .method())
@@ -906,7 +901,8 @@ Swift Testing API:
 - ErrorServiceSpy (showErrorCallCount, lastErrorText)
 
 Код презентера:
-$PRESENTER_CODE" > LoginScreenPresenterTests.swift
+$PRESENTER_CODE
+" > TestingTaskTests/LoginScreenPresenterTests.swift
 ```
 
 ### Полученный результат
@@ -924,24 +920,24 @@ $PRESENTER_CODE" > LoginScreenPresenterTests.swift
 
 ---
 
-## 🚀 Специальный промт для opencode-desktop (УПРОЩЕННЫЙ)
+## 🚀 Специальный промт для ollama + qwen3 (РЕКОМЕНДУЕТСЯ)
 
-⚠️ **ВАЖНО**: Модель Qwen может не иметь доступа к Write tool для создания файлов.
-После генерации кода нужно будет вручную скопировать его в файл или попросить Claude Code создать файл.
-
-Для использования в opencode-desktop используйте этот короткий и четкий промпт:
+Этот промпт оптимизирован для использования через командную строку `ollama run` с перенаправлением вывода в файл.
 
 ```
-Создай тесты для презентера {PRESENTER_NAME}.
+Создай comprehensive unit-тесты для презентера {PRESENTER_NAME}.
 
-ШАГ 1: Прочитай файл презентера
-ШАГ 2: СОЗДАЙ ФАЙЛ TestingTaskTests/{PRESENTER_NAME}Tests.swift используя Write tool
-ШАГ 3: Напиши тесты в файл
+КРИТИЧЕСКИ ВАЖНО - ФОРМАТ ВЫВОДА:
+- Выводи ТОЛЬКО код Swift файла
+- БЕЗ markdown блоков (```swift)
+- БЕЗ пояснений до или после кода
+- БЕЗ комментариев типа "вот код" или "тесты готовы"
+- Первая строка должна быть: import Testing
+- Последняя строка должна быть: закрывающая скобка последнего Spy класса
 
 ОБЯЗАТЕЛЬНО:
-- Используй Write tool для создания файла (НЕ просто показывай код)
-- Путь: TestingTaskTests/{PRESENTER_NAME}Tests.swift
 - НЕ ищи в интернете - используй только API ниже
+- НЕ используй заглушки типа "// TODO"
 
 API для использования:
 
@@ -999,49 +995,275 @@ private final class ProgressServiceSpy: ProgressService {
 - Заглушки
 ```
 
-### Пример использования в opencode-desktop:
+### Использование через ollama в командной строке:
 
-1. Скопируй промпт выше
-2. Замени {PRESENTER_NAME} на имя твоего презентера (например: LoginScreenPresenter)
-3. Вставь промпт в opencode-desktop
-4. Модель сгенерирует код тестов
-
-**Если файл не создался автоматически (проблема с Qwen):**
-
-**Решение 1 - Использовать Claude Code для создания файла:**
-```
-Скопируй весь сгенерированный код тестов и запусти Claude Code:
-
-claude-code "Создай файл TestingTaskTests/LoginScreenPresenterTests.swift с таким содержимым:
-
-[вставь сюда весь сгенерированный код]
-"
-```
-
-**Решение 2 - Создать файл вручную:**
-1. Скопируй весь сгенерированный код из opencode-desktop
-2. Создай файл `TestingTaskTests/LoginScreenPresenterTests.swift`
-3. Вставь код в файл
-
-**Решение 3 - Использовать промпт прямо в Claude Code:**
+**Шаг 1 - Скопируй код презентера в переменную:**
 ```bash
-# Скопируй код презентера
-PRESENTER_CODE=$(cat TestingTask/Screens/LoginScreen/LoginScreenPresenter.swift)
+cd /path/to/your/project
 
-# Запусти Claude Code с промптом
-claude-code "
-Создай файл TestingTaskTests/LoginScreenPresenterTests.swift с comprehensive unit-тестами.
+PRESENTER_CODE=$(cat TestingTask/Screens/LoginScreen/LoginScreenPresenter.swift)
+```
+
+**Шаг 2 - Запусти ollama с промптом и перенаправь вывод в файл:**
+```bash
+ollama run qwen3-coder:30b "
+Создай comprehensive unit-тесты для презентера LoginScreenPresenter.
+
+КРИТИЧЕСКИ ВАЖНО - ФОРМАТ ВЫВОДА:
+- Выводи ТОЛЬКО код Swift файла
+- БЕЗ markdown блоков (\`\`\`swift)
+- БЕЗ пояснений до или после кода
+- БЕЗ комментариев типа \"вот код\" или \"тесты готовы\"
+- Первая строка должна быть: import Testing
+- Последняя строка должна быть: закрывающая скобка последнего Spy класса
+
+НЕ ищи в интернете - используй только API ниже.
+НЕ используй заглушки типа \"// TODO\".
+
+SwiftyMocky API:
+  Given(mock, .method(param: .any, willReturn: value))
+  Given(mock, .async(completion: .any, perform: { completion in completion(.success(data)) }))
+  Perform(mock, .method(.any, perform: { param in captured = param }))
+  Verify(mock, .once, .method())
+  Verify(mock, .never, .method())
+  Verify(mock, .once, .method(param: .value(x)))
+
+Swift Testing:
+  @Suite(\"Presenter Tests\")
+  @Test(\"Test description\")
+  #expect(value == expected)
+
+Структура:
+1. import Testing + Foundation + SwiftyMocky + @testable import
+2. @Suite struct
+3. Все тесты с Given/When/Then
+4. Spy классы в конце
+
+Покрой:
+- Lifecycle (viewLoaded, viewWillAppear)
+- User actions (все методы ViewOutput)
+- Validation (граничные значения)
+- Async (success + failure paths)
+- Navigation
+- Edge cases (nil, empty, boundaries)
 
 Код презентера:
 $PRESENTER_CODE
-
-Используй:
-- Swift Testing (@Suite, @Test)
-- SwiftyMocky (Given, Perform, Verify)
-- Spy классы для @Injected сервисов
-- #expect для проверок
-
-Покрой все методы, edge cases, async операции.
-НЕ используй заглушки.
-"
+" > TestingTaskTests/LoginScreenPresenterTests.swift
 ```
+
+**Шаг 3 - Проверь созданный файл:**
+```bash
+cat TestingTaskTests/LoginScreenPresenterTests.swift
+```
+
+**Если в начале файла появился лишний текст:**
+Используй этот скрипт для очистки:
+```bash
+# Удаляет всё до первого import
+sed -i '' '/^import/,$!d' TestingTaskTests/LoginScreenPresenterTests.swift
+
+# Или удаляет всё до первой строки с "import Testing"
+awk '/^import Testing/,0' TestingTaskTests/LoginScreenPresenterTests.swift > temp.swift && mv temp.swift TestingTaskTests/LoginScreenPresenterTests.swift
+```
+
+### Альтернатива - использование heredoc для промпта:
+
+```bash
+ollama run qwen3-coder:30b "$(cat <<'PROMPT'
+Создай comprehensive unit-тесты для презентера LoginScreenPresenter.
+
+КРИТИЧЕСКИ ВАЖНО - ФОРМАТ ВЫВОДА:
+- Выводи ТОЛЬКО код Swift файла (начиная с import)
+- БЕЗ markdown блоков
+- БЕЗ пояснений
+
+[... весь промпт как выше ...]
+
+Код презентера:
+$(cat TestingTask/Screens/LoginScreen/LoginScreenPresenter.swift)
+PROMPT
+)" > TestingTaskTests/LoginScreenPresenterTests.swift
+```
+
+---
+
+## 💻 Использование в UI opencode-desktop
+
+Если вы используете веб-интерфейс opencode-desktop, а не командную строку:
+
+### Промт для копирования (упрощенный):
+
+```
+Создай comprehensive unit-тесты для презентера LoginScreenPresenter.
+
+ФОРМАТ ВЫВОДА - КРИТИЧЕСКИ ВАЖНО:
+- Выводи ТОЛЬКО чистый код Swift
+- НЕ оборачивай в ```swift блоки
+- Начни с: import Testing
+- Закончи на: последней закрывающей скобке }
+- БЕЗ слов "вот код", "готово" и т.д.
+
+API:
+
+SwiftyMocky:
+  Given(mock, .method(param: .any, willReturn: value))
+  Perform(mock, .method(.any, perform: { captured = $0 }))
+  Verify(mock, .once, .method())
+  Verify(mock, .once, .method(param: .value(x)))
+
+Swift Testing:
+  @Suite("Tests")
+  @Test("description")
+  #expect(value == expected)
+
+Структура файла:
+1. Imports (Testing, Foundation, SwiftyMocky, @testable import TestingTask)
+2. @Suite struct {PresenterName}Tests
+3. Все тесты (@Test функции)
+4. Spy классы (private final class)
+
+Покрой:
+- viewLoaded, viewWillAppear
+- Все user action методы
+- Валидацию с граничными значениями
+- Async success/failure
+- Navigation
+- Edge cases
+
+Spy классы для всех @Injected сервисов:
+```swift
+private final class ProgressServiceSpy: ProgressService {
+    private(set) var showCallCount = 0
+    private(set) var hideCallCount = 0
+    override func show() { showCallCount += 1 }
+    override func hide() { hideCallCount += 1 }
+}
+```
+
+НЕ используй:
+- "// TODO"
+- "// Add assertions"
+- Заглушки
+- Markdown блоки
+
+Код презентера находится в файле: TestingTask/Screens/LoginScreen/LoginScreenPresenter.swift
+```
+
+### Как использовать:
+
+1. **Вставь промпт в opencode-desktop**
+2. **Дождись генерации кода**
+3. **Скопируй весь сгенерированный код** (без пояснений модели)
+4. **Создай файл вручную:**
+
+```bash
+# Вариант 1 - через echo
+echo "ВСТАВЬ_СКОПИРОВАННЫЙ_КОД" > TestingTaskTests/LoginScreenPresenterTests.swift
+
+# Вариант 2 - через cat с heredoc
+cat > TestingTaskTests/LoginScreenPresenterTests.swift << 'EOF'
+ВСТАВЬ_СКОПИРОВАННЫЙ_КОД
+EOF
+
+# Вариант 3 - открой в редакторе и вставь
+nano TestingTaskTests/LoginScreenPresenterTests.swift
+# или
+vim TestingTaskTests/LoginScreenPresenterTests.swift
+# или
+code TestingTaskTests/LoginScreenPresenterTests.swift
+```
+
+### Если модель добавила лишний текст (пояснения):
+
+Удали всё до первого `import`:
+
+```bash
+# Найди строку с import Testing и удали всё до неё
+sed -i '' '1,/^import Testing/!d' TestingTaskTests/LoginScreenPresenterTests.swift
+```
+
+---
+
+## 📊 Шпаргалка: Какой метод использовать
+
+### ✅ Рекомендуется: ollama CLI + перенаправление вывода
+
+```bash
+ollama run qwen3-coder:30b "промпт с кодом презентера" > TestingTaskTests/PresenterTests.swift
+```
+
+**Плюсы:**
+- ✅ Файл создается автоматически
+- ✅ Быстро и просто
+- ✅ Можно скриптовать
+- ✅ Работает на любой ОС
+
+**Минусы:**
+- ❌ Модель может добавить пояснения в начале (легко удаляется через sed)
+
+---
+
+### ⚠️ Альтернатива: opencode-desktop UI + ручное копирование
+
+```
+1. Вставь промпт в opencode-desktop
+2. Скопируй сгенерированный код
+3. Вставь в файл через редактор
+```
+
+**Плюсы:**
+- ✅ Визуальный интерфейс
+- ✅ Удобно для одного файла
+
+**Минусы:**
+- ❌ Ручное копирование
+- ❌ Не скриптуется
+- ❌ Дольше по времени
+
+---
+
+### 🎯 Быстрый старт (Copy-Paste)
+
+**Для командной строки (рекомендуется):**
+
+```bash
+# 1. Перейди в директорию проекта
+cd /path/to/your/project
+
+# 2. Создай директорию для тестов если нужно
+mkdir -p TestingTaskTests
+
+# 3. Запусти генерацию
+PRESENTER_CODE=$(cat TestingTask/Screens/LoginScreen/LoginScreenPresenter.swift)
+
+ollama run qwen3-coder:30b "
+Напиши unit-тесты для LoginScreenPresenter.
+
+ФОРМАТ: ТОЛЬКО код Swift, БЕЗ markdown, БЕЗ пояснений.
+Начни с: import Testing
+
+API:
+  Given(mock, .method(param: .any, willReturn: value))
+  Perform(mock, .method(.any, perform: { p in captured = p }))
+  Verify(mock, .once, .method())
+  #expect(value == expected)
+
+Покрой: lifecycle, user actions, validation, async, navigation, edge cases.
+Создай Spy для @Injected сервисов.
+НЕ используй TODO.
+
+Код:
+$PRESENTER_CODE
+" > TestingTaskTests/LoginScreenPresenterTests.swift
+
+# 4. Проверь результат
+head -20 TestingTaskTests/LoginScreenPresenterTests.swift
+
+# 5. Если есть лишний текст - удали
+sed -i '' '/^import Testing/,$!d' TestingTaskTests/LoginScreenPresenterTests.swift
+```
+
+**Для opencode-desktop UI:**
+
+Скопируй промпт из раздела "💻 Использование в UI opencode-desktop" выше.
