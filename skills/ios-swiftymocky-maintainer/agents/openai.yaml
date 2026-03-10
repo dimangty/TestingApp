@@ -1,4 +1,0 @@
-interface:
-  display_name: "iOS SwiftyMocky Maintainer"
-  short_description: "Regenerate and validate SwiftyMocky mocks safely"
-  default_prompt: "Build mode. Highest priority rule: when user says 'Execute exactly one command', run only that command and stop. No planning text, no skill switching, no pseudo tool tags."

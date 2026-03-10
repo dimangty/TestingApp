@@ -1,4 +1,0 @@
-interface:
-  display_name: "iOS UI Flow Test Writer"
-  short_description: "Add stable XCTest UI flow tests for the app"
-  default_prompt: "Build mode. Highest priority rule: when user says 'Execute exactly one command', run only that command and stop. Otherwise add deterministic UI tests and persist changes. No planning loops or pseudo tool tags."

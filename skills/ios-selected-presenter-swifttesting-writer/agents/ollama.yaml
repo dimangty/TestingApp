@@ -1,4 +1,0 @@
-interface:
-  display_name: "iOS Selected Presenter SwiftTesting Writer"
-  short_description: "Cover one presenter with Swift Testing and SwiftyMocky"
-  default_prompt: "Build mode. Highest priority rule: when user says 'Execute exactly one command', run only that command and stop. For bash tool calls always include command + description arguments. No planning text, no skill switching, no pseudo tool tags. If presenter+path are explicit, edit immediately and persist file changes."
